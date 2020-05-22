@@ -13,26 +13,27 @@ import androidx.annotation.Nullable;
 
 /**
  * author:lgh on 2020-05-12 14:13
+ * view事件处理
  */
-public class TestView extends View implements GestureDetector.OnGestureListener,
+public class TestTouchView extends View implements GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
 
     private GestureDetector mDetector;
-    private Context mContext;
-    private Scroller mScroller;
+    private Context         mContext;
+    private Scroller        mScroller;
 
     private int lastX;
     private int lastY;
 
-    public TestView(Context context) {
+    public TestTouchView(Context context) {
         this(context, null);
     }
 
-    public TestView(Context context, @Nullable AttributeSet attrs) {
+    public TestTouchView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TestView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TestTouchView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         initGestureDetector();
