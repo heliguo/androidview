@@ -1,6 +1,7 @@
 package com.example.androidview.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,6 +9,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+
+import com.example.androidview.R;
 
 /**
  * @author lgh on 2020/5/22 11:35
@@ -32,7 +35,15 @@ public class CircleView extends View {
 
     public CircleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initAttr(context, attrs);
         init();
+
+    }
+
+    private void initAttr(Context context, AttributeSet attrs) {
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CircleView);
+        mCircleColor = array.getColor(R.styleable.CircleView_circle_color, Color.RED);
+        array.recycle();
     }
 
     private void init() {
