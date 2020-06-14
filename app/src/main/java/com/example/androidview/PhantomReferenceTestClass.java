@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference;
 public class PhantomReferenceTestClass {
 
     ReferenceQueue   mQueue            = new ReferenceQueue();
-    PhantomReference mPhantomReference = new PhantomReference(this, mQueue);
+    PhantomReference mPhantomReference = new PhantomReference<>(this, mQueue);
     SoftReference    mSoftReference    = new SoftReference(this);
     WeakReference    mWeakReference    = new WeakReference(this);
 
