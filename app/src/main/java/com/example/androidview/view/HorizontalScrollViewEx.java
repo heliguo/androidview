@@ -119,9 +119,11 @@ public class HorizontalScrollViewEx extends HorizontalScrollView {
                 }
                 mChildIndex = Math.max(0, Math.min(mChildIndex, mChildrenSize - 1));
                 int dx = mChildIndex * mChildWidth - scrollX;
-                Log.e(TAG, "mChildIndex: "+mChildIndex );
-                Log.e(TAG, "onTouchEvent: "+scrollX );
-                smoothScrollByH(scrollX, 0);//父类有该方法
+                if (xVelocity>0){
+                    smoothScrollByH(-1000, 0);
+                }else {
+                    smoothScrollByH(1000, 0);//父类有该方法
+                }
                 mVelocityTracker.clear();
                 break;
             default:
@@ -182,17 +184,15 @@ public class HorizontalScrollViewEx extends HorizontalScrollView {
 
     }
 
-    private void smoothScrollByH(int dx, int xy) {
-        mScroller.startScroll(getScrollX(), 0, dx, 0);
+    private void smoothScrollByH(int dx, int dy) {
+        mScroller.startScroll(getScrollX(), 0, dx, 0,10000);
         invalidate();
     }
 
     @Override
     public void computeScroll() {
-        super.computeScroll();
         if (mScroller.computeScrollOffset()) {
             scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
-            Log.e(TAG, "computeScroll: " );
             postInvalidate();
         }
     }

@@ -45,6 +45,29 @@
             android:layout_height="wrap_content"
             android:text="77777"/>
 
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="88888"/>
+
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="999999"/>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="000000"/>
+
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="pppppp"/>
+
     </LinearLayout>
 
 </com.example.androidview.view.HorizontalScrollViewEx>
