@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/back_out_b"
+    android:antialias="true"
+    android:dither="true"
+    android:filter="true"
+    android:gravity="top"
+    android:mipMap="true"
+    android:tileMode="disabled" />
+<!--    android:tileMode=["disabled" | "clamp" | "repeat" | "mirror"]-->
+    <!--    android:gravity=["top" | "bottom"|"left"|"right" | "center_vertical" |-->
+<!--    "fill_vertical"|"center_horizontal" | "fill_horizontal" |-->
+<!--    "center" | "fill" | "clip_vertical" | "clip_horizontal"]-->

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners
+        android:bottomLeftRadius="20dp"
+        android:bottomRightRadius="20dp"
+        android:radius="20dp"
+        android:topLeftRadius="20dp"
+        android:topRightRadius="20dp" />
+    <gradient
+        android:angle="20dp"
+        android:centerColor="20dp"
+        android:centerX="20dp"
+        android:centerY="20dp"
+        android:endColor="#ffffff"
+        android:gradientRadius="20dp"
+        android:startColor="#ffffff"
+        android:type="linear"
+        android:useLevel="true" />
+    <padding
+        android:bottom="20dp"
+        android:left="20dp"
+        android:right="20dp"
+        android:top="20dp" />
+    <size
+        android:width="20dp"
+        android:height="20dp" />
+    <solid android:color="#ffffff" />
+    <stroke
+        android:width="20dp"
+        android:color="#ffffff"
+        android:dashWidth="20dp"
+        android:dashGap="20dp" />
+</shape>
+
+    <!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:shape=["rectangle" | "oval" | "line" | "ring"] ><corners-->
+    <!--android:bottomLeftRadius="integer"-->
+    <!--android:bottomRightRadius="integer"-->
+    <!--android:radius="integer"-->
+    <!--android:topLeftRadius="integer"-->
+    <!--android:topRightRadius="integer" /><gradient-->
+    <!--android:angle="integer"-->
+    <!--android:centerColor="integer"-->
+    <!--android:centerX="integer"-->
+    <!--android:centerY="integer"-->
+    <!--android:endColor="color"-->
+    <!--android:gradientRadius="integer"-->
+    <!--android:startColor="color"-->
+    <!--android:type=["linear" | "radial" | "sweep"]android:useLevel=["true" | "false"] /><padding-->
+    <!--android:bottom="integer"-->
+    <!--android:left="integer"-->
+    <!--android:right="integer"-->
+    <!--android:top="integer" /><size-->
+    <!--android:height="integer"-->
+    <!--android:width="integer" /><solid android:color="color" /><stroke-->
+    <!--android:color="color"-->
+    <!--android:dashGap="integer"-->
+    <!--android:dashWidth="integer"-->
+    <!--android:width="integer" /></shape>-->
