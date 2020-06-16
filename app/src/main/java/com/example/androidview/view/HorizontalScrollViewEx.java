@@ -10,7 +10,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.Scroller;
 
 /**
- * author:lgh on 2020/6/14 14:12
+ * @author:lgh on 2020/6/14 14:12
  */
 public class HorizontalScrollViewEx extends HorizontalScrollView {
 
@@ -101,6 +101,7 @@ public class HorizontalScrollViewEx extends HorizontalScrollView {
                 if (!mScroller.isFinished()) {
                     mScroller.abortAnimation();
                 }
+                Log.e(TAG, "onTouchEvent: ");
                 break;
             case MotionEvent.ACTION_MOVE:
                 int offsetX = x - mLastX;
@@ -119,9 +120,9 @@ public class HorizontalScrollViewEx extends HorizontalScrollView {
                 }
                 mChildIndex = Math.max(0, Math.min(mChildIndex, mChildrenSize - 1));
                 int dx = mChildIndex * mChildWidth - scrollX;
-                if (xVelocity>0){
+                if (xVelocity > 0) {
                     smoothScrollByH(-1000, 0);
-                }else {
+                } else {
                     smoothScrollByH(1000, 0);//父类有该方法
                 }
                 mVelocityTracker.clear();
@@ -185,7 +186,7 @@ public class HorizontalScrollViewEx extends HorizontalScrollView {
     }
 
     private void smoothScrollByH(int dx, int dy) {
-        mScroller.startScroll(getScrollX(), 0, dx, 0,10000);
+        mScroller.startScroll(getScrollX(), 0, dx, 0, 10000);
         invalidate();
     }
 
