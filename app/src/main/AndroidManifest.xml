@@ -11,16 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewFlipperActivity">
+        <activity android:name=".animation.FrameAnimationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".rootview.RootViewActivity">
+        <activity android:name=".ViewFlipperActivity">
 
         </activity>
+        <activity android:name=".rootview.RootViewActivity"></activity>
 
         <receiver android:name=".rootview.NewAppWidget">
             <intent-filter>
@@ -33,7 +34,7 @@
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
 
-        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".MainActivity2" />
         <activity android:name=".MainActivity">
 
             <!-- <intent-filter> -->

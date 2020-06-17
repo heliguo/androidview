@@ -7,30 +7,30 @@
         android:radius="20dp"
         android:topLeftRadius="20dp"
         android:topRightRadius="20dp" />
-    <gradient
-        android:angle="20dp"
-        android:centerColor="20dp"
-        android:centerX="20dp"
-        android:centerY="20dp"
-        android:endColor="#ffffff"
-        android:gradientRadius="20dp"
-        android:startColor="#ffffff"
-        android:type="linear"
-        android:useLevel="true" />
-    <padding
-        android:bottom="20dp"
-        android:left="20dp"
-        android:right="20dp"
-        android:top="20dp" />
-    <size
-        android:width="20dp"
-        android:height="20dp" />
-    <solid android:color="#ffffff" />
-    <stroke
-        android:width="20dp"
-        android:color="#ffffff"
-        android:dashWidth="20dp"
-        android:dashGap="20dp" />
+<!--    <gradient-->
+<!--        android:angle="20dp"-->
+<!--        android:centerColor="20dp"-->
+<!--        android:centerX="20dp"-->
+<!--        android:centerY="20dp"-->
+<!--        android:endColor="#ffffff"-->
+<!--        android:gradientRadius="20dp"-->
+<!--        android:startColor="#ffffff"-->
+<!--        android:type="linear"-->
+<!--        android:useLevel="true" />-->
+<!--    <padding-->
+<!--        android:bottom="20dp"-->
+<!--        android:left="20dp"-->
+<!--        android:right="20dp"-->
+<!--        android:top="20dp" />-->
+<!--    <size-->
+<!--        android:width="20dp"-->
+<!--        android:height="20dp" />-->
+<!--    <solid android:color="#ffffff" />-->
+<!--    <stroke-->
+<!--        android:width="20dp"-->
+<!--        android:color="#ffffff"-->
+<!--        android:dashWidth="20dp"-->
+<!--        android:dashGap="20dp" />-->
 </shape>
 
     <!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
