@@ -1,13 +1,14 @@
 package com.example.androidview;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ViewFlipper;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * @author lgh
+ * @description ViewFlipper示例
  */
 public class ViewFlipperActivity extends AppCompatActivity {
 

@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
-import com.example.androidview.MainActivity2;
+import com.example.androidview.HorizontalScrollActivity;
 import com.example.androidview.R;
 
 /**
@@ -37,7 +37,7 @@ public class RootViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_root_view);
         findViewById(R.id.button).setOnClickListener(v -> {
             Toast.makeText(this, "555", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity2.class);
+            Intent intent = new Intent(this, HorizontalScrollActivity.class);
             PendingIntent pi = PendingIntent.getActivity(this, 20, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
             RemoteViews remoteView = new RemoteViews(getPackageName(), R.layout.rootview);

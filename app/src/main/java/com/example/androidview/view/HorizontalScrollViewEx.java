@@ -10,7 +10,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.Scroller;
 
 /**
- * @author:lgh on 2020/6/14 14:12
+ * @author lgh on 2020/6/14 14:12
  */
 public class HorizontalScrollViewEx extends HorizontalScrollView {
 
