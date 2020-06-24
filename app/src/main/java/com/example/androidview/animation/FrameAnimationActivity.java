@@ -27,7 +27,6 @@ public class FrameAnimationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_frame_animation);
         mButton = findViewById(R.id.button2);
         //        button.setBackgroundResource(R.drawable.frame_animation);
-        //
         //        AnimationDrawable background = (AnimationDrawable) button.getBackground();
         //        background.start();
         AnimatorSet animatorSet = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.anim.property_animator);
@@ -46,8 +45,8 @@ public class FrameAnimationActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ObjectAnimator.ofInt(mButton, "width", 500).setDuration(5000).start();
-            performAnimate();
+                //                ObjectAnimator.ofInt(mButton, "width", 500).setDuration(5000).start();
+                performAnimate();
             }
         });
 
@@ -65,7 +64,7 @@ public class FrameAnimationActivity extends AppCompatActivity {
             mTarget = target;
         }
 
-        public int getHeight(){
+        public int getHeight() {
             return mTarget.getLayoutParams().height;
         }
 
@@ -78,7 +77,7 @@ public class FrameAnimationActivity extends AppCompatActivity {
             mTarget.requestLayout();
         }
 
-        public void setHeight(int height){
+        public void setHeight(int height) {
             mTarget.getLayoutParams().height = height;
             mTarget.requestLayout();
         }

@@ -1,9 +1,10 @@
 package com.example.androidview;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,6 +56,29 @@ public class MainActivity extends AppCompatActivity {
         if (hasFocus) {
             mMeasuredWidth = mTextView.getMeasuredWidth();
             mMeasuredHeight = mTextView.getMeasuredHeight();
+        }
+        /**
+         * 非粘性沉浸
+         * 使用Flag SYSTEM_UI_FLAG_IMMERSIVE，
+         * 隐藏系统栏。当用户在系统栏区域向内滑动时，系统栏会重新显示并保持可见。
+         * 粘性沉浸
+         * 当使用Flag SYSTEM_UI_FLAG_IMMERSIVE_STICKY，
+         * 在系统栏的区域中向内滑动会引起系统栏出现一个半透明的状态，
+         * 但是 flags 不会被清除，监听系统界面可见性变化的listeners并不会被调用。
+         * 系统栏会在几秒之后再次动态隐藏，同样当用户点击了屏幕，系统栏也会隐藏。
+         */
+        //判断4.4以上版本
+        if (hasFocus && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //获得DecorView
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE //来帮助你的app来维持一个稳定的布局
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION //确保appUI的主要部分不会因为被系统导航栏覆盖而结束
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN //确保appUI的主要部分不会因为被系统状态栏覆盖而结束
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION //隐藏导航栏
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN //表示全屏，会将状态栏隐藏，只会隐藏状态栏
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//粘性沉浸
+
         }
     }
 
