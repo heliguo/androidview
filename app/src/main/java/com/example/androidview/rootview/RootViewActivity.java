@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +23,10 @@ import com.example.androidview.R;
  */
 public class RootViewActivity extends AppCompatActivity {
 
-    private static final String TAG                  = "RootViewActivity";
-    private static final String DEFAULT_CHANNEL_ID   = "default_id";
+    private static final String TAG = "RootViewActivity";
+    private static final String DEFAULT_CHANNEL_ID = "default_id";
     private static final String DEFAULT_CHANNEL_NAME = "default_channel_name";
-    private static final int    DEFAULT_NOTIFY_ID    = 1;
+    private static final int DEFAULT_NOTIFY_ID = 1;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -36,7 +35,6 @@ public class RootViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
         findViewById(R.id.button).setOnClickListener(v -> {
-            Toast.makeText(this, "555", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, HorizontalScrollActivity.class);
             PendingIntent pi = PendingIntent.getActivity(this, 20, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);

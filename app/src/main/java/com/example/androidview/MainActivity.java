@@ -2,9 +2,12 @@ package com.example.androidview;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.MessageQueue;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,9 +22,9 @@ import java.util.Date;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private TestDrawView mTextView;
-    private int          mMeasuredWidth;
-    private int          mMeasuredHeight;
+    private TextView mTextView;
+    private int mMeasuredWidth;
+    private int mMeasuredHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
             Log.e("LOG", "ts: " + ts);
         }).start();
 
+        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+            @Override
+            public boolean queueIdle() {
+                Log.e("addIdleHandler", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
+
+                return false;
+            }
+        });
+
     }
 
     /**
@@ -56,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         if (hasFocus) {
             mMeasuredWidth = mTextView.getMeasuredWidth();
             mMeasuredHeight = mTextView.getMeasuredHeight();
+            Log.e("onWindowFocusChanged", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
         }
         /**
          * 非粘性沉浸
@@ -96,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 mMeasuredWidth = mTextView.getMeasuredWidth();
                 mMeasuredHeight = mTextView.getMeasuredHeight();
+                Log.e("post", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
             }
         });
 
@@ -108,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
             public void onGlobalLayout() {
                 mMeasuredWidth = mTextView.getMeasuredWidth();
                 mMeasuredHeight = mTextView.getMeasuredHeight();
+                Log.e("getViewTreeObserver", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
+
                 //onGLobalLayout会被多次调用，再获取到之后要移除观察者
                 if (mMeasuredHeight != 0 || mMeasuredWidth != 0) {
                     mTextView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
