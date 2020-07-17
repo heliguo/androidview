@@ -28,7 +28,9 @@ public class ViewFlipperActivity extends AppCompatActivity {
         mViewFlipper = findViewById(R.id.view_filpper);
         int a = 3;
         for (int i = 0; i < a; i++) {
+            final int position = i;
             View view = getLayoutInflater().inflate(R.layout.item_viewflipper, null);
+            view.setOnClickListener(v -> Log.e(TAG, "onClick: " + position));
             mViewFlipper.addView(view);
         }
         mViewFlipper.setFlipInterval(2000);
