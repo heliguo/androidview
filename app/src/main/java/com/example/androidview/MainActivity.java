@@ -1,9 +1,9 @@
 package com.example.androidview;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
-import android.os.MessageQueue;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.ntp.SntpUtils;
-import com.example.androidview.view.TestDrawView;
+import com.example.androidview.rootview.RootViewActivity;
+import com.example.androidview.windows.WindowsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,13 +48,10 @@ public class MainActivity extends AppCompatActivity {
             Log.e("LOG", "ts: " + ts);
         }).start();
 
-        Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
-            @Override
-            public boolean queueIdle() {
-                Log.e("addIdleHandler", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
+        Looper.myQueue().addIdleHandler(() -> {
+            Log.e("addIdleHandler", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
 
-                return false;
-            }
+            return false;
         });
 
     }
@@ -130,5 +129,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void floatingWindows(View view) {
+        startActivity(new Intent(this, WindowsActivity.class));
+    }
+
+    public void viewFlipper(View view) {
+        startActivity(new Intent(this, ViewFlipperActivity.class));
+    }
+
+    public void horizontalScroll(View view) {
+        startActivity(new Intent(this, HorizontalScrollActivity.class));
+    }
+
+    public void dialogFragment(View view) {
+        startActivity(new Intent(this, DialogFragmentActivity.class));
+    }
+
+    public void rootView(View view) {
+        startActivity(new Intent(this, RootViewActivity.class));
+
+    }
+
+    public void frameAnimation(View view) {
+        startActivity(new Intent(this, FrameAnimationActivity.class));
     }
 }

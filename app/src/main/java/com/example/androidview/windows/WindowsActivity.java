@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -25,8 +26,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.androidview.MainActivity;
 import com.example.androidview.R;
-
-import java.security.Policy;
+import com.tencent.mmkv.MMKV;
 
 /**
  * @author lgh
@@ -36,10 +36,16 @@ import java.security.Policy;
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class WindowsActivity extends AppCompatActivity {
 
+    private MMKV mmkv;
+    private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_windows);
+        String rootDir = MMKV.initialize(this);
+        mmkv = MMKV.defaultMMKV();
+        Log.e("TAG", "onCreate: " + rootDir);
         if (!Settings.canDrawOverlays(this)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("是否允许前往设置开启悬浮窗权限");
@@ -52,7 +58,7 @@ public class WindowsActivity extends AppCompatActivity {
                     }).show();
         }
         if (Settings.canDrawOverlays(this)) {
-            showWidows();
+            showWindows();
         }
 
     }
@@ -71,38 +77,65 @@ public class WindowsActivity extends AppCompatActivity {
                 // SYSTEM_ALERT_WINDOW permission not granted...
                 Toast.makeText(this, "not granted", Toast.LENGTH_SHORT).show();
             } else {
-                showWidows();
+                showWindows();
             }
         }
 
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void showWidows() {
+    private void showWindows() {
         WindowManager windowManager = getWindowManager();
-        Button button = new Button(this);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        int winWidth = displayMetrics.widthPixels;
+
+        button = ((Button) getLayoutInflater().inflate(R.layout.float_btn, null));
         LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT, 0, 0, PixelFormat.TRANSPARENT);
         layoutParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL |
                 LayoutParams.FLAG_NOT_FOCUSABLE |
                 LayoutParams.FLAG_SHOW_WHEN_LOCKED;
         layoutParams.gravity = Gravity.START | Gravity.TOP;
-        layoutParams.x = 300;
-        layoutParams.y = 300;
-        button.setText("windows");
+        layoutParams.width = px2dp(40);
+        layoutParams.height = px2dp(40);
+        layoutParams.x = mmkv.decodeInt("float_x", winWidth);
+        layoutParams.y = mmkv.decodeInt("float_y", 500);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             layoutParams.type = LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else {
             layoutParams.type = LayoutParams.TYPE_PHONE;
         }
+
         windowManager.addView(button, layoutParams);
+
+        button.setOnClickListener(v -> {
+            Toast.makeText(this, "you click the float window", Toast.LENGTH_SHORT).show();
+        });
+
         button.setOnTouchListener((v, event) -> {
-            int rawX = (int) event.getRawX();
-            int rawY = (int) event.getRawY();
-            if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                layoutParams.x = rawX;
-                layoutParams.y = rawY;
-                windowManager.updateViewLayout(button, layoutParams);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_MOVE:
+                    int rawX = (int) event.getRawX();
+                    int rawY = (int) event.getRawY();
+                    layoutParams.x = rawX;
+                    layoutParams.y = rawY - v.getMeasuredHeight();
+                    windowManager.updateViewLayout(button, layoutParams);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    int lastX = layoutParams.x + v.getMeasuredWidth() / 2;
+                    if (lastX > winWidth / 2) {
+                        layoutParams.x = winWidth;
+                    } else {
+                        layoutParams.x = 0;
+                    }
+                    mmkv.encode("float_y", layoutParams.y);
+                    mmkv.encode("float_x", layoutParams.x);
+                    mmkv.apply();
+                    windowManager.updateViewLayout(button, layoutParams);
+                    break;
+                default:
+                    break;
             }
             return false;
         });
@@ -111,9 +144,16 @@ public class WindowsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        Log.e("TAG", "onDestroy: ");
-        super.onDestroy();
+    protected void onPause() {
+        getWindowManager().removeView(button);
+        Log.e("TAG", "onPause: ");
+        super.onPause();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        Log.e("TAG", "onWindowFocusChanged: ");
+        super.onWindowFocusChanged(hasFocus);
     }
 
     @Override
@@ -129,7 +169,14 @@ public class WindowsActivity extends AppCompatActivity {
     }
 
     public void test(View view) {
+        startActivity(new Intent(this, MainActivity.class));
+    }
 
-        startActivity(new Intent(this,MainActivity.class));
+    /**
+     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp 。
+     */
+    public int px2dp(float pxValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (pxValue * scale + 0.5f);
     }
 }

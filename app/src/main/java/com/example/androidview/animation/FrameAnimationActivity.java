@@ -45,8 +45,8 @@ public class FrameAnimationActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //                ObjectAnimator.ofInt(mButton, "width", 500).setDuration(5000).start();
-                performAnimate();
+//                ObjectAnimator.ofInt(mButton, "width", 500).setDuration(5000).start();
+                //                performAnimate();
             }
         });
 

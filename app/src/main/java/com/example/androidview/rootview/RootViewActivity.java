@@ -20,6 +20,7 @@ import com.example.androidview.R;
 
 /**
  * @author lgh
+ * @description Notification + RootView
  */
 public class RootViewActivity extends AppCompatActivity {
 
@@ -34,14 +35,18 @@ public class RootViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_view);
+
         findViewById(R.id.button).setOnClickListener(v -> {
+
             Intent intent = new Intent(this, HorizontalScrollActivity.class);
             PendingIntent pi = PendingIntent.getActivity(this, 20, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
+
             RemoteViews remoteView = new RemoteViews(getPackageName(), R.layout.rootview);
             remoteView.setTextViewText(R.id.rootview_tv, getPackageName());
             remoteView.setImageViewResource(R.id.rootview_iv, R.drawable.back_out_b);
             remoteView.setOnClickPendingIntent(R.id.rootview_ll, pi);
+
             NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getPackageName());
             builder.setSmallIcon(R.drawable.back_out_b)
@@ -56,7 +61,7 @@ public class RootViewActivity extends AppCompatActivity {
             //android 9.0 必须
             NotificationChannel channel = new NotificationChannel(
                     getPackageName(),
-                    "会话消息(掌嗨)",
+                    "会话消息",
                     NotificationManager.IMPORTANCE_DEFAULT
 
             );
