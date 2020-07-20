@@ -145,7 +145,8 @@ public class WindowsActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        getWindowManager().removeView(button);
+        if (Settings.canDrawOverlays(this))
+            getWindowManager().removeView(button);
         Log.e("TAG", "onPause: ");
         super.onPause();
     }

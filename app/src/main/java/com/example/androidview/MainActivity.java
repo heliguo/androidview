@@ -12,8 +12,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidview.animation.FrameAnimationActivity;
+import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.rootview.RootViewActivity;
+import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.windows.WindowsActivity;
 
 import java.text.SimpleDateFormat;

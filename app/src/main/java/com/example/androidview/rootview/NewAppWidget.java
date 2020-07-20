@@ -40,16 +40,19 @@ public class NewAppWidget extends AppWidgetProvider {
 
             new Thread(() -> {
 
-                Bitmap srcbBitmap = BitmapFactory.decodeResource(
-                        context.getResources(), R.drawable.back_out_b);
+                Bitmap srcBitmap = BitmapFactory.decodeResource(
+                        context.getResources(), R.drawable.icon_float);
+
                 AppWidgetManager appWidgetManager = AppWidgetManager.
                         getInstance(context);
+
                 for (int i = 0; i < 37; i++) {
                     float degree = (i * 10) % 360;
                     RemoteViews remoteViews = new RemoteViews(context
                             .getPackageName(), R.layout.new_app_widget);
                     remoteViews.setImageViewBitmap(R.id.appwidget_iv,
-                            rotateBitmap(context, srcbBitmap, degree));
+                            rotateBitmap(context, srcBitmap, degree));
+
                     Intent intentClick = new Intent();
                     intentClick.setClass(context, NewAppWidget.class);
                     intentClick.setAction(TAG);
@@ -104,9 +107,8 @@ public class NewAppWidget extends AppWidgetProvider {
         Matrix matrix = new Matrix();
         matrix.reset();
         matrix.setRotate(degree);
-        Bitmap tmpBitmap = Bitmap.createBitmap(srcbBitmap, 0, 0,
+        return Bitmap.createBitmap(srcbBitmap, 0, 0,
                 srcbBitmap.getWidth(), srcbBitmap.getHeight(), matrix, true);
-        return tmpBitmap;
     }
 }
 

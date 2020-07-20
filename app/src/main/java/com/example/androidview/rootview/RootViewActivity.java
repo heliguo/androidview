@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
-import com.example.androidview.HorizontalScrollActivity;
+import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.R;
 
 /**
@@ -44,12 +44,12 @@ public class RootViewActivity extends AppCompatActivity {
 
             RemoteViews remoteView = new RemoteViews(getPackageName(), R.layout.rootview);
             remoteView.setTextViewText(R.id.rootview_tv, getPackageName());
-            remoteView.setImageViewResource(R.id.rootview_iv, R.drawable.back_out_b);
+            remoteView.setImageViewResource(R.id.rootview_iv, R.drawable.icon_float);
             remoteView.setOnClickPendingIntent(R.id.rootview_ll, pi);
 
             NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getPackageName());
-            builder.setSmallIcon(R.drawable.back_out_b)
+            builder.setSmallIcon(R.drawable.icon_float)
                     .setContentTitle("title")
                     .setContentText("text")
                     .setContent(remoteView)

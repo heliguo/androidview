@@ -1,8 +1,10 @@
-package com.example.androidview;
+package com.example.androidview.view;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.androidview.R;
 
 /**
  * @author lgh

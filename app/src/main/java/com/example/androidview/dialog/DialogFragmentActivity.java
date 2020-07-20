@@ -1,4 +1,4 @@
-package com.example.androidview;
+package com.example.androidview.dialog;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -6,8 +6,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidview.databinding.ActivityDialogFragmentBinding;
-import com.example.androidview.dialog.CustomDialogFragment;
-import com.example.androidview.dialog.MyDialogFragment;
 
 /**
  * @author lgh

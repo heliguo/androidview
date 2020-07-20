@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".DialogFragmentActivity"/>
+        <activity android:name=".dialog.DialogFragmentActivity"/>
 
         <activity android:name=".animation.FrameAnimationActivity"/>
 
@@ -26,9 +26,15 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/new_app_widget_info" />
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.CLICK" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
         </receiver>
 
-        <activity android:name=".HorizontalScrollActivity" />
+        <activity android:name=".view.HorizontalScrollActivity" />
 
         <activity android:name=".MainActivity">
 

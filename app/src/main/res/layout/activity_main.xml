@@ -42,7 +42,7 @@
         android:onClick="dialogFragment"/>
 
         <Button
-            android:text="RootView"
+            android:text="RootView Notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="rootView"/>
