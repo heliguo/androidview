@@ -10,13 +10,14 @@ import android.view.animation.Transformation;
  * @description 3D翻转效果
  */
 public class Rotate3dAnimation extends Animation {
-    private final float   mFromDegrees;
-    private final float   mToDegrees;
-    private final float   mCenterX;
-    private final float   mCenterY;
-    private final float   mDepthZ;
+    private final float mFromDegrees;
+    private final float mToDegrees;
+    private final float mCenterX;
+    private final float mCenterY;
+    private final float mDepthZ;
     private final boolean mReverse;
-    private       Camera  mCamera;
+    private Camera mCamera;
+    private RotateMode rotateMode;
 
     /**
      * Creates a new 3D rotation on the Y axis. The rotation is defined by its
@@ -66,9 +67,26 @@ public class Rotate3dAnimation extends Animation {
             camera.translate(0.0f, 0.0f, mDepthZ * (1.0f - interpolatedTime));
         }
         camera.rotateY(degrees);
+        if (rotateMode == RotateMode.X) {
+            camera.rotateX(degrees);
+        } else if (rotateMode == RotateMode.Y) {
+            camera.rotateY(degrees);
+        } else if (rotateMode == RotateMode.Z){
+            camera.rotateZ(degrees);
+        }
         camera.getMatrix(matrix);
         camera.restore();
         matrix.preTranslate(-centerX, -centerY);
         matrix.postTranslate(centerX, centerY);
+    }
+
+    enum RotateMode {
+        X,
+        Y,
+        Z
+    }
+
+    public void setRotateMode(RotateMode rotateMode) {
+        this.rotateMode = rotateMode;
     }
 }

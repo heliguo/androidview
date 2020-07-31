@@ -46,11 +46,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="rootView"/>
+
         <Button
-            android:text="FrameAnimation"
+            android:text="旋转动画"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="frameAnimation"/>
+            android:onClick="rotate"/>
 
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.androidview;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidview.animation.FrameAnimationActivity;
+import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.rootview.RootViewActivity;
@@ -97,8 +100,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("TAG", "onResume: " );
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("TAG", "onPause: " );
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        Log.e("TAG", "onStart: " );
         /**
          * 获取view宽高的四种方式，第四种方式忽略
          * 2.view.post()
@@ -156,5 +172,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void frameAnimation(View view) {
         startActivity(new Intent(this, FrameAnimationActivity.class));
+    }
+
+    public void rotate(View view) {
+        startActivity(new Intent(this, Rotate3dActivity.class));
+
     }
 }
