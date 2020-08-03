@@ -18,40 +18,47 @@
             android:text="获取view大小的方法" />
 
         <Button
-            android:text="Floating Windows"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="floatingWindows"/>
+            android:onClick="floatingWindows"
+            android:text="Floating Windows" />
 
         <Button
-            android:text="ViewFlipper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="viewFlipper"/>
+            android:onClick="viewFlipper"
+            android:text="ViewFlipper" />
 
         <Button
-            android:text="HorizontalScroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="horizontalScroll"/>
+            android:onClick="horizontalScroll"
+            android:text="HorizontalScroll" />
 
         <Button
-        android:text="DialogFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="dialogFragment"/>
-
-        <Button
-            android:text="RootView Notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="rootView"/>
+            android:onClick="dialogFragment"
+            android:text="DialogFragment" />
 
         <Button
-            android:text="旋转动画"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="rotate"/>
+            android:onClick="rootView"
+            android:text="RootView Notification" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="rotate"
+            android:text="旋转动画" />
+
+        <!--   recyclerview item animation   -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/anim_layout" />
 
     </LinearLayout>
 

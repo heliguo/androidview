@@ -8,6 +8,9 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -15,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
+import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.rootview.RootViewActivity;
@@ -32,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextView;
     private int mMeasuredWidth;
     private int mMeasuredHeight;
+    ActivityMainBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
+        recyclerviewAnimation();
         mTextView = findViewById(R.id.test_draw_view);
         new Thread(() -> {
             Log.e("LOG", "requesting time..");
@@ -59,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
+    }
+
+    /**
+     * recyclerview item动画
+     */
+    private void recyclerviewAnimation() {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_item);
+        LayoutAnimationController controller = new LayoutAnimationController(animation);
+        controller.setDelay(2000);
+        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+        mBinding.mainRv.setLayoutAnimation(controller);
     }
 
     /**
@@ -102,19 +120,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("TAG", "onResume: " );
+        Log.e("TAG", "onResume: ");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e("TAG", "onPause: " );
+        Log.e("TAG", "onPause: ");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e("TAG", "onStart: " );
+        Log.e("TAG", "onStart: ");
         /**
          * 获取view宽高的四种方式，第四种方式忽略
          * 2.view.post()
@@ -176,6 +194,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void rotate(View view) {
         startActivity(new Intent(this, Rotate3dActivity.class));
+        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("++++++++", "onDestroy: " );
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        Log.e("==========", "finish: " );
+        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
     }
 }
