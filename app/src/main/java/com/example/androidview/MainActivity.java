@@ -1,19 +1,23 @@
 package com.example.androidview;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidview.animation.FrameAnimationActivity;
@@ -22,8 +26,10 @@ import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.rootview.RootViewActivity;
+import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.windows.WindowsActivity;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,6 +50,52 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         recyclerviewAnimation();
+        EditText editText = findViewById(R.id.et);
+        TextInputLayout layout = findViewById(R.id.input_layout);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                String v = s.toString();
+
+                if (TextUtils.isEmpty(v)) {
+                    layout.setHint("自定义提现（请输入20元以下金额）");
+                    return;
+                }
+                if (Integer.parseInt(v) == 0) {
+                    editText.setText("");
+                    layout.setHint("自定义提现（请输入20元以下金额）");
+                    return;
+                }
+                int limitNum = 200;
+                if (Integer.parseInt(v) > limitNum) {
+                    String limit = String.valueOf(limitNum);
+                    if (v.length() > limit.length()) {
+                        v = v.substring(0, limit.length());
+                        editText.setText(v);
+                        editText.setSelection(limit.length());
+                    } else {
+                        v = v.substring(0, limit.length() - 1);
+                        editText.setText(v);
+                        editText.setSelection(limit.length() - 1);
+                    }
+                }
+                int input = Integer.parseInt(v) * 10000;
+                if (input > 8888) {
+                    layout.setHint(String.format("您需要%s金币，金币不足", input));
+                } else
+                    layout.setHint(String.format("您需要%s金币", input));
+            }
+        });
         mTextView = findViewById(R.id.test_draw_view);
         new Thread(() -> {
             Log.e("LOG", "requesting time..");
@@ -62,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         Looper.myQueue().addIdleHandler(() -> {
             Log.e("addIdleHandler", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
-
+            Log.e(TAG, "ScaledTouchSlop: " + ViewConfiguration.get(this).getScaledTouchSlop());
             return false;
         });
 
@@ -194,19 +246,46 @@ public class MainActivity extends AppCompatActivity {
 
     public void rotate(View view) {
         startActivity(new Intent(this, Rotate3dActivity.class));
-        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e("++++++++", "onDestroy: " );
+        Log.e("++++++++", "onDestroy: ");
     }
 
     @Override
     public void finish() {
         super.finish();
-        Log.e("==========", "finish: " );
-        overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+        Log.e("==========", "finish: ");
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+    }
+
+    public void motion(View view) {
+        startActivity(new Intent(this, MotionLayoutActivity.class));
+    }
+
+    private static final String TAG = "MainActivity";
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.e(TAG, "dispatchTouchEvent: ");
+        Thread.dumpStack();
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e(TAG, "onTouchEvent: ");
+        return super.onTouchEvent(event);
+    }
+
+    public void dispatch(View view) {
+        startActivity(new Intent(this, DispatchActivity.class));
+    }
+
+    public void test(View view) {
+        startActivity(new Intent(this, TestActivity.class));
     }
 }

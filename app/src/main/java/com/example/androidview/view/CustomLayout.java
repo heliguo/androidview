@@ -1,6 +1,7 @@
 package com.example.androidview.view;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -64,5 +65,15 @@ public class CustomLayout extends HorizontalScrollView {
     @Override
     protected int getChildDrawingOrder(int childCount, int drawingPosition) {
         return super.getChildDrawingOrder(childCount, drawingPosition);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
     }
 }
