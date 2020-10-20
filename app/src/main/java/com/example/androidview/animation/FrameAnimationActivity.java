@@ -6,6 +6,8 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -26,6 +28,7 @@ public class FrameAnimationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frame_animation);
         mButton = findViewById(R.id.button2);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_item);
         //        button.setBackgroundResource(R.drawable.frame_animation);
         //        AnimationDrawable background = (AnimationDrawable) button.getBackground();
         //        background.start();
@@ -41,7 +44,7 @@ public class FrameAnimationActivity extends AppCompatActivity {
         /**
          * activity 入场和出场动画
          */
-        //        overridePendingTransition();
+//                overridePendingTransition();
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
