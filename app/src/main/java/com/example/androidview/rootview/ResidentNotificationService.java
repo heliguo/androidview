@@ -72,7 +72,7 @@ public class ResidentNotificationService extends Service {
         mRemoteViews.setOnClickPendingIntent(R.id.notification_resident_root, pi);
         mManager = (NotificationManager) packageContext.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(packageContext, packageContext.getPackageName());
-        mNotification = builder.setContent(mRemoteViews)
+        mNotification = builder.setCustomBigContentView(mRemoteViews)
                 .setSmallIcon(R.drawable.icon_float)
                 .setContentText("content")
                 .setShowWhen(true)
@@ -83,6 +83,7 @@ public class ResidentNotificationService extends Service {
                 .setChannelId(packageContext.getPackageName())
                 .build();
         mNotification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
+        mNotification.bigContentView = mRemoteViews;//解决自适应布局不能完全展示问题
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     packageContext.getPackageName(),
