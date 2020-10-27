@@ -20,7 +20,12 @@ import com.example.androidview.R;
 
 /**
  * @author lgh on 2020/10/19:19:54
- * @description
+ * @description 通知栏适配
+ * <p>
+ * 如果使用自定义RemoteViews且布局高度超出手机系统默认高度，则需要进行不同系统适配（需要不折叠布局的情况）
+ * 华为、三星：可指定具体高度及在NotificationCompat.Builder中调用setContent方法设置RemoteViews
+ * 小米：布局使用自适应尺寸；并赋值Notification.bigContentView = RemoteViews（Builder中无效？？？）；
+ *      NotificationCompat.Builder 中调用setStyle方法设置为NotificationCompat.MediaStyle()
  */
 public class ResidentNotificationService extends Service {
 
@@ -38,9 +43,9 @@ public class ResidentNotificationService extends Service {
         @Override
         public boolean handleMessage(Message msg) {
             if (msg.what == 10001) {
-                if (num<10000){
+                if (num < 10000) {
                     num++;
-                    mRemoteViews.setTextViewText(R.id.text11,String.valueOf(num));
+                    mRemoteViews.setTextViewText(R.id.text11, String.valueOf(num));
                 }
                 refresh();//不断刷新，保证通知不被销毁
                 mHandler.sendEmptyMessageDelayed(10001, 1000);
@@ -93,7 +98,7 @@ public class ResidentNotificationService extends Service {
 
             mManager.createNotificationChannel(channel);
         }
-//        mManager.notify(DEFAULT_NOTIFY_ID, mNotification);
+        //        mManager.notify(DEFAULT_NOTIFY_ID, mNotification);
 
         mHandler.sendEmptyMessage(10001);
     }
