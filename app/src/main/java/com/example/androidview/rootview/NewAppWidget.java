@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.SystemClock;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -38,13 +39,12 @@ public class NewAppWidget extends AppWidgetProvider {
         if (Objects.equals(intent.getAction(), TAG)) {
             Toast.makeText(context, "clicked it", Toast.LENGTH_SHORT).show();
 
+            AppWidgetManager appWidgetManager = AppWidgetManager.
+                    getInstance(context);
             new Thread(() -> {
 
                 Bitmap srcBitmap = BitmapFactory.decodeResource(
                         context.getResources(), R.drawable.icon_float);
-
-                AppWidgetManager appWidgetManager = AppWidgetManager.
-                        getInstance(context);
 
                 for (int i = 0; i < 37; i++) {
                     float degree = (i * 10) % 360;
@@ -60,6 +60,7 @@ public class NewAppWidget extends AppWidgetProvider {
                             .getBroadcast(context, 0, intentClick, 0);
                     remoteViews.setOnClickPendingIntent(R.id.appwidget_iv,
                             pendingIntent);
+
                     appWidgetManager.updateAppWidget(new ComponentName(
                                     context, NewAppWidget.class),
                             remoteViews);
@@ -73,8 +74,10 @@ public class NewAppWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+
         for (int appWidgetId : appWidgetIds) {
             onWidgetUpdate(context, appWidgetManager, appWidgetId);
+            Log.e("=========", "onUpdate: "+appWidgetId);
         }
     }
 

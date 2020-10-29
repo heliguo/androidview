@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.DispatchActivity"/>
+        <activity android:name=".view.DispatchActivity" />
         <activity android:name=".MotionLayoutActivity" />
         <activity android:name=".animation.Rotate3dActivity" />
         <activity android:name=".dialog.DialogFragmentActivity" />
@@ -43,6 +43,12 @@
         </activity>
         <activity android:name=".windows.WindowsActivity" />
         <activity android:name=".TestActivity" />
+        <activity android:name=".rootview.CreateWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+
 
         <service android:name=".rootview.ResidentNotificationService" />
     </application>

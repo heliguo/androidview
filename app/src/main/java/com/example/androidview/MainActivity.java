@@ -1,5 +1,10 @@
 package com.example.androidview;
 
+import android.appwidget.AppWidgetHost;
+import android.appwidget.AppWidgetHostView;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +21,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,14 +32,18 @@ import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.ntp.SntpUtils;
+import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.windows.WindowsActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author lgh
@@ -263,7 +274,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void motion(View view) {
-        startActivity(new Intent(this, MotionLayoutActivity.class));
+        Intent intent = new Intent(this, CreateWidget.class);
+        startActivity(intent);
+//        startActivity(new Intent(this, MotionLayoutActivity.class));
     }
 
     private static final String TAG = "MainActivity";
@@ -271,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.e(TAG, "dispatchTouchEvent: ");
-        Thread.dumpStack();
+//        Thread.dumpStack();
         return super.dispatchTouchEvent(ev);
     }
 
@@ -288,4 +301,90 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         startActivity(new Intent(this, TestActivity.class));
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void addRecommendationsWidget() {
+        int APPWIDGET_HOST_ID = 1024;
+        AppWidgetHost appWidgetHost = new AppWidgetHost(getApplicationContext(), APPWIDGET_HOST_ID);
+        int appWidgetId = appWidgetHost.allocateAppWidgetId();
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        List<AppWidgetProviderInfo> providers = appWidgetManager.getInstalledProviders();
+        if (providers == null) {
+            Log.e(TAG, "failed to find installed widgets ");
+            return;
+        }
+        final int providerCount = providers.size();
+        AppWidgetProviderInfo appWidgetProviderInfo = null;
+        for (int i = 0; i < providerCount; i++) {
+            ComponentName provider = providers.get(i).provider;
+            if (provider != null && provider.getPackageName().equals(getPackageName())) {
+                appWidgetProviderInfo = providers.get(i);
+                break;
+            }
+        }
+        if (appWidgetProviderInfo == null) {
+            Log.e(TAG, "failed to find recommendations widget ");
+            return;
+        }
+        int sdkVersion = Integer.parseInt(android.os.Build.VERSION.SDK);
+        if (sdkVersion > 15) {
+            final String methodName = "bindAppWidgetIdIfAllowed";
+            boolean success = bindAppWidgetId(appWidgetManager, appWidgetId, appWidgetProviderInfo.provider, methodName);
+            if (!success) {
+                addWidgetPermission(appWidgetManager);
+                boolean bindAllowed = bindAppWidgetId(appWidgetManager, appWidgetId, appWidgetProviderInfo.provider, methodName);
+                if (!bindAllowed) {
+                    Log.e(TAG, " failed to bind widget id : " + appWidgetId);
+                    return;
+                }
+            }
+        } else {
+            boolean success = bindAppWidgetId(appWidgetManager, appWidgetId, appWidgetProviderInfo.provider, "bindAppWidgetId");
+            if (!success) {
+                Log.e(TAG, " failed to bind widget id : " + appWidgetId);
+                return;
+            }
+        }
+        Log.d(TAG, " successful to bind widget id : " + appWidgetId);
+        AppWidgetHostView hostView = appWidgetHost.createView(this, appWidgetId, appWidgetProviderInfo);
+        appWidgetHost.startListening();
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, appWidgetProviderInfo.minHeight);
+        LinearLayout widgetLayout = findViewById(R.id.appwidget_rv);
+        widgetLayout.addView(hostView, params);
+    }
+
+    private void addWidgetPermission(AppWidgetManager appWidgetManager) {
+        String methodName = "setBindAppWidgetPermission";
+        try {
+            Class<?>[] argsClass = new Class[]{String.class, boolean.class};
+            Method method = appWidgetManager.getClass().getMethod(methodName, argsClass);
+            Object[] args = new Object[]{this.getPackageName(), true};
+            try {
+                method.invoke(appWidgetManager, args);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean bindAppWidgetId(AppWidgetManager appWidgetManager, int appWidgetId, ComponentName componentName, String methodName) {
+        boolean success = false;
+        Class<?>[] argsClass = new Class[]{int.class, ComponentName.class};
+        try {
+            Method method = appWidgetManager.getClass().getMethod(methodName, argsClass);
+            Object[] args = new Object[]{appWidgetId, componentName};
+            try {
+                method.invoke(appWidgetManager, args);
+                success = true;
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
 }
