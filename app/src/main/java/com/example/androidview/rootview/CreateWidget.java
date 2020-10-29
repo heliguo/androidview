@@ -12,15 +12,30 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 /**
- * @author lgh on 2020/10/29 17:16
- * @description 静默添加组件
+ * @author lgh on 2020/10/29 17:42
+ * @description 向桌面添加组件，需要Android8.0以上版本
  */
-@RequiresApi(api = Build.VERSION_CODES.M)
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class CreateWidget extends Activity {
+
+    int mAppWidgetId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setResult(RESULT_CANCELED);
+        // Find the widget id from the intent.
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            mAppWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        }
+
+        // If they gave us an intent without the widget id, just bail.
+        if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+            finish();
+        }
+
         AppWidgetManager appWidgetManager =
                 getSystemService(AppWidgetManager.class);
         ComponentName myProvider =
@@ -41,10 +56,14 @@ public class CreateWidget extends Activity {
             appWidgetManager.requestPinAppWidget(myProvider, null, successCallback);
         }
 
-        //        Intent resultValue = new Intent();
-        //        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
-        //
-        //        setResult(RESULT_OK, resultValue);
-        //        finish();
+        // return OK
+        Intent resultValue = new Intent();
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+
+        setResult(RESULT_OK, resultValue);
+        finish();
+
+
     }
+
 }

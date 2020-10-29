@@ -43,7 +43,8 @@
         </activity>
         <activity android:name=".windows.WindowsActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".rootview.CreateWidget">
+        <activity android:name=".rootview.CreateWidget"
+            android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>
