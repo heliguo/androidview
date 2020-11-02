@@ -52,7 +52,6 @@ public class CreateWidget extends Activity {
             // newly-pinned widget (EXTRA_APPWIDGET_ID).
             PendingIntent successCallback = PendingIntent.getBroadcast(this, 0,
                     pinnedWidgetCallbackIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
             appWidgetManager.requestPinAppWidget(myProvider, null, successCallback);
         }
 

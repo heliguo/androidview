@@ -77,7 +77,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
         for (int appWidgetId : appWidgetIds) {
             onWidgetUpdate(context, appWidgetManager, appWidgetId);
-            Log.e("=========", "onUpdate: "+appWidgetId);
+            Log.e("=========", "onUpdate: " + appWidgetId);
         }
     }
 
@@ -113,5 +113,6 @@ public class NewAppWidget extends AppWidgetProvider {
         return Bitmap.createBitmap(srcbBitmap, 0, 0,
                 srcbBitmap.getWidth(), srcbBitmap.getHeight(), matrix, true);
     }
+
 }
 

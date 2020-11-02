@@ -1,6 +1,8 @@
 package com.example.androidview;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -57,5 +59,8 @@ public class TestActivity extends AppCompatActivity {
             Log.e(TAG, "onKeyDown: ");
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void sendMsg(){
     }
 }

@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidview.animation.FrameAnimationActivity;
@@ -274,9 +275,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void motion(View view) {
+
         Intent intent = new Intent(this, CreateWidget.class);
-        startActivity(intent);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,222);
+        startActivityForResult(intent,3333);
 //        startActivity(new Intent(this, MotionLayoutActivity.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==3333){
+            Log.e("=========", "onActivityResult: "+resultCode);
+        }
     }
 
     private static final String TAG = "MainActivity";
