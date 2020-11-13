@@ -49,6 +49,7 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>
         </activity>
+        <activity android:name=".worker.JobSchedulerActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

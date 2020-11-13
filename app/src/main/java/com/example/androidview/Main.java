@@ -10,6 +10,11 @@ import java.text.DecimalFormat;
 public class Main {
 
     public static void main(String[] args) {
+
+        String url = "a/b/b/bcc/dddd";
+        int index = url.lastIndexOf("/");
+        url = url.substring(0,url.length()-1);
+        System.out.println(url);
         System.out.println(getCoinValue("92292"));
     }
 
