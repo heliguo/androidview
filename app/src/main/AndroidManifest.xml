@@ -50,6 +50,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".worker.JobSchedulerActivity" />
+        <activity android:name=".worker.WorkerManagerActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
