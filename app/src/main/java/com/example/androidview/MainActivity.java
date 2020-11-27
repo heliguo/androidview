@@ -13,20 +13,26 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
@@ -396,6 +402,40 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return success;
+    }
+
+    /**
+     * 设置红点
+     *
+     * @param
+     */
+    private void setRedPoint(View iconView) {
+        ViewParent parent = iconView.getParent();
+        if (parent instanceof ViewGroup) {
+            ViewGroup group = ((ViewGroup) parent);
+            group.setClipToPadding(false);
+            group.setClipChildren(false);
+//            int px = ViewUtil.dp2px(this, 6);
+            int px = 6;
+            group.setClipChildren(false);
+            group.setClipToPadding(false);
+            int index = group.indexOfChild(iconView);
+            ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();
+            group.removeView(iconView);
+            FrameLayout frameLayout = new FrameLayout(this);
+            frameLayout.setClipChildren(false);
+            frameLayout.setClipToPadding(false);
+            frameLayout.setId(iconView.getId());
+            group.addView(frameLayout, index, layoutParams);
+            frameLayout.addView(iconView);
+            ImageView imageView = new ImageView(this);
+            imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_tab_red_point));
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.TOP | Gravity.END;
+            params.rightMargin = -(px / 2);
+            params.topMargin = -(px / 2);
+            frameLayout.addView(imageView, params);
+        }
     }
 
 }

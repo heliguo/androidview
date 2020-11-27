@@ -51,6 +51,7 @@
         </activity>
         <activity android:name=".worker.JobSchedulerActivity" />
         <activity android:name=".worker.WorkerManagerActivity" />
+        <activity android:name=".activityresult.ActivityResultTestActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

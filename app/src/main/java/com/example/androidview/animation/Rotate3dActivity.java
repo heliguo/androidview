@@ -7,6 +7,10 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 
 import com.example.androidview.R;
 import com.example.androidview.databinding.ActivityRotate3dBinding;
@@ -46,19 +50,27 @@ public class Rotate3dActivity extends AppCompatActivity {
         });
 
         mBinding.button6.setOnClickListener(v -> {
-            AnimatorSet set = new AnimatorSet();
-            set.playTogether(
-                    ObjectAnimator.ofFloat(mBinding.textView,"rotationX",0,360,0),
-                    ObjectAnimator.ofFloat(mBinding.textView,"rotationY",0,180,0),
-                    ObjectAnimator.ofFloat(mBinding.textView,"rotation",0,-90,0),
-                    ObjectAnimator.ofFloat(mBinding.textView,"translationX",0,90,0),
-                    ObjectAnimator.ofFloat(mBinding.textView,"translationY",0,90,0),
-                    ObjectAnimator.ofFloat(mBinding.textView,"scaleX",1,1.5f,1f),
-                    ObjectAnimator.ofFloat(mBinding.textView,"scaleY",1,0.5f,1f),
-                    ObjectAnimator.ofFloat(mBinding.textView,"alpha",1,0.25f,1)
-            );
-            set.setDuration(5000).start();
+            rotate();
+            //            AnimatorSet set = new AnimatorSet();
+//            set.playTogether(
+//                    ObjectAnimator.ofFloat(mBinding.textView,"rotationY",-30f, 300f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0)
+////                    ObjectAnimator.ofFloat(mBinding.textView,"rotationY",0,180,0),
+////                    ObjectAnimator.ofFloat(mBinding.textView,"rotation",0,-90,0),
+////                    ObjectAnimator.ofFloat(mBinding.textView,"translationX",0,90,0),
+////                    ObjectAnimator.ofFloat(mBinding.textView,"translationY",0,90,0),
+////                    ObjectAnimator.ofFloat(mBinding.textView,"scaleX",1,1.5f,1f),
+////                    ObjectAnimator.ofFloat(mBinding.textView,"scaleY",1,0.5f,1f),
+////                    ObjectAnimator.ofFloat(mBinding.textView,"alpha",1,0.25f,1)
+//            );
+//            set.setDuration(5000).start();
         });
 
+    }
+
+    private void rotate(){
+        Animation operatingAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_anim);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        mBinding.textView.startAnimation(operatingAnim);
     }
 }
