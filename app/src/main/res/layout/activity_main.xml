@@ -11,6 +11,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.example.androidview.ActivityProgressView
+            android:id="@+id/pro"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp" />
+
+
         <TextView
             android:id="@+id/test_draw_view"
             android:layout_width="wrap_content"
@@ -81,9 +91,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="自定义提现（请输入20元以下金额）"
-                android:inputType="number"/>
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <!--   recyclerview item animation   -->
         <androidx.recyclerview.widget.RecyclerView
@@ -91,7 +102,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutAnimation="@anim/anim_layout" />
-
 
 
     </LinearLayout>

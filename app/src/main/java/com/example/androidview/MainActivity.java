@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         recyclerviewAnimation();
+        mBinding.pro.setLineWidth(20);
         EditText editText = findViewById(R.id.et);
         TextInputLayout layout = findViewById(R.id.input_layout);
         editText.addTextChangedListener(new TextWatcher() {
