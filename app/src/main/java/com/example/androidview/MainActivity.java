@@ -34,6 +34,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
@@ -439,4 +440,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void tab(View view) {
+        startActivity(new Intent(this, TabLayoutActivity.class));
+    }
 }

@@ -52,6 +52,8 @@
         <activity android:name=".worker.JobSchedulerActivity" />
         <activity android:name=".worker.WorkerManagerActivity" />
         <activity android:name=".activityresult.ActivityResultTestActivity" />
+        <activity android:name=".TabLayout.TabLayoutActivity"
+            android:theme="@style/TabActivityStyle"/>
 
 
         <service android:name=".rootview.ResidentNotificationService" />

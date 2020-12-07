@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.example.androidview.TabLayout.CoordinatorTabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatortablyout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_collapseMode="pin">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/ll_vv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"响应滚动事件-->
+
+    </androidx.viewpager.widget.ViewPager>
+
+</com.example.androidview.TabLayout.CoordinatorTabLayout>
+
+
