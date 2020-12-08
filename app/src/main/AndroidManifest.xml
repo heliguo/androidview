@@ -54,6 +54,7 @@
         <activity android:name=".activityresult.ActivityResultTestActivity" />
         <activity android:name=".TabLayout.TabLayoutActivity"
             android:theme="@style/TabActivityStyle"/>
+        <activity android:name=".scratch.ScratchActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

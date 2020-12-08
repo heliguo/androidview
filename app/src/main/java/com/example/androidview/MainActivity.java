@@ -42,6 +42,7 @@ import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
+import com.example.androidview.scratch.ScratchActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.windows.WindowsActivity;
@@ -68,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.scratch.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScratchActivity.class)));
+
         recyclerviewAnimation();
         mBinding.pro.setLineWidth(20);
         EditText editText = findViewById(R.id.et);
@@ -285,16 +289,16 @@ public class MainActivity extends AppCompatActivity {
     public void motion(View view) {
 
         Intent intent = new Intent(this, CreateWidget.class);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,222);
-        startActivityForResult(intent,3333);
-//        startActivity(new Intent(this, MotionLayoutActivity.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 222);
+        startActivityForResult(intent, 3333);
+        //        startActivity(new Intent(this, MotionLayoutActivity.class));
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==3333){
-            Log.e("=========", "onActivityResult: "+resultCode);
+        if (requestCode == 3333) {
+            Log.e("=========", "onActivityResult: " + resultCode);
         }
     }
 
@@ -303,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.e(TAG, "dispatchTouchEvent: ");
-//        Thread.dumpStack();
+        //        Thread.dumpStack();
         return super.dispatchTouchEvent(ev);
     }
 
@@ -417,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
             ViewGroup group = ((ViewGroup) parent);
             group.setClipToPadding(false);
             group.setClipChildren(false);
-//            int px = ViewUtil.dp2px(this, 6);
+            //            int px = ViewUtil.dp2px(this, 6);
             int px = 6;
             group.setClipChildren(false);
             group.setClipToPadding(false);
