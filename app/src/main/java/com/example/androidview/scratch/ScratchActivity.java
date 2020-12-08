@@ -21,7 +21,7 @@ public class ScratchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scratch);
 
         ScratchFrameLayout frameLayout = findViewById(R.id.scratch_frame_layout);
-        frameLayout.setCompleted(true);//不可擦除
+//        frameLayout.setCompleted(true);//不可擦除
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
