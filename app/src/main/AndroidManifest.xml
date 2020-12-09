@@ -33,7 +33,8 @@
         </receiver>
 
         <activity android:name=".view.HorizontalScrollActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+           android:taskAffinity="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
