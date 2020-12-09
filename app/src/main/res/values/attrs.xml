@@ -11,4 +11,9 @@
         <attr name="tabTextColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="TextFlowLayout">
+        <attr name="horizontalSpace" format="dimension" />
+        <attr name="verticalSpace" format="dimension" />
+    </declare-styleable>
+
 </resources>
