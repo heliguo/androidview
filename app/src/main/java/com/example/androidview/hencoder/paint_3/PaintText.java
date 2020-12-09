@@ -1,4 +1,4 @@
-package com.example.androidview.paint_3;
+package com.example.androidview.hencoder.paint_3;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

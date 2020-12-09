@@ -15,11 +15,11 @@ import androidx.annotation.Nullable;
  * @author lgh on 2020/6/16 22:09
  * @description
  */
-public class CustomDrawble extends Drawable {
+public class CustomDrawable extends Drawable {
 
     private Paint mPaint;
 
-    public CustomDrawble(@ColorInt int color) {
+    public CustomDrawable(@ColorInt int color) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(color);
     }

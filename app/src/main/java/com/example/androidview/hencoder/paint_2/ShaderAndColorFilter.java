@@ -1,4 +1,4 @@
-package com.example.androidview.paint_2;
+package com.example.androidview.hencoder.paint_2;
 
 import android.content.Context;
 import android.graphics.Bitmap;
