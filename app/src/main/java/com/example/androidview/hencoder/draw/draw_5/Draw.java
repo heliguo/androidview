@@ -1,4 +1,4 @@
-package com.example.androidview.hencoder.draw_5;
+package com.example.androidview.hencoder.draw.draw_5;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -1,4 +1,4 @@
-package com.example.androidview.hencoder.animation_6_7;
+package com.example.androidview.hencoder.draw.animation_6_7;
 
 import android.animation.TypeEvaluator;
 import android.graphics.Color;

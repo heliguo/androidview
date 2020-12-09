@@ -1,4 +1,4 @@
-package com.example.androidview.hencoder.canvas_4;
+package com.example.androidview.hencoder.draw.canvas_4;
 
 import android.content.Context;
 import android.graphics.Bitmap;

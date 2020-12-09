@@ -55,7 +55,7 @@
         <activity android:name=".TabLayout.TabLayoutActivity"
             android:theme="@style/TabActivityStyle"/>
         <activity android:name=".scratch.ScratchActivity" />
-        <activity android:name=".hencoder.animation_6_7.AnimationActivity" />
+        <activity android:name=".hencoder.draw.animation_6_7.AnimationActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
