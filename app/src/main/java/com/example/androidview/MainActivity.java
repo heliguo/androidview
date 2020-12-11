@@ -43,6 +43,7 @@ import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.scratch.ScratchActivity;
+import com.example.androidview.screenadapter.ScreenAutoActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.windows.WindowsActivity;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mBinding.getRoot());
 
         mBinding.scratch.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScratchActivity.class)));
+
+        mBinding.screen.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScreenAutoActivity.class)));
 
         recyclerviewAnimation();
         mBinding.pro.setLineWidth(20);

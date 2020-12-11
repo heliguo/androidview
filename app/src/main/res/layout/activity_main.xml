@@ -17,6 +17,12 @@
             android:layout_height="wrap_content"
             android:text="scratch view"/>
 
+        <Button
+            android:id="@+id/screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="screen auto adapter"/>
+
         <com.example.androidview.ActivityProgressView
             android:id="@+id/pro"
             android:layout_width="200dp"
