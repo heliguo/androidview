@@ -438,7 +438,7 @@ public class MainActivity extends AppCompatActivity {
             group.addView(frameLayout, index, layoutParams);
             frameLayout.addView(iconView);
             ImageView imageView = new ImageView(this);
-            imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.shape_tab_red_point));
+            imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.bitmap));
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.TOP | Gravity.END;
             params.rightMargin = -(px / 2);

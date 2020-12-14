@@ -6,22 +6,36 @@
 
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <blink
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_bright"
+                android:text="blink blink blink" />
+
+        </blink>
+
+
         <Button
             android:id="@+id/scratch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="scratch view"/>
+            android:text="scratch view" />
 
         <Button
             android:id="@+id/screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="screen auto adapter"/>
+            android:text="screen auto adapter" />
 
         <com.example.androidview.ActivityProgressView
             android:id="@+id/pro"

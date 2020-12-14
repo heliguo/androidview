@@ -32,14 +32,7 @@ public class ScratchFrameLayout extends FrameLayout {
 
     public ScratchFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ScratchFrameLayout, defStyleAttr, 0);
-        initScratch(typedArray);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public ScratchFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ScratchFrameLayout, defStyleAttr, defStyleRes);
+        TypedArray typedArray = context.obtainStyledAttributes( R.styleable.ScratchFrameLayout);
         initScratch(typedArray);
     }
 
