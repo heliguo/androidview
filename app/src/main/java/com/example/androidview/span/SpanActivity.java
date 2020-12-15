@@ -35,7 +35,9 @@ import com.example.androidview.databinding.ActivitySpanBinding;
  * @author lgh on 2020/12/15 9:49
  * @description SpannableString
  * 参照
- * https://blog.csdn.net/u012422440/article/details/52133037?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-7.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-7.control
+ * https://blog.csdn.net/u012422440/article/details/52133037
+ * 富文本 span 类型
+ * https://juejin.cn/post/6844903950882177032
  */
 public class SpanActivity extends AppCompatActivity {
 
