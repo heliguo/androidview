@@ -46,5 +46,36 @@
 
     </declare-styleable>
 
+    <declare-styleable name="CustomCountTextView">
+
+        <attr name="showType" format="enum">
+
+            <enum name="time" value="0" />
+            <enum name="num" value="1" />
+
+        </attr>
+
+
+    </declare-styleable>
+
+    <declare-styleable name="RxCustomCountTextView">
+
+        <attr name="rxCountType" format="enum">
+
+            <enum name="s" value="10" />
+            <enum name="ms" value="11" />
+
+        </attr>
+
+        <attr name="RxShowType" format="enum">
+
+            <enum name="time" value="20" />
+            <enum name="num" value="21" />
+
+        </attr>
+
+
+    </declare-styleable>
+
 
 </resources>

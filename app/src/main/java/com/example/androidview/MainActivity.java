@@ -78,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.span.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SpanActivity.class)));
 
+        mBinding.timer.setInitTime(5 * 60 * 1000).count();
+
+        mBinding.rxTimer.setInitTime(5*60*1000).setTimeInterval(1000).setCountType(true).count();
+
         recyclerviewAnimation();
         mBinding.pro.setLineWidth(20);
         EditText editText = findViewById(R.id.et);
