@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     tools:context=".MainActivity">
 
@@ -12,18 +11,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp">
+
+
+        <LinearLayout
+            android:id="@+id/download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_shape"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:id="@+id/tv_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <com.example.androidview.sparead.SpreadView
+            android:id="@+id/spreadView"
+            android:layout_width="300dp"
+            android:layout_height="300dp" />
+
+        <Button
+            android:id="@+id/float_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="float view" />
 
         <com.example.androidview.countdowntimer.CustomCountTextView
             android:id="@+id/timer"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <com.example.androidview.countdowntimer.RxCustomCountTextView
             android:id="@+id/rx_timer"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/span"

@@ -1,11 +1,13 @@
 package com.example.androidview;
 
+import android.animation.ValueAnimator;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -30,15 +32,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
+import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
@@ -46,6 +51,7 @@ import com.example.androidview.scratch.ScratchActivity;
 import com.example.androidview.screenadapter.ScreenAutoActivity;
 import com.example.androidview.span.SpanActivity;
 import com.example.androidview.view.DispatchActivity;
+import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.windows.WindowsActivity;
 import com.google.android.material.textfield.TextInputLayout;
@@ -80,7 +86,34 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.timer.setInitTime(5 * 60 * 1000).count();
 
-        mBinding.rxTimer.setInitTime(5*60*1000).setTimeInterval(1000).setCountType(true).count();
+        mBinding.rxTimer.setInitTime(5 * 60 * 1000).setTimeInterval(1000).setCountType(true).count();
+
+        mBinding.floatView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, FloatViewActivity.class)));
+
+        LottieAnimationView mLottie = new LottieAnimationView(this);
+        mLottie.setAnimation("diamond_new_user_guide.json");
+        mLottie.setImageAssetsFolder("images_diamond_new_user_guide");
+        mLottie.setBackgroundColor(Color.TRANSPARENT);
+        mLottie.setRepeatCount(ValueAnimator.INFINITE);
+        mLottie.playAnimation();
+        GuideViewHelper guideViewHelper = new GuideViewHelper(1, 1.5f);
+        guideViewHelper.show(mBinding.download, R.drawable.guide_hand);
+        guideViewHelper.setOnViewLayoutListener(new GuideViewHelper.OnViewLayoutListener() {
+            @Override
+            public void layout() {
+                guideViewHelper.getReplaceLayoutParams().topMargin = 40;
+                guideViewHelper.getTargetView().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (guideViewHelper.getSourceView() != null && guideViewHelper.getSourceView().getVisibility() == View.VISIBLE) {
+                            guideViewHelper.remove();
+                        }
+                    }
+                });
+            }
+        });
+
+        //        new GuideViewHelper().show(mBinding.download, mLottie);
 
         recyclerviewAnimation();
         mBinding.pro.setLineWidth(20);
@@ -174,6 +207,25 @@ public class MainActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
+
+            //            ViewParent parent = mBinding.download.getParent();
+            //            if (parent instanceof ViewGroup) {
+            //                ViewGroup viewGroup = (ViewGroup) parent;
+            //                int index = viewGroup.indexOfChild(mBinding.download);
+            //                ViewGroup.LayoutParams layoutParams = mBinding.download.getLayoutParams();
+            //                viewGroup.removeView(mBinding.download);
+            //                FrameLayout frameLayout = new FrameLayout(this);
+            //                frameLayout.addView(mBinding.download);
+            //                ImageView imageView = new ImageView(this);
+            //                imageView.setBackgroundResource(R.drawable.guide_hand);
+            //                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            //                params.gravity = Gravity.CENTER;
+            //                params.topMargin = 20;
+            //                frameLayout.addView(imageView, params);
+            //                viewGroup.addView(frameLayout, index, layoutParams);
+            //            }
+
+
             mMeasuredWidth = mTextView.getMeasuredWidth();
             mMeasuredHeight = mTextView.getMeasuredHeight();
             Log.e("onWindowFocusChanged", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
@@ -203,6 +255,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * onContentChange是在setContentView之后的回调
+     */
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+    }
+
+    /**
+     * onPostCreate方法发生在onRestoreInstanceState之后，onResume之前，他代表着界面数据已经完全恢复，就差显示出来与用户交互了。
+     * 在onStart方法被调用时这些操作尚未完成。
+     */
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
+    /**
+     * onPostResume是在Resume方法被完全执行之后的回调。
+     */
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -213,6 +290,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.e("TAG", "onPause: ");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e(TAG, "onSaveInstanceState: ");
     }
 
     @Override

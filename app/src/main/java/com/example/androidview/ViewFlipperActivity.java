@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author lgh
- * @description ViewFlipper示例
+ * @description ViewFlipper示例 渐变颜色状态栏
  */
 public class ViewFlipperActivity extends AppCompatActivity {
 

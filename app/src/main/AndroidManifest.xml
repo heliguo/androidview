@@ -61,6 +61,8 @@
         <activity android:name=".screenadapter.ScreenAutoActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name=".span.SpanActivity" />
+        <activity android:name=".view.FloatViewActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
 
         <service android:name=".rootview.ResidentNotificationService" />

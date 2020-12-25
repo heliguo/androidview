@@ -26,9 +26,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * author:lgh on 2020-04-30 16:56
- * 正向计时 TextView，text 均为 long 类型
- * <p>
- * 判断view是否可见 getLocalVisibleRect(new Rect())
+ * RxJava 计时
  */
 public class RxCustomCountTextView extends AppCompatTextView implements LifecycleObserver {
 
