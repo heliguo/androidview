@@ -1,4 +1,4 @@
-package com.example.androidview.sparead;
+package com.example.androidview.spread;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -94,7 +94,7 @@ public class SpreadView extends View {
             spreadRadius.add(0);
             alphas.add(255);
         }
-        //超过8个扩散圆，删除最先绘制的圆，即最外层的圆
+//        //超过8个扩散圆，删除最先绘制的圆，即最外层的圆
         if (spreadRadius.size() >= 8) {
             alphas.remove(0);
             spreadRadius.remove(0);

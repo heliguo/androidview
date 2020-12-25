@@ -34,7 +34,12 @@
 
         </LinearLayout>
 
-        <com.example.androidview.sparead.SpreadView
+        <com.example.androidview.spread.SpreadView2
+            android:id="@+id/spreadView2"
+            android:layout_width="300dp"
+            android:layout_height="300dp" />
+
+        <com.example.androidview.spread.SpreadView
             android:id="@+id/spreadView"
             android:layout_width="300dp"
             android:layout_height="300dp" />
