@@ -36,11 +36,9 @@ public class FloatView2 extends FrameLayout {
 
     private long mDownTime;
 
-    private long mUpTime;
+    private static final long mOffsetClickTime = 300;
 
-    private final long mOffsetClickTime = 300;
-
-    private final long mOffsetLongClickTime = 600;
+    private static final long mOffsetLongClickTime = 600;
 
     private boolean isMove = false;
 
@@ -123,8 +121,8 @@ public class FloatView2 extends FrameLayout {
 
                 break;
             case MotionEvent.ACTION_UP:
-                mUpTime = System.currentTimeMillis();
-                long offsetTime = mUpTime - mDownTime;
+                long upTime = System.currentTimeMillis();
+                long offsetTime = upTime - mDownTime;
 
                 int offsetX1 = Math.abs(x - lastX);
                 int offsetY1 = Math.abs(y - lastY);
