@@ -94,8 +94,8 @@ public class CustomView extends View {
                                         ((View)getParent()).scrollBy(-offsetX,-offsetY);
 
                     //方法5：使用offset，添加点击事件后移动完毕后会执行点击事件
-                    //                    offsetLeftAndRight(offsetX);//对left和right进行偏移
-                    //                    offsetTopAndBottom(offsetY);//对top和bottom进行偏移
+                                        offsetLeftAndRight(offsetX);//对left和right进行偏移
+                                        offsetTopAndBottom(offsetY);//对top和bottom进行偏移
 
                 }
                 break;

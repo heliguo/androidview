@@ -7,7 +7,7 @@
     android:layout_margin="5dp">
 
 
-    <com.example.androidview.view.FloatView
+    <com.example.androidview.view.FloatView2
         android:id="@+id/float_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -17,6 +17,7 @@
             android:layout_height="100dp"
             android:background="@android:color/holo_red_light" />
 
-    </com.example.androidview.view.FloatView>
+    </com.example.androidview.view.FloatView2>
+
 
 </LinearLayout>
