@@ -9,7 +9,22 @@ import java.text.DecimalFormat;
  */
 public class Main {
 
+    static float a = 21.93f;//93
+    static float b = 30.12f;//69
+    static float c = 29.14f;//71
+    static float d = 2051.93f;
+
     public static void main(String[] args) {
+
+        for (int i = 0; i < 93; i++) {
+            for (int j = 0; j < 69; j++) {
+                for (int k = 0; k < 71; k++) {
+                    if (a * i + b * j + c * k == d) {
+                        System.out.println("a=" + i + "  b=" + j + "  c=" + k);
+                    }
+                }
+            }
+        }
 
         String url = "a/b/b/bcc/dddd";
         int index = url.lastIndexOf("/");
