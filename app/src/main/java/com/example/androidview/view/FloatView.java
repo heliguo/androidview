@@ -130,14 +130,20 @@ public class FloatView extends FrameLayout {
                 mUpTime = System.currentTimeMillis();
                 long offsetTime = mUpTime - mDownTime;
 
+                if (offsetTime < mOffsetClickTime || offsetTime >= mOffsetLongClickTime) {
+                    isMove = false;
+                }
+
                 int offsetX1 = Math.abs(x - lastX);
                 int offsetY1 = Math.abs(y - lastY);
 
-                if (offsetX1 < mTouchSlop && offsetY1 < mTouchSlop && offsetTime < mOffsetClickTime && !isMove) {
-                    performClick();
-                }
-                if (offsetX1 < mTouchSlop && offsetY1 < mTouchSlop && offsetTime >= mOffsetLongClickTime && !isMove) {
-                    performLongClick();
+                if (offsetX1 < mTouchSlop && offsetY1 < mTouchSlop && !isMove) {
+                    if (offsetTime < mOffsetClickTime) {
+                        performClick();
+                    }
+                    if (offsetTime >= mOffsetLongClickTime) {
+                        performLongClick();
+                    }
                 }
                 if (getLeft() + width < mScreenWidth) {
                     //                    int diff = mScreenWidth - width - getLeft();
