@@ -135,7 +135,7 @@ public class FloatView2 extends FrameLayout {
                     if (offsetTime < mOffsetClickTime) {
                         performClick();
                     }
-                    /**
+                    /**4
                      * move事件后长按也会触发，可以通过判断是否在最终位置处理是否在move后长按事件
                      */
                     if (offsetTime >= mOffsetLongClickTime) {

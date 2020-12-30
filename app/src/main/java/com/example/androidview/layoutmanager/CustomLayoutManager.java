@@ -48,13 +48,16 @@ public class CustomLayoutManager extends RecyclerView.LayoutManager {
     public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
         fill(recycler, dx > 0);
         offsetChildrenHorizontal(-dx);
+        recyclerChildView(dx > 0, recycler);
         return dx;
     }
+
 
     private void fill(RecyclerView.Recycler recycler, boolean fillEnd) {
         if (getChildCount() == 0)
             return;
         if (fillEnd) {
+            //填充尾部
             View anchorView = getChildAt(getChildCount() - 1);
             int anchorPosition = getPosition(anchorView);
             while (anchorView.getRight() < getWidth() - getPaddingRight()) {
@@ -62,20 +65,70 @@ public class CustomLayoutManager extends RecyclerView.LayoutManager {
                 if (position < 0) {
                     position += getChildCount();
                 }
-                View scarpItem = recycler.getViewForPosition(position);
-                addView(scarpItem);
-                measureChildWithMargins(scarpItem, 0, 0);
+                View scrapItem = recycler.getViewForPosition(position);
+                addView(scrapItem);
+                measureChildWithMargins(scrapItem, 0, 0);
 
                 int left = anchorView.getRight();
-                int top = anchorView.getPaddingTop();
-                int right = left + getDecoratedMeasuredWidth(scarpItem);
-                int bottom = top + getDecoratedMeasuredHeight(scarpItem) - getPaddingBottom();
-                layoutDecorated(scarpItem, left, top, right, bottom);
-                anchorView = scarpItem;
+                int top = getPaddingTop();
+                int right = left + getDecoratedMeasuredWidth(scrapItem);
+                int bottom = top + getDecoratedMeasuredHeight(scrapItem) - getPaddingBottom();
+                layoutDecorated(scrapItem, left, top, right, bottom);
+                anchorView = scrapItem;
             }
 
-        }else {
-            
+        } else {
+            //填充首部
+            View anchorView = getChildAt(0);
+            int anchorPosition = getPosition(anchorView);
+
+            while (anchorView.getPaddingLeft() > getPaddingLeft()) {
+                int position = (anchorPosition - 1) % getItemCount();
+                if (position < 0) {
+                    position += getChildCount();
+                }
+                View scrapItem = recycler.getViewForPosition(position);
+                addView(scrapItem, 0);
+
+                measureChildWithMargins(scrapItem, 0, 0);
+
+                int right = anchorView.getLeft();
+                int top = getPaddingTop();
+                int left = right - getDecoratedMeasuredWidth(scrapItem);
+                int bottom = top + getDecoratedMeasuredHeight(scrapItem) - getPaddingBottom();
+                layoutDecorated(scrapItem, left, top, right, bottom);
+                anchorView = scrapItem;
+            }
+
+        }
+    }
+
+
+    private void recyclerChildView(boolean fillEnd, RecyclerView.Recycler recycler) {
+
+        if (fillEnd) {
+            //回收头部
+            for (int i = 0; ; i++) {
+                View view = getChildAt(i);
+                boolean needRecycler = view != null && view.getRight() < getPaddingLeft();
+                if (needRecycler) {
+                    removeAndRecycleView(view, recycler);
+                } else {
+                    return;
+                }
+            }
+
+        } else {
+            //回收尾部
+            for (int i = getChildCount() - 1; ; i--) {
+                View view = getChildAt(i);
+                boolean needRecycler = view != null && view.getLeft() > getWidth() - getPaddingRight();
+                if (needRecycler) {
+                    removeAndRecycleView(view, recycler);
+                } else {
+                    return;
+                }
+            }
         }
     }
 }
