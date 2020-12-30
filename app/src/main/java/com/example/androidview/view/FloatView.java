@@ -130,17 +130,20 @@ public class FloatView extends FrameLayout {
                 mUpTime = System.currentTimeMillis();
                 long offsetTime = mUpTime - mDownTime;
 
-                if (offsetTime < mOffsetClickTime || offsetTime >= mOffsetLongClickTime) {
-                    isMove = false;
-                }
-
                 int offsetX1 = Math.abs(x - lastX);
                 int offsetY1 = Math.abs(y - lastY);
 
-                if (offsetX1 < mTouchSlop && offsetY1 < mTouchSlop && !isMove) {
+                if (offsetX1 < mTouchSlop && offsetY1 < mTouchSlop &&
+                        (offsetTime < mOffsetClickTime || offsetTime >= mOffsetLongClickTime)) {
+                    isMove = false;
+                }
+                if (!isMove) {
                     if (offsetTime < mOffsetClickTime) {
                         performClick();
                     }
+                    /**
+                     * move事件后长按也会触发，可以通过判断是否在最终位置处理是否在move后长按事件
+                     */
                     if (offsetTime >= mOffsetLongClickTime) {
                         performLongClick();
                     }
