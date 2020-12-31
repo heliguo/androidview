@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-//        finishAffinity();
+        //        finishAffinity();
 
         mBinding.scratch.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScratchActivity.class)));
 
@@ -100,19 +101,17 @@ public class MainActivity extends AppCompatActivity {
         mLottie.playAnimation();
         GuideViewHelper guideViewHelper = new GuideViewHelper(1, 1.5f);
         guideViewHelper.show(mBinding.download, R.drawable.guide_hand);
-        guideViewHelper.setOnViewLayoutListener(new GuideViewHelper.OnViewLayoutListener() {
-            @Override
-            public void layout() {
-                guideViewHelper.getReplaceLayoutParams().topMargin = 40;
-                guideViewHelper.getTargetView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (guideViewHelper.getSourceView() != null && guideViewHelper.getSourceView().getVisibility() == View.VISIBLE) {
-                            guideViewHelper.remove();
-                        }
-                    }
-                });
-            }
+        guideViewHelper.setOnViewLayoutListener(() -> {
+            guideViewHelper.getReplaceLayoutParams().topMargin = 40;
+            guideViewHelper.getTargetView().setOnClickListener(v -> {
+                if (guideViewHelper.getSourceView() != null && guideViewHelper.getSourceView().getVisibility() == View.VISIBLE) {
+                    guideViewHelper.remove();
+                }
+            });
+        });
+        mBinding.download.setOnLongClickListener(v -> {
+            Toast.makeText(MainActivity.this, "long click", Toast.LENGTH_SHORT).show();
+            return false;
         });
 
         //        new GuideViewHelper().show(mBinding.download, mLottie);
