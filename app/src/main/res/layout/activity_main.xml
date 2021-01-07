@@ -14,6 +14,12 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp">
 
+        <Button
+            android:id="@+id/calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="calendar" />
+
 
         <LinearLayout
             android:id="@+id/download"

@@ -42,6 +42,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
+import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.guideview.GuideViewHelper;
@@ -93,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.floatView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, FloatViewActivity.class)));
 
+        mBinding.calendar.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CalendarActivity.class)));
+
         LottieAnimationView mLottie = new LottieAnimationView(this);
         mLottie.setAnimation("diamond_new_user_guide.json");
         mLottie.setImageAssetsFolder("images_diamond_new_user_guide");
@@ -113,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "long click", Toast.LENGTH_SHORT).show();
             return false;
         });
+
+
 
         //        new GuideViewHelper().show(mBinding.download, mLottie);
 

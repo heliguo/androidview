@@ -42,7 +42,7 @@ public class ClipAndMatrix extends View {
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /**
-         * 剪裁
+         * 剪裁，裁剪区域内绘制有效
          */
 
         /**
@@ -115,8 +115,8 @@ public class ClipAndMatrix extends View {
 
 
         matrix.reset();
-//        matrix.postTranslate();
-//        matrix.postRotate();
+        //        matrix.postTranslate();
+        //        matrix.postRotate();
 
         canvas.save();
         canvas.concat(matrix);

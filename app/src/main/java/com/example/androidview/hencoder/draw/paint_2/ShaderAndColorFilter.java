@@ -8,6 +8,8 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.ComposePathEffect;
 import android.graphics.ComposeShader;
 import android.graphics.CornerPathEffect;
@@ -129,6 +131,7 @@ public class ShaderAndColorFilter extends View {
          * G' = G * mul.G / 0xff + add.G
          * B' = B * mul.B / 0xff + add.B
          */
+        colorFilter = new LightingColorFilter(0xffffff, 0x000000);
 
         /***
          * PorterDuffColorFilter 使用一个指定的颜色和一种指定的 PorterDuff.Mode 来与绘制对象进行合成
@@ -151,8 +154,11 @@ public class ShaderAndColorFilter extends View {
          * A’ = p*R + q*G + r*B + s*A + t;
          *
          */
-
-        colorFilter = new LightingColorFilter(1, 1);
+        ColorMatrix colorMatrix = new ColorMatrix();
+        //亮度调节
+        colorMatrix.setScale(1,1,1,1);
+        //调节饱和度 0 变为黑白，1默认效果 >1色彩加深
+        colorMatrix.setSaturation(0);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
