@@ -5,6 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <com.contrarywind.view.WheelView
+        android:id="@+id/wheel"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content" />
+
     <com.haibin.calendarview.CalendarLayout
         android:id="@+id/calendarLayout"
         android:layout_width="match_parent"

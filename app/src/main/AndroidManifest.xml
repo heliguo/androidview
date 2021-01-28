@@ -6,9 +6,13 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
+    <!--    日历权限    -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
     <application
-        android:allowBackup="true"
         android:name=".BaseApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -44,26 +48,33 @@
         </activity>
         <activity android:name=".windows.WindowsActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".rootview.CreateWidget"
+        <activity
+            android:name=".rootview.CreateWidget"
             android:theme="@style/TranslucentTheme">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
         <activity android:name=".worker.JobSchedulerActivity" />
         <activity android:name=".worker.WorkerManagerActivity" />
         <activity android:name=".activityresult.ActivityResultTestActivity" />
-        <activity android:name=".TabLayout.TabLayoutActivity"
-            android:theme="@style/TabActivityStyle"/>
+        <activity
+            android:name=".TabLayout.TabLayoutActivity"
+            android:theme="@style/TabActivityStyle" />
         <activity android:name=".scratch.ScratchActivity" />
         <activity android:name=".hencoder.draw.animation_6_7.AnimationActivity" />
         <activity android:name=".LiveDataActivity" />
-        <activity android:name=".screenadapter.ScreenAutoActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity
+            android:name=".screenadapter.ScreenAutoActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".span.SpanActivity" />
-        <activity android:name=".view.FloatViewActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity
+            android:name=".view.FloatViewActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".calendar.CalendarActivity" />
+        <activity android:name=".realm.RealmActivity" />
+        <activity android:name=".mpandroidchart.LineChartActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
 
         <service android:name=".rootview.ResidentNotificationService" />

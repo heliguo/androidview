@@ -1,5 +1,6 @@
 package com.example.androidview;
 
+import android.Manifest;
 import android.animation.ValueAnimator;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
@@ -7,6 +8,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,10 +45,13 @@ import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.calendar.CalendarActivity;
+import com.example.androidview.calendar.CalendarReminderUtils;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.guideview.GuideViewHelper;
+import com.example.androidview.mpandroidchart.LineChartActivity;
 import com.example.androidview.ntp.SntpUtils;
+import com.example.androidview.realm.RealmActivity;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.scratch.ScratchActivity;
@@ -80,9 +85,18 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED ||
+                    checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, 100);
+        }
+
+
         //        finishAffinity();
 
         mBinding.scratch.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScratchActivity.class)));
+        mBinding.realm.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RealmActivity.class)));
+        mBinding.chart.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LineChartActivity.class)));
 
         mBinding.screen.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScreenAutoActivity.class)));
 
@@ -95,6 +109,20 @@ public class MainActivity extends AppCompatActivity {
         mBinding.floatView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, FloatViewActivity.class)));
 
         mBinding.calendar.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CalendarActivity.class)));
+
+        mBinding.calendarAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                }
+                CalendarReminderUtils.addCalendarEvent(MainActivity.this, "测试", "测试日程事件",
+                        System.currentTimeMillis() + 3600 * 24 * 1000 * 2 + 10000, 2);
+            }
+        });
 
         LottieAnimationView mLottie = new LottieAnimationView(this);
         mLottie.setAnimation("diamond_new_user_guide.json");
@@ -116,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "long click", Toast.LENGTH_SHORT).show();
             return false;
         });
-
 
 
         //        new GuideViewHelper().show(mBinding.download, mLottie);

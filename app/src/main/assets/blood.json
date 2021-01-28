@@ -1,0 +1,46 @@
+{
+    "code": 1000,
+    "msg": "success",
+    "data": {
+        "totalDay": 2,
+        "list": [
+            {
+                "type": "2021-01-18",
+                "list": [
+                    {
+                        "id": "60055560f4e40f5c48b3c7c0",
+                        "value": 6.0,
+                        "guid": "test",
+                        "measureTs": 1610959110000,
+                        "status": 1,
+                        "createTs": 1610962272056,
+                        "updateTs": 1610962272056
+                    },
+                    {
+                        "id": "6008dde58e4f8d4e0c70784a",
+                        "value": 6.1,
+                        "guid": "test",
+                        "measureTs": 1610973072000,
+                        "status": 1,
+                        "createTs": 1610973072000,
+                        "updateTs": 1610973072000
+                    }
+                ]
+            },
+            {
+                "type": "2021-01-20",
+                "list": [
+                    {
+                        "id": "6007fa9b8e4f8d0930e34ad8",
+                        "value": 7.0,
+                        "guid": "test",
+                        "measureTs": 1611135586000,
+                        "status": 2,
+                        "createTs": 1611135643351,
+                        "updateTs": 1611135643351
+                    }
+                ]
+            }
+        ]
+    }
+}
