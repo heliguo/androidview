@@ -15,6 +15,12 @@
         android:paddingVertical="10dp">
 
         <Button
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="notification" />
+
+        <Button
             android:id="@+id/chart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

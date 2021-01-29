@@ -16,6 +16,9 @@ public class GanZhiUtils {
 
     private static int currentYear, currentMonth, currentDay;
 
+    private static int sSZhi = -1;
+    private static int currentSolarDay = -1;
+
     /**
      * 关于阴历的相关信息
      */
@@ -44,33 +47,12 @@ public class GanZhiUtils {
     /**
      * 记录天干的信息
      */
-    //若言戊癸何方发，甲寅之上好追求。5、10
+    //若言戊癸何方发，甲寅之上好追求5、10;甲己之年丙作首1、6;乙庚之岁戊为头2、7;丙辛必定寻庚起3、8;丁壬壬位顺行流4、9
     private final static String[] gan_info = {"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛",
             "壬", "癸"};
-    //甲己之年丙作首1、6
-    private final static String[] gan_info1 = {"丙", "丁", "戊", "己", "庚", "辛",
-            "壬", "癸", "甲", "乙"};
-
-    //乙庚之岁戊为头2、7
-    private final static String[] gan_info2 = {"戊", "己", "庚", "辛",
-            "壬", "癸", "甲", "乙", "丙", "丁"};
-
-    //丙辛必定寻庚起3、8
-    private final static String[] gan_info3 = {"庚", "辛",
-            "壬", "癸", "甲", "乙", "丙", "丁", "戊", "己"};
-
-    //丁壬壬位顺行流4、9
-    private final static String[] gan_info4 = {
-            "壬", "癸", "甲", "乙", "丙", "丁", "戊", "己", "庚", "辛"};
 
     private final static String[] zhi_info = {"子", "丑", "寅", "卯", "辰", "巳", "午", "未",
             "申", "酉", "戌", "亥"};
-
-    private final static String[] month_zhi_info = {"寅", "卯", "辰", "巳", "午", "未",
-            "申", "酉", "戌", "亥", "子", "丑"};
-    private static int sSZhi = -1;
-    private static int currentSolarDay = -1;
-
 
     /**
      * 获取农历某年的总天数
@@ -278,53 +260,53 @@ public class GanZhiUtils {
                 if (sSZhi == 0) {
                     sSZhi = 9;
                     if (monthG != month_ganZhi) {
-                        return gan_info4[sSZhi % 10];
+                        return gan_info[(sSZhi + 8) % 10];
                     }
                     return gan_info[sSZhi % 10];
                 } else {
                     sSZhi--;
                 }
             }
-            return gan_info4[sSZhi % 10];
+            return gan_info[(sSZhi + 8) % 10];
         } else if (yearGan == 1 || yearGan == 6) {
             if (day < currentSolarDay) {
                 if (sSZhi == 0) {
                     sSZhi = 9;
                     if (monthG != month_ganZhi) {
-                        return gan_info1[sSZhi % 10];
+                        return gan_info[(sSZhi + 2) % 10];
                     }
-                    return gan_info2[sSZhi % 10];
+                    return gan_info[(sSZhi + 4) % 10];
                 } else {
                     sSZhi--;
                 }
             }
-            return gan_info1[sSZhi % 10];
+            return gan_info[(sSZhi + 2) % 10];
         } else if (yearGan == 2 || yearGan == 7) {
             if (day < currentSolarDay) {
                 if (sSZhi == 0) {
                     sSZhi = 9;
                     if (monthG != month_ganZhi) {
-                        return gan_info2[sSZhi % 10];
+                        return gan_info[(sSZhi + 4) % 10];
                     }
-                    return gan_info3[sSZhi % 10];
+                    return gan_info[(sSZhi + 6) % 10];
                 } else {
                     sSZhi--;
                 }
             }
-            return gan_info2[sSZhi % 10];
+            return gan_info[(sSZhi + 4) % 10];
         } else if (yearGan == 3 || yearGan == 8) {
             if (day < currentSolarDay) {
                 if (sSZhi == 0) {
                     sSZhi = 9;
                     if (monthG != month_ganZhi) {
-                        return gan_info3[sSZhi % 10];
+                        return gan_info[(sSZhi + 6) % 10];
                     }
-                    return gan_info4[sSZhi % 10];
+                    return gan_info[(sSZhi + 8) % 10];
                 } else {
                     sSZhi--;
                 }
             }
-            return gan_info3[sSZhi % 10];
+            return gan_info[(sSZhi + 6) % 10];
         } else if (yearGan == 5 || yearGan == 10) {
             if (day < currentSolarDay) {
                 if (sSZhi == 0) {
@@ -332,7 +314,7 @@ public class GanZhiUtils {
                     if (monthG != month_ganZhi) {
                         return gan_info[sSZhi % 10];
                     }
-                    return gan_info1[sSZhi % 10];
+                    return gan_info[(sSZhi + 2) % 10];
                 } else {
                     sSZhi--;
                 }
@@ -369,14 +351,14 @@ public class GanZhiUtils {
                         zhi--;
                     }
                 }
-                return month_zhi_info[zhi];
+                return zhi_info[(zhi + 2) % 12];
             }
         }
 
         if (zhi == -1) {
             return null;
         }
-        return month_zhi_info[zhi];
+        return zhi_info[(zhi + 2) % 12];
     }
 
     /**
