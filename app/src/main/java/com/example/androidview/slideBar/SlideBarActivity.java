@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.androidview.MainActivity;
 import com.example.androidview.R;
 import com.example.androidview.databinding.ActivitySlideBarBinding;
 
@@ -33,7 +32,7 @@ public class SlideBarActivity extends AppCompatActivity {
     private ListView lvMain;
     private TextView tvWord;
 
-    private  IndexAdapter adapter;
+    private IndexAdapter adapter;
 
     private Handler handler = new Handler();
 
@@ -58,9 +57,9 @@ public class SlideBarActivity extends AppCompatActivity {
     }
 
     private void updateListView(String word) {
-        for(int i=0;i<persons.size();i++){
-            String listWord = persons.get(i).getPinyin().substring(0,1);//YANGGUANGFU-->Y
-            if (word.equals(listWord)) {
+        for (int i = 0; i < persons.size(); i++) {
+            String listWord = persons.get(i).getPinyin().substring(0, 1);//YANGGUANGFU-->Y
+            if (word.equalsIgnoreCase(listWord)) {
                 //i是listView中的位置
                 lvMain.setSelection(i);//定位到ListVeiw中的某个位置
                 return;
@@ -69,7 +68,7 @@ public class SlideBarActivity extends AppCompatActivity {
     }
 
 
-    private void updateWord(String word){
+    private void updateWord(String word) {
         //显示
         tvWord.setVisibility(View.VISIBLE);
         tvWord.setText(word);
@@ -80,7 +79,7 @@ public class SlideBarActivity extends AppCompatActivity {
                 //也是运行在主线程中
                 tvWord.setVisibility(View.GONE);
             }
-        },500);
+        }, 500);
     }
 
 
@@ -137,7 +136,7 @@ public class SlideBarActivity extends AppCompatActivity {
         });
     }
 
-    class  IndexAdapter extends BaseAdapter {
+    class IndexAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -157,35 +156,36 @@ public class SlideBarActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder viewHolder;
-            if(convertView == null){
-                convertView = View.inflate(SlideBarActivity.this, R.layout.item_main,null);
+            if (convertView == null) {
+                convertView = View.inflate(SlideBarActivity.this, R.layout.item_main, null);
                 viewHolder = new ViewHolder();
-                viewHolder.tv_word =  convertView.findViewById(R.id.tv_word);
-                viewHolder.tv_name =  convertView.findViewById(R.id.tv_name);
+                viewHolder.tv_word = convertView.findViewById(R.id.tv_word);
+                viewHolder.tv_name = convertView.findViewById(R.id.tv_name);
                 convertView.setTag(viewHolder);
-            }else{
+            } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
             String name = persons.get(position).getName();//阿福
-            String word = persons.get(position).getPinyin().substring(0,1);//AFU->A
+            String word = persons.get(position).getPinyin().substring(0, 1);//AFU->A
             viewHolder.tv_word.setText(word);
             viewHolder.tv_name.setText(name);
-            if(position ==0){
+            if (position == 0) {
                 viewHolder.tv_word.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 //得到前一个位置对应的字母，如果当前的字母和上一个相同，隐藏；否则就显示
-                String preWord = persons.get(position-1).getPinyin().substring(0,1);//A~Z
-                if(word.equals(preWord)){
+                String preWord = persons.get(position - 1).getPinyin().substring(0, 1);//A~Z
+                if (word.equals(preWord)) {
                     viewHolder.tv_word.setVisibility(View.GONE);
-                }else{
+                } else {
                     viewHolder.tv_word.setVisibility(View.VISIBLE);
                 }
             }
             return convertView;
         }
     }
-    static class ViewHolder{
+
+    static class ViewHolder {
         TextView tv_word;
         TextView tv_name;
     }

@@ -32,7 +32,7 @@ public class SideBar extends View {
 
     private OnTouchingLetterChangedListener mOnTouchingLetterChangedListener;
 
-    private String[] mLetters = null;
+    private String[] mLetters;
     private Paint mPaint;
     private int mTextColor;
     private int mResArrayId = R.array.letter_list;
