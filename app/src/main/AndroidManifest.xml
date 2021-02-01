@@ -75,6 +75,7 @@
         <activity android:name=".realm.RealmActivity" />
         <activity android:name=".mpandroidchart.LineChartActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".slideBar.SlideBarActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
