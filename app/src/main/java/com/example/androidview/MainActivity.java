@@ -40,7 +40,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.airbnb.lottie.L;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
@@ -49,6 +48,7 @@ import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.calendar.CalendarReminderUtils;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
+import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
 import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.mpandroidchart.LineChartActivity;
 import com.example.androidview.ntp.SntpUtils;
@@ -63,6 +63,7 @@ import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.windows.WindowsActivity;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.lang.reflect.InvocationTargetException;
@@ -80,12 +81,20 @@ public class MainActivity extends AppCompatActivity {
     private int mMeasuredWidth;
     private int mMeasuredHeight;
     ActivityMainBinding mBinding;
+    BottomSheetBehavior mBottomSheetBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.expand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ExpandableRecyclerviewActivity.class));
+            }
+        });
 
         mBinding.slide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LockScreenNotification lockScreenNotification = new LockScreenNotification(MainActivity.this);
-                lockScreenNotification.send("title","",1);
+                lockScreenNotification.send("title", "", 1);
             }
         });
 

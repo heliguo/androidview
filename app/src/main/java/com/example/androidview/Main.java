@@ -26,11 +26,11 @@ public class Main {
             }
         }
 
-        String url = "a/b/b/bcc/dddd";
-        int index = url.lastIndexOf("/");
-        url = url.substring(0,url.length()-1);
-        System.out.println(url);
-        System.out.println(getCoinValue("92292"));
+//        String url = "a/b/b/bcc/dddd";
+//        int index = url.lastIndexOf("/");
+//        url = url.substring(0,url.length()-1);
+//        System.out.println(url);
+//        System.out.println(getCoinValue("92292"));
     }
 
     public static String getCoinValue(String v) {

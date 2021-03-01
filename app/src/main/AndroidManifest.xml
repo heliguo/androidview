@@ -76,9 +76,13 @@
         <activity android:name=".mpandroidchart.LineChartActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name=".slideBar.SlideBarActivity" />
+        <activity android:name=".expandrecyclerview.impl.ExpandableRecyclerviewActivity" />
+        <activity android:name=".loopview.LooperActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
+
+
     </application>
 
 </manifest>

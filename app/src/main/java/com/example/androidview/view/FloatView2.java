@@ -42,7 +42,8 @@ public class FloatView2 extends FrameLayout {
 
     private boolean isMove = false;
 
-    private final int mDuration = 1000;
+    private final int mDuration = 500;
+    private ObjectAnimator mAnimator;
 
 
     public FloatView2(@NonNull Context context) {
@@ -89,13 +90,13 @@ public class FloatView2 extends FrameLayout {
         switch (event.getAction()) {
 
             case MotionEvent.ACTION_DOWN:
+
                 isMove = false;
                 mDownTime = System.currentTimeMillis();
                 lastX = x;
                 lastY = y;
                 break;
             case MotionEvent.ACTION_MOVE:
-
                 isMove = true;
 
                 int offsetX = x - lastX;
@@ -146,13 +147,13 @@ public class FloatView2 extends FrameLayout {
                 int diff = (int) (mScreenWidth - getLeft() - getTranslationX() - measureWidth);
                 if (diff > 0) {
                     // 回到最左侧
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(this,
+                    mAnimator = ObjectAnimator.ofFloat(this,
                             "TranslationX",
                             getTranslationX(),
                             getTranslationX() + diff
                     );
-                    animator.setDuration(mDuration);
-                    animator.start();
+                    mAnimator.setDuration(mDuration);
+                    mAnimator.start();
                 }
 
                 break;
