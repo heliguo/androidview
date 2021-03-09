@@ -69,25 +69,25 @@ public class ExpandableRecyclerviewActivity extends AppCompatActivity {
                     if (holderP instanceof MyParentViewHolder) {
                         MyParentViewHolder holderP1 = (MyParentViewHolder) holderP;
                         mSparseBooleanArray.put(childAdapterPosition, holderP1.isExpanded());
-                        if (holderP1.isExpanded()) {
-                            holderP.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg_up));
-                        } else {
-                            holderP.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg));
-                        }
-                        if (holder instanceof MyChildViewHolder && holderP1.isExpanded()) {
-                            Boolean aBoolean = mSparseBooleanArray.get(childAdapterPosition);
-                            if (aBoolean == null) {
-                                return;
-                            }
-                            if (aBoolean) {
-                                holder.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg_down));
-                                holder.itemView.findViewById(R.id.view_line).setVisibility(View.INVISIBLE);
-                            } else {
-                                holder.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg_child));
-                                holder.itemView.findViewById(R.id.view_line).setVisibility(View.VISIBLE);
-                            }
+//                        if (holderP1.isExpanded()) {
+//                            holderP.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg_up));
+//                        } else {
+//                            holderP.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg));
+//                        }
+//                        if (holder instanceof MyChildViewHolder && holderP1.isExpanded()) {
+//                            Boolean aBoolean = mSparseBooleanArray.get(childAdapterPosition);
+//                            if (aBoolean == null) {
+//                                return;
+//                            }
+//                            if (aBoolean) {
+//                                holder.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg_down));
+//                                holder.itemView.findViewById(R.id.view_line).setVisibility(View.INVISIBLE);
+//                            } else {
+//                                holder.itemView.setBackground(ContextCompat.getDrawable(parent.getContext(), R.drawable.shape_expandable_bg_child));
+//                                holder.itemView.findViewById(R.id.view_line).setVisibility(View.VISIBLE);
+//                            }
 
-                        }
+//                        }
                     }
                 });
                 //                Toast.makeText(ExpandableRecyclerviewActivity.this, "parent position: " + childAdapterPosition, Toast.LENGTH_SHORT).show();

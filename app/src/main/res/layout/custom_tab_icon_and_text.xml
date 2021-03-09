@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tab_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <Space
+        android:id="@+id/center_anchor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+    <com.example.androidview.smarttablayout.TintableImageView
+        android:id="@+id/custom_tab_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_above="@id/center_anchor"
+        android:layout_centerHorizontal="true"
+        android:scaleType="center"
+        android:src="@drawable/custom_icon"
+        app:tint="@color/custom_tab_icon" />
+
+    <com.example.androidview.smarttablayout.TintableTextView
+        android:id="@+id/custom_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/center_anchor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:maxLines="1"
+        android:textSize="14sp"
+        app:tints="@color/custom_tab" />
+
+    <View
+        android:id="@+id/tab_line"
+        android:visibility="gone"
+        android:layout_marginVertical="5dp"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimary" />
+
+</RelativeLayout>

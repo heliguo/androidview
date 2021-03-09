@@ -78,6 +78,7 @@
         <activity android:name=".slideBar.SlideBarActivity" />
         <activity android:name=".expandrecyclerview.impl.ExpandableRecyclerviewActivity" />
         <activity android:name=".loopview.LooperActivity" />
+        <activity android:name=".smarttablayout.SmartTabLayoutActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

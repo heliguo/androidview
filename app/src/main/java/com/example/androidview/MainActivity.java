@@ -58,6 +58,7 @@ import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.scratch.ScratchActivity;
 import com.example.androidview.screenadapter.ScreenAutoActivity;
 import com.example.androidview.slideBar.SlideBarActivity;
+import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
@@ -88,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        mBinding.tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SmartTabLayoutActivity.class));
+            }
+        });
 
         mBinding.expand.setOnClickListener(new View.OnClickListener() {
             @Override

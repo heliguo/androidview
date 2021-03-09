@@ -109,5 +109,21 @@
         <item>\#</item>
     </string-array>
 
+    <declare-styleable name="TintableImageView">
+        <attr name="tint" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="TintableTextView">
+        <attr name="tints" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomRoundAngleImageView">
+        <attr name="radius" format="dimension"/>
+        <attr name="left_top_radius" format="dimension"/>
+        <attr name="right_top_radius" format="dimension"/>
+        <attr name="right_bottom_radius" format="dimension"/>
+        <attr name="left_bottom_radius" format="dimension"/>
+    </declare-styleable>
+
 
 </resources>

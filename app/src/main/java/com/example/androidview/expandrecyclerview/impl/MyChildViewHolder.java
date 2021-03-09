@@ -16,7 +16,7 @@ public class MyChildViewHolder extends ChildViewHolder<ContentBean> {
     }
 
     public void bind(ContentBean data) {
-        itemView.setBackground(ContextCompat.getDrawable(itemView.getContext(), R.drawable.shape_expandable_bg_child));
+//        itemView.setBackground(ContextCompat.getDrawable(itemView.getContext(), R.drawable.shape_expandable_bg_child));
         getView(R.id.view_line).setVisibility(View.VISIBLE);
         TextView name = getView(R.id.tv_expandable_child_drug);
         name.setText(data.getTitle());
