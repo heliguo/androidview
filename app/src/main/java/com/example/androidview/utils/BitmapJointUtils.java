@@ -31,7 +31,6 @@ public class BitmapJointUtils {
             view.setDrawingCacheEnabled(true);
             view.buildDrawingCache();
             bitmaps.add(view.getDrawingCache());
-            view.setDrawingCacheEnabled(false);
         }
         if (hasHide){
             for (View view : hideView) {
@@ -57,7 +56,6 @@ public class BitmapJointUtils {
             view.setDrawingCacheEnabled(true);
             view.buildDrawingCache();
             bitmaps.add(view.getDrawingCache());
-            view.setDrawingCacheEnabled(false);
         }
         if (hasHide){
             for (View view : hideView) {
