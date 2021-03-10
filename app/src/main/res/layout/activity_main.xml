@@ -16,6 +16,7 @@
         android:paddingVertical="10dp">
 
         <com.example.androidview.view.CustomRoundAngleImageView
+            android:id="@+id/CustomRoundAngleImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_test1"/>
