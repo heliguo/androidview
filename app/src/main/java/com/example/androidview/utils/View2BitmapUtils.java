@@ -35,6 +35,10 @@ import java.util.List;
 
 public  class View2BitmapUtils {
 
+    public static final String sCacheRootDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+    public static final String sCacheDir = sCacheRootDir + File.separator + "apache";
+    public static final String sImageDir = sCacheDir + File.separator + "cache";
+    public static final String sImageGalleryDir = sCacheDir + File.separator + "gallery";
     /**
      * 将 Bitmap 保存到SD卡
      * @param context
