@@ -38,11 +38,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
+import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.calendar.CalendarActivity;
@@ -61,6 +61,7 @@ import com.example.androidview.screenadapter.ScreenAutoActivity;
 import com.example.androidview.slideBar.SlideBarActivity;
 import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
+import com.example.androidview.surfaceview.SurfaceViewActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
@@ -90,6 +91,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.surfaceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SurfaceViewActivity.class));
+            }
+        });
+
+        mBinding.book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CurlActivity.class));
+            }
+        });
 
         mBinding.CustomRoundAngleImageView.getContext();
 
@@ -132,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         //        finishAffinity();
 
         mBinding.scratch.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScratchActivity.class)));
-        mBinding.realm.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RealmActivity.class)));
+//        mBinding.realm.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RealmActivity.class)));
         mBinding.chart.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LineChartActivity.class)));
 
         mBinding.screen.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScreenAutoActivity.class)));

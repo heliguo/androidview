@@ -15,6 +15,18 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp">
 
+        <Button
+            android:id="@+id/surface_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="surface_view" />
+
+        <Button
+            android:id="@+id/book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="book_page" />
+
         <com.example.androidview.view.CustomRoundAngleImageView
             android:id="@+id/CustomRoundAngleImageView"
             android:layout_width="wrap_content"

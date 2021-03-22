@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
     <!--    日历权限    -->
     <uses-permission android:name="android.permission.READ_CALENDAR" />
@@ -77,8 +78,10 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name=".slideBar.SlideBarActivity" />
         <activity android:name=".expandrecyclerview.impl.ExpandableRecyclerviewActivity" />
-        <activity android:name=".loopview.LooperActivity" />
         <activity android:name=".smarttablayout.SmartTabLayoutActivity" />
+        <activity android:name=".bookpage.BookPageActivity" />
+        <activity android:name=".pageview.CurlActivity" />
+        <activity android:name=".surfaceview.SurfaceViewActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
