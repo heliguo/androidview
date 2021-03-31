@@ -42,6 +42,7 @@ import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
+import com.example.androidview.dragandslideslip.SnapHelperActivity;
 import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
@@ -91,6 +92,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.snapHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SnapHelperActivity.class));
+            }
+        });
 
         mBinding.surfaceView.setOnClickListener(new View.OnClickListener() {
             @Override

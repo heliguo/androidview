@@ -1,0 +1,272 @@
+{
+  "00": {
+    "wid": "00",
+    "weather": "晴",
+    "icon_d": "wid_00_d",
+    "icon_n": "wid_00_n"
+  },
+  "01": {
+    "wid": "01",
+    "weather": "多云",
+    "icon_d": "wid_01_d",
+    "icon_n": "wid_01_n"
+  },
+  "02": {
+    "wid": "02",
+    "weather": "阴",
+    "icon_d": "wid_02",
+    "icon_n": ""
+  },
+  "03": {
+    "wid": "03",
+    "weather": "阵雨",
+    "icon_d": "wid_03_d",
+    "icon_n": "wid_03_n"
+  },
+  "04": {
+    "wid": "04",
+    "weather": "雷阵雨",
+    "icon_d": "wid_04",
+    "icon_n": ""
+  },
+  "05": {
+    "wid": "05",
+    "weather": "雷阵雨伴有冰雹",
+    "icon_d": "wid_05",
+    "icon_n": ""
+  },
+  "06": {
+    "wid": "06",
+    "weather": "雨夹雪",
+    "icon_d": "wid_06",
+    "icon_n": ""
+  },
+  "07": {
+    "wid": "07",
+    "weather": "小雨",
+    "icon_d": "wid_07",
+    "icon_n": ""
+  },
+  "08": {
+    "wid": "08",
+    "weather": "中雨",
+    "icon_d": "wid_08",
+    "icon_n": ""
+  },
+  "09": {
+    "wid": "09",
+    "weather": "大雨",
+    "icon_d": "wid_09",
+    "icon_n": ""
+  },
+  "10": {
+    "wid": "10",
+    "weather": "暴雨",
+    "icon_d": "wid_10",
+    "icon_n": ""
+  },
+  "11": {
+    "wid": "11",
+    "weather": "大暴雨",
+    "icon_d": "wid_11",
+    "icon_n": ""
+  },
+  "12": {
+    "wid": "12",
+    "weather": "特大暴雨",
+    "icon_d": "wid_12",
+    "icon_n": ""
+  },
+  "13": {
+    "wid": "13",
+    "weather": "阵雪",
+    "icon_d": "wid_13",
+    "icon_n": ""
+  },
+  "14": {
+    "wid": "14",
+    "weather": "小雪",
+    "icon_d": "wid_14",
+    "icon_n": ""
+  },
+  "15": {
+    "wid": "15",
+    "weather": "中雪",
+    "icon_d": "wid_15",
+    "icon_n": ""
+  },
+  "16": {
+    "wid": "16",
+    "weather": "大雪",
+    "icon_d": "wid_16",
+    "icon_n": ""
+  },
+  "17": {
+    "wid": "17",
+    "weather": "暴雪",
+    "icon_d": "wid_17",
+    "icon_n": ""
+  },
+  "18": {
+    "wid": "18",
+    "weather": "雾",
+    "icon_d": "wid_18",
+    "icon_n": ""
+  },
+  "19": {
+    "wid": "19",
+    "weather": "冻雨",
+    "icon_d": "wid_19",
+    "icon_n": ""
+  },
+  "20": {
+    "wid": "20",
+    "weather": "沙尘暴",
+    "icon_d": "wid_20",
+    "icon_n": ""
+  },
+  "21": {
+    "wid": "21",
+    "weather": "小到中雨",
+    "icon_d": "wid_21",
+    "icon_n": ""
+  },
+  "22": {
+    "wid": "22",
+    "weather": "中到大雨",
+    "icon_d": "wid_22",
+    "icon_n": ""
+  },
+  "23": {
+    "wid": "23",
+    "weather": "大到暴雨",
+    "icon_d": "wid_23",
+    "icon_n": ""
+  },
+  "24": {
+    "wid": "24",
+    "weather": "暴雨到大暴雨",
+    "icon_d": "wid_24",
+    "icon_n": ""
+  },
+  "25": {
+    "wid": "25",
+    "weather": "大暴雨到特大暴雨",
+    "icon_d": "wid_25",
+    "icon_n": ""
+  },
+  "26": {
+    "wid": "26",
+    "weather": "小到中雪",
+    "icon_d": "wid_26",
+    "icon_n": ""
+  },
+  "27": {
+    "wid": "27",
+    "weather": "中到大雪",
+    "icon_d": "wid_27",
+    "icon_n": ""
+  },
+  "28": {
+    "wid": "28",
+    "weather": "大到暴雪",
+    "icon_d": "wid_28",
+    "icon_n": ""
+  },
+  "29": {
+    "wid": "29",
+    "weather": "浮尘",
+    "icon_d": "wid_29",
+    "icon_n": ""
+  },
+  "30": {
+    "wid": "30",
+    "weather": "扬沙",
+    "icon_d": "wid_30",
+    "icon_n": ""
+  },
+  "31": {
+    "wid": "31",
+    "weather": "强沙尘暴",
+    "icon_d": "wid_31",
+    "icon_n": ""
+  },
+  "32": {
+    "wid": "32",
+    "weather": "浓雾",
+    "icon_d": "wid_32_d",
+    "icon_n": "wid_32_n"
+  },
+  "33": {
+    "wid": "33",
+    "weather": "龙卷风",
+    "icon_d": "wid_33",
+    "icon_n": ""
+  },
+  "34": {
+    "wid": "34",
+    "weather": "弱高吹雪",
+    "icon_d": "wid_34",
+    "icon_n": ""
+  },
+  "35": {
+    "wid": "35",
+    "weather": "轻雾",
+    "icon_d": "wid_35",
+    "icon_n": ""
+  },
+  "36": {
+    "wid": "49",
+    "weather": "强浓雾",
+    "icon_d": "wid_49_d",
+    "icon_n": "wid_49_n"
+  },
+  "37": {
+    "wid": "53",
+    "weather": "霾",
+    "icon_d": "wid_53",
+    "icon_n": ""
+  },
+  "38": {
+    "wid": "54",
+    "weather": "中度霾",
+    "icon_d": "wid_54",
+    "icon_n": ""
+  },
+  "39": {
+    "wid": "55",
+    "weather": "重度霾",
+    "icon_d": "wid_55",
+    "icon_n": ""
+  },
+  "40": {
+    "wid": "56",
+    "weather": "严重霾",
+    "icon_d": "wid_56",
+    "icon_n": ""
+  },
+  "41": {
+    "wid": "57",
+    "weather": "大雾",
+    "icon_d": "wid_57",
+    "icon_n": ""
+  },
+  "42": {
+    "wid": "58",
+    "weather": "特强浓雾",
+    "icon_d": "wid_58",
+    "icon_n": ""
+  },
+  "43": {
+    "wid": "301",
+    "weather": "雨",
+    "icon_d": "wid_301",
+    "icon_n": ""
+  },
+  "44": {
+    "wid": "302",
+    "weather": "雪",
+    "icon_d": "wid_302",
+    "icon_n": ""
+  }
+}

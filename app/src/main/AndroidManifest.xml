@@ -82,6 +82,8 @@
         <activity android:name=".bookpage.BookPageActivity" />
         <activity android:name=".pageview.CurlActivity" />
         <activity android:name=".surfaceview.SurfaceViewActivity" />
+        <activity android:name=".jetpack.LifecycleOwnerActivity" />
+        <activity android:name=".dragandslideslip.SnapHelperActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

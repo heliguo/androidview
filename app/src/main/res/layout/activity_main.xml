@@ -16,6 +16,12 @@
         android:paddingVertical="10dp">
 
         <Button
+            android:id="@+id/snap_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="snap_help" />
+
+        <Button
             android:id="@+id/surface_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
