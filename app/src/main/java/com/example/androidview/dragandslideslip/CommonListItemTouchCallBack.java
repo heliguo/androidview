@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 /**
  * author:lgh on 2020-03-05 10:50
  * 借助ItemTouchHelper.Callback 监听recyclerview item 拖动动作
+ * ItemTouchHelper itemTouchHelper = new ItemTouchHelper(commonListItemTouchCallBack);
+ * itemTouchHelper.attachToRecyclerView(recyclerView);
  */
 public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
 
