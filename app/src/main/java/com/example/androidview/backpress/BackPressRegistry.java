@@ -1,12 +1,9 @@
 package com.example.androidview.backpress;
 
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 import java.util.LinkedList;
@@ -24,11 +21,13 @@ public class BackPressRegistry {
         if (lifecycle.getCurrentState() == Lifecycle.State.DESTROYED) {
             return;
         }
-        mBackPressObservers.add(backPressObserver);
         lifecycle.addObserver(new LifecycleEventObserver() {
             @Override
             public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-                if (event== Lifecycle.Event.ON_DESTROY){
+                if (event== Lifecycle.Event.ON_START){
+                    mBackPressObservers.add(backPressObserver);
+                }
+                if (event == Lifecycle.Event.ON_DESTROY) {
                     mBackPressObservers.remove(backPressObserver);
                     lifecycle.removeObserver(this);
                 }

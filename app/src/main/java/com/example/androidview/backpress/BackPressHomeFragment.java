@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,7 @@ import com.example.androidview.R;
 public class BackPressHomeFragment extends Fragment {
 
     private boolean backPress;
+    private boolean enableBack=true;
 
     public static BackPressHomeFragment newInstance(){
         return new BackPressHomeFragment();
@@ -65,6 +67,12 @@ public class BackPressHomeFragment extends Fragment {
                 FragmentTransaction transaction1 = getChildFragmentManager().beginTransaction();
                 transaction1.remove(backPressSecondFragment);
                 transaction1.commit();
+            }
+        });
+        getActivity().getOnBackPressedDispatcher().addCallback(this.getViewLifecycleOwner(), new OnBackPressedCallback(false) {
+            @Override
+            public void handleOnBackPressed() {
+                Log.e("TAGTAGTAGTAGTAG", "BackPressHomeFragment handleOnBackPressed: " );
             }
         });
     }

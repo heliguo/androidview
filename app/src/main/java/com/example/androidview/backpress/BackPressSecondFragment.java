@@ -1,16 +1,14 @@
 package com.example.androidview.backpress;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.androidview.BaseActivity;
@@ -27,7 +25,7 @@ public class BackPressSecondFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_back_press_second, container,false);
+        return inflater.inflate(R.layout.fragment_back_press_second, container, false);
     }
 
     @Override
@@ -51,7 +49,7 @@ public class BackPressSecondFragment extends Fragment {
             ((BaseActivity) requireActivity()).registerBackPress(this, new BackPressObserver() {
                 @Override
                 public boolean onBackPress() {
-                    if (webView.canGoBack()){
+                    if (webView.canGoBack()) {
                         webView.goBack();
                         return true;
                     }
@@ -59,6 +57,13 @@ public class BackPressSecondFragment extends Fragment {
                 }
             });
         }
+
+        getActivity().getOnBackPressedDispatcher().addCallback(this.getViewLifecycleOwner(), new OnBackPressedCallback(false) {
+            @Override
+            public void handleOnBackPressed() {
+                Log.e("TAGTAGTAGTAGTAG", "BackPressSecondFragment handleOnBackPressed: ");
+            }
+        });
     }
 
     @Override
