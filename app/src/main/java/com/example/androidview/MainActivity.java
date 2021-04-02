@@ -42,6 +42,8 @@ import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
+import com.example.androidview.backpress.BackPressActivity;
+import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.dragandslideslip.SnapHelperActivity;
 import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
@@ -79,7 +81,7 @@ import java.util.List;
 /**
  * @author lgh
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private TextView mTextView;
     private int mMeasuredWidth;
@@ -90,8 +92,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        registerBackPress(this, new BackPressObserver() {
+            @Override
+            public boolean onBackPress() {
+                return false;
+            }
+        });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BackPressActivity.class));
+            }
+        });
 
         mBinding.snapHelp.setOnClickListener(new View.OnClickListener() {
             @Override

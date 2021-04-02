@@ -16,6 +16,12 @@
         android:paddingVertical="10dp">
 
         <Button
+            android:id="@+id/back_press"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="back_press" />
+
+        <Button
             android:id="@+id/snap_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
