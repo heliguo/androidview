@@ -27,7 +27,8 @@ public class SnapHelperAdapter extends RecyclerView.Adapter<SnapHelperAdapter.Ga
     public SnapHelperAdapter(Context context, ArrayList<String> data) {
         mInflater = LayoutInflater.from(context);
         mData = data;
-        imgs = new int[]{R.drawable.jdzz, R.drawable.ccdzz, R.drawable.dfh, R.drawable.dlzs, R.drawable.sgkptt, R.drawable.ttxss, R.drawable.zmq, R.drawable.zzhx};
+//        imgs = new int[]{R.drawable.jdzz, R.drawable.ccdzz, R.drawable.dfh, R.drawable.dlzs, R.drawable.sgkptt, R.drawable.ttxss, R.drawable.zmq, R.drawable.zzhx};
+        imgs = new int[]{R.drawable.jdzz, R.drawable.ccdzz, R.drawable.dfh, R.drawable.dlzs, R.drawable.dlzs, R.drawable.dfh, R.drawable.jdzz, R.drawable.dfh};
     }
 
     @NonNull
