@@ -89,6 +89,7 @@
         <activity android:name=".dragandslideslip.SnapHelperActivity" />
         <activity android:name=".backpress.BackPressActivity" />
         <activity android:name=".coil.CoilActivity" />
+        <activity android:name=".dragandslideslip.ItemHelperActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

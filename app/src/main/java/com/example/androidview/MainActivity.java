@@ -45,6 +45,7 @@ import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.coil.CoilActivity;
+import com.example.androidview.dragandslideslip.ItemHelperActivity;
 import com.example.androidview.dragandslideslip.SnapHelperActivity;
 import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
@@ -101,6 +102,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.itemHelper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ItemHelperActivity.class));
+            }
+        });
 
         mBinding.kotlinCoil.setOnClickListener(new View.OnClickListener() {
             @Override

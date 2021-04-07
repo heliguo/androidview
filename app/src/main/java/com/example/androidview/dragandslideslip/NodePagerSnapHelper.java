@@ -7,7 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+/**
+ * 监听item滑动到位
+ */
 public class NodePagerSnapHelper extends PagerSnapHelper {
 
     private OnPageListener mOnPageListener;

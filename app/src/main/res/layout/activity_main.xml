@@ -16,6 +16,12 @@
         android:paddingVertical="10dp">
 
         <Button
+            android:id="@+id/item_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="item_helper" />
+
+        <Button
             android:id="@+id/kotlin_coil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
