@@ -1,6 +1,10 @@
 package com.example.androidview.dragandslideslip;
 
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -9,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidview.BaseActivity;
 import com.example.androidview.R;
+import com.example.androidview.calendar.ViewUtils;
 import com.example.androidview.dragandslideslip.rv.ItemHelperAdapter;
 
 import java.util.ArrayList;
@@ -47,13 +52,31 @@ public class ItemHelperActivity extends BaseActivity {
 
             @Override
             public void onSwiped(int position) {
-//                mList.remove(position);
-//                adapter.notifyItemRemoved(position);
+                mList.remove(position);
+                adapter.notifyItemRemoved(position);
             }
 
             @Override
             public void release() {
 
+            }
+        });
+        commonListItemTouchCallBack.setOnItemSwipingListener(new CommonListItemTouchCallBack.OnItemSwipingListener() {
+            @Override
+            public void onItemSwiping(Canvas c, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
+                View itemView = viewHolder.itemView;
+                c.save();
+                if (dX > 0) {
+                    c.clipRect(itemView.getLeft(), itemView.getTop(),
+                            itemView.getLeft() + dX, itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));
+                    c.translate(itemView.getLeft(), itemView.getTop());
+                } else {
+                    c.clipRect(itemView.getRight() + dX, itemView.getTop(),
+                            itemView.getRight(), itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));
+                    c.translate(itemView.getRight() + dX, itemView.getTop());
+                }
+                c.drawColor(Color.RED);
+                c.restore();
             }
         });
     }

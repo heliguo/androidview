@@ -13,6 +13,6 @@
 
     <color name="accent">#40C4FF</color>
     <color name="translucent">#00000000</color>
-
+    <color name="color_light_blue">#00DDB6</color>
 
 </resources>

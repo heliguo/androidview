@@ -11,12 +11,12 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
-        android:background="#ffffff"
         app:cardCornerRadius="1dp"
         app:contentPadding="1dp"
         app:elevation="1dp">
 
         <RelativeLayout
+            android:id="@+id/item_helper_cardv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#ffffff">

@@ -1,7 +1,8 @@
 package com.example.androidview.dragandslideslip;
 
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import com.example.androidview.R;
 
 /**
  * author:lgh on 2020-03-05 10:50
@@ -20,8 +23,16 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
 
     private OnItemTouchListener onItemTouchListener;
 
+    private OnItemSwipingListener mOnItemSwipingListener;
+
+    private int state;
+
     public void setOnItemTouchListener(OnItemTouchListener onItemTouchListener) {
         this.onItemTouchListener = onItemTouchListener;
+    }
+
+    public void setOnItemSwipingListener(OnItemSwipingListener onItemSwipingListener) {
+        mOnItemSwipingListener = onItemSwipingListener;
     }
 
     /**
@@ -100,6 +111,24 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         super.onSelectedChanged(viewHolder, actionState);
+        if (actionState != ItemTouchHelper.ACTION_STATE_IDLE)
+            state = actionState;
+        if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+            // 开始时，item背景色变化，demo这里使用了一个动画渐变，使得自然
+            int startColor = Color.WHITE;
+            int endColor = Color.RED;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                ValueAnimator v = ValueAnimator.ofArgb(startColor, endColor);
+                v.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        viewHolder.itemView.findViewById(R.id.item_helper_cardv).setBackgroundColor((int) animation.getAnimatedValue());
+                    }
+                });
+                v.setDuration(300);
+                v.start();
+            }
+        }
     }
 
     /**
@@ -111,6 +140,22 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
         if (onItemTouchListener != null) {
             onItemTouchListener.release();
         }
+        if (state == ItemTouchHelper.ACTION_STATE_DRAG) {
+            int startColor = Color.RED;
+            int endColor = Color.WHITE;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                ValueAnimator v = ValueAnimator.ofArgb(startColor, endColor);
+                v.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        viewHolder.itemView.findViewById(R.id.item_helper_cardv).setBackgroundColor((int) animation.getAnimatedValue());
+                    }
+                });
+                v.setDuration(300);
+                v.start();
+            }
+        }
+
     }
 
     /**
@@ -118,8 +163,19 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
      */
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-        Log.e("TAGTAGTAGTAGTAG", "dX: " + dX + "   dY:  " + dY);
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+            if (mOnItemSwipingListener != null) {
+                mOnItemSwipingListener.onItemSwiping(c, viewHolder, dX, dY, isCurrentlyActive);
+            }
+        }
+    }
+
+
+    @Override
+    public void onChildDrawOver(@NonNull Canvas c, @NonNull RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
     }
 
     private float getSlideLimitation(RecyclerView.ViewHolder viewHolder) {
@@ -138,5 +194,11 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
         void onSwiped(int position);
 
         void release();
+    }
+
+    public interface OnItemSwipingListener {
+
+        void onItemSwiping(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive);
+
     }
 }
