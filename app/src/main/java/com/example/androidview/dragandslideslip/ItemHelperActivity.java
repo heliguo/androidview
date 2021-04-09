@@ -43,7 +43,7 @@ public class ItemHelperActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
         CommonListItemTouchCallBack touchCallBack = new CommonListItemTouchCallBack();
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(touchCallBack);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+//        itemTouchHelper.attachToRecyclerView(recyclerView);
         touchCallBack.setOnItemTouchListener(new CommonListItemTouchCallBack.OnItemTouchListener() {
             @Override
             public void onMove(int fromPosition, int toPosition) {

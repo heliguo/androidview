@@ -1,14 +1,17 @@
 package com.example.androidview.dragandslideslip.rv;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidview.R;
+import com.example.androidview.dragandslideslip.swipemenu.SwipeMenuLayout;
 
 import java.util.List;
 
@@ -20,6 +23,8 @@ public class ItemHelperAdapter extends RecyclerView.Adapter<ItemHelperAdapter.It
 
     private final List<String> dataList;
 
+    private Toast mToast;
+
     public ItemHelperAdapter(List<String> dataList) {
         this.dataList = dataList;
     }
@@ -27,13 +32,44 @@ public class ItemHelperAdapter extends RecyclerView.Adapter<ItemHelperAdapter.It
     @NonNull
     @Override
     public ItemHelperViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_item_helper, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_item_helper2, parent, false);
         return new ItemHelperViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemHelperViewHolder holder, int position) {
         holder.mTextView.setText("item " + position);
+        holder.leftDeleteTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show(v.getContext(), "you click left delete ");
+                holder.mSwipeMenuLayout.smoothOpenLeftMenu();
+            }
+        });
+
+        holder.leftCancelTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.mSwipeMenuLayout.smoothCloseMenu();
+            }
+        });
+
+        holder.rightDeleteTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show(v.getContext(), "you click right ");
+                holder.mSwipeMenuLayout.smoothOpenRightMenu();
+            }
+        });
+
+    }
+
+    private void show(Context context, String toast) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(context, toast, Toast.LENGTH_SHORT);
+        mToast.show();
     }
 
     @Override
@@ -44,12 +80,21 @@ public class ItemHelperAdapter extends RecyclerView.Adapter<ItemHelperAdapter.It
     public static class ItemHelperViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTextView;
-        private TextView mDeleteTv;
+        private TextView leftDeleteTv;
+        private TextView leftCancelTv;
+        private TextView rightDeleteTv;
+        private SwipeMenuLayout mSwipeMenuLayout;
 
         public ItemHelperViewHolder(@NonNull View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.item);
-            mDeleteTv = itemView.findViewById(R.id.tv_text);
+            rightDeleteTv = itemView.findViewById(R.id.tv_text);
+            leftDeleteTv = itemView.findViewById(R.id.tv_left_bottom);
+            leftCancelTv = itemView.findViewById(R.id.tv_left_top);
+            mSwipeMenuLayout = itemView.findViewById(R.id.swipe_menu_layout);
+            mSwipeMenuLayout.setContentView(R.id.swipe_content);
+            mSwipeMenuLayout.setLeftMenuView(R.id.swipe_left);
+            mSwipeMenuLayout.setRightMenuView(R.id.swipe_right);
         }
     }
 
