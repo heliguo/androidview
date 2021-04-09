@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -40,10 +41,10 @@ public class ItemHelperActivity extends BaseActivity {
         ItemHelperAdapter adapter = new ItemHelperAdapter(mList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        CommonListItemTouchCallBack commonListItemTouchCallBack = new CommonListItemTouchCallBack();
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(commonListItemTouchCallBack);
+        CommonListItemTouchCallBack touchCallBack = new CommonListItemTouchCallBack();
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(touchCallBack);
         itemTouchHelper.attachToRecyclerView(recyclerView);
-        commonListItemTouchCallBack.setOnItemTouchListener(new CommonListItemTouchCallBack.OnItemTouchListener() {
+        touchCallBack.setOnItemTouchListener(new CommonListItemTouchCallBack.OnItemTouchListener() {
             @Override
             public void onMove(int fromPosition, int toPosition) {
                 Collections.swap(mList, fromPosition, toPosition);
@@ -61,22 +62,47 @@ public class ItemHelperActivity extends BaseActivity {
 
             }
         });
-        commonListItemTouchCallBack.setOnItemSwipingListener(new CommonListItemTouchCallBack.OnItemSwipingListener() {
+        touchCallBack.setOnItemSwipingListener((c, viewHolder, dX, dY, isCurrentlyActive) -> {
+            Log.e("TAGTAGTAGTAG", "onCreate: "+dX);
+            View itemView = viewHolder.itemView;
+            c.save();
+            if (dX > 0) {
+                c.clipRect(itemView.getLeft(), itemView.getTop(),
+                        itemView.getLeft() + dX, itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));
+                c.translate(itemView.getLeft()+ dX, itemView.getTop());
+            } else {
+                c.clipRect(itemView.getRight() + dX, itemView.getTop(),
+                        itemView.getRight(), itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));
+                c.translate(itemView.getRight() + dX, itemView.getTop());
+            }
+            c.drawColor(Color.RED);
+            c.restore();
+        });
+
+        touchCallBack.setOnItemDragListener(new CommonListItemTouchCallBack.OnItemDragListener() {
             @Override
-            public void onItemSwiping(Canvas c, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
-                View itemView = viewHolder.itemView;
-                c.save();
-                if (dX > 0) {
-                    c.clipRect(itemView.getLeft(), itemView.getTop(),
-                            itemView.getLeft() + dX, itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));
-                    c.translate(itemView.getLeft(), itemView.getTop());
-                } else {
-                    c.clipRect(itemView.getRight() + dX, itemView.getTop(),
-                            itemView.getRight(), itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));
-                    c.translate(itemView.getRight() + dX, itemView.getTop());
+            public void onDragStart(RecyclerView.ViewHolder viewHolder) {
+                // 开始时，item背景色变化，demo这里使用了一个动画渐变，使得自然
+                int startColor = Color.WHITE;
+                int endColor = Color.RED;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ValueAnimator v = ValueAnimator.ofArgb(startColor, endColor);
+                    v.addUpdateListener(animation -> viewHolder.itemView.findViewById(R.id.item_helper_cardv).setBackgroundColor((int) animation.getAnimatedValue()));
+                    v.setDuration(300);
+                    v.start();
                 }
-                c.drawColor(Color.RED);
-                c.restore();
+            }
+
+            @Override
+            public void onDragEnd(RecyclerView.ViewHolder viewHolder) {
+                int startColor = Color.RED;
+                int endColor = Color.WHITE;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ValueAnimator v = ValueAnimator.ofArgb(startColor, endColor);
+                    v.addUpdateListener(animation -> viewHolder.itemView.findViewById(R.id.item_helper_cardv).setBackgroundColor((int) animation.getAnimatedValue()));
+                    v.setDuration(300);
+                    v.start();
+                }
             }
         });
     }

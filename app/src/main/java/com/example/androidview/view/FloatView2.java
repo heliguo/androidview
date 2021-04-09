@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
@@ -64,12 +65,19 @@ public class FloatView2 extends FrameLayout {
         mScreenWidth = displayMetrics.widthPixels;
 
         post(() -> {
+            Log.e("TAGTAGTAGTAGTAGTAG", "FloatView2: post" );
             int diffX = (int) (mScreenWidth - getLeft() - getTranslationX() - measureWidth);
             int diffY = (int) (mScreenHeight - getTop() - getTranslationY() - measureHeight) / 2;
             setTranslationX(diffX);
             setTranslationY(diffY);
         });
 
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        Log.e("TAGTAGTAGTAGTAGTAG", "onFinishInflate" );
     }
 
     @Override

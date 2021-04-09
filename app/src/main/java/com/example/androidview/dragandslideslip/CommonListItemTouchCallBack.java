@@ -25,6 +25,8 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
 
     private OnItemSwipingListener mOnItemSwipingListener;
 
+    private OnItemDragListener mOnItemDragListener;
+
     private int state;
 
     public void setOnItemTouchListener(OnItemTouchListener onItemTouchListener) {
@@ -33,6 +35,10 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
 
     public void setOnItemSwipingListener(OnItemSwipingListener onItemSwipingListener) {
         mOnItemSwipingListener = onItemSwipingListener;
+    }
+
+    public void setOnItemDragListener(OnItemDragListener onItemDragListener) {
+        mOnItemDragListener = onItemDragListener;
     }
 
     /**
@@ -114,19 +120,8 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE)
             state = actionState;
         if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
-            // 开始时，item背景色变化，demo这里使用了一个动画渐变，使得自然
-            int startColor = Color.WHITE;
-            int endColor = Color.RED;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                ValueAnimator v = ValueAnimator.ofArgb(startColor, endColor);
-                v.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        viewHolder.itemView.findViewById(R.id.item_helper_cardv).setBackgroundColor((int) animation.getAnimatedValue());
-                    }
-                });
-                v.setDuration(300);
-                v.start();
+            if (mOnItemDragListener != null) {
+                mOnItemDragListener.onDragStart(viewHolder);
             }
         }
     }
@@ -141,19 +136,10 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
             onItemTouchListener.release();
         }
         if (state == ItemTouchHelper.ACTION_STATE_DRAG) {
-            int startColor = Color.RED;
-            int endColor = Color.WHITE;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                ValueAnimator v = ValueAnimator.ofArgb(startColor, endColor);
-                v.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        viewHolder.itemView.findViewById(R.id.item_helper_cardv).setBackgroundColor((int) animation.getAnimatedValue());
-                    }
-                });
-                v.setDuration(300);
-                v.start();
+            if (mOnItemDragListener != null) {
+                mOnItemDragListener.onDragEnd(viewHolder);
             }
+
         }
 
     }
@@ -199,6 +185,14 @@ public class CommonListItemTouchCallBack extends ItemTouchHelper.Callback {
     public interface OnItemSwipingListener {
 
         void onItemSwiping(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive);
+
+    }
+
+    public interface OnItemDragListener{
+
+        void onDragStart(RecyclerView.ViewHolder viewHolder);
+
+        void onDragEnd(RecyclerView.ViewHolder viewHolder);
 
     }
 }
