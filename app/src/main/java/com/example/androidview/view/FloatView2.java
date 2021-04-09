@@ -3,6 +3,7 @@ package com.example.androidview.view;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -170,5 +171,11 @@ public class FloatView2 extends FrameLayout {
         return true;
     }
 
-
+    /**
+     *viewgroup中分发绘制
+     */
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+    }
 }

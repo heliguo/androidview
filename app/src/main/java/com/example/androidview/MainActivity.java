@@ -82,6 +82,7 @@ import java.util.List;
 
 /**
  * @author lgh
+ * blink 源码在LayoutInflater.java 中
  */
 public class MainActivity extends BaseActivity {
 
