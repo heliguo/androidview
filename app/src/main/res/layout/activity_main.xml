@@ -16,6 +16,18 @@
         android:paddingVertical="10dp">
 
         <Button
+            android:id="@+id/span_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="span_size" />
+
+        <Button
+            android:id="@+id/card_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="card_scale" />
+
+        <Button
             android:id="@+id/item_helper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

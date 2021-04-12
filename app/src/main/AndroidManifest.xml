@@ -86,10 +86,12 @@
         <activity android:name=".pageview.CurlActivity" />
         <activity android:name=".surfaceview.SurfaceViewActivity" />
         <activity android:name=".jetpack.LifecycleOwnerActivity" />
-        <activity android:name=".dragandslideslip.SnapHelperActivity" />
+        <activity android:name=".recyclerview.snaphelper.SnapHelperActivity" />
         <activity android:name=".backpress.BackPressActivity" />
         <activity android:name=".coil.CoilActivity" />
-        <activity android:name=".dragandslideslip.ItemHelperActivity" />
+        <activity android:name=".recyclerview.itemtouchhelper.ItemHelperActivity" />
+        <activity android:name=".recyclerview.cardscale.CardScaleActivity" />
+        <activity android:name=".recyclerview.spansize.SpanSizeActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

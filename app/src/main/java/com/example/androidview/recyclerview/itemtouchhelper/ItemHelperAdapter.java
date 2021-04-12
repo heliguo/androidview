@@ -1,6 +1,7 @@
-package com.example.androidview.dragandslideslip.rv;
+package com.example.androidview.recyclerview.itemtouchhelper;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidview.R;
-import com.example.androidview.dragandslideslip.swipemenu.SwipeMenuLayout;
+import com.example.androidview.recyclerview.swipemenu.SwipeMenuLayout;
 
 import java.util.List;
 
@@ -37,7 +38,9 @@ public class ItemHelperAdapter extends RecyclerView.Adapter<ItemHelperAdapter.It
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHelperViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHelperViewHolder holder, int p) {
+        Log.e("TAGTAGTAGTAGTAG", "onBindViewHolder: "+p );
+        final int position = p % dataList.size();
         holder.mTextView.setText("item " + position);
         holder.leftDeleteTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +65,13 @@ public class ItemHelperAdapter extends RecyclerView.Adapter<ItemHelperAdapter.It
             }
         });
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show(v.getContext(),"you click item in position "+position);
+            }
+        });
+
     }
 
     private void show(Context context, String toast) {
@@ -74,7 +84,10 @@ public class ItemHelperAdapter extends RecyclerView.Adapter<ItemHelperAdapter.It
 
     @Override
     public int getItemCount() {
-        return dataList == null ? 0 : dataList.size();
+        //        return dataList == null ? 0 : dataList.size();
+//        return Integer.MAX_VALUE;
+        Log.e("TAGTAGTAGTAGTAG", "getItemCount: ");
+        return 50;
     }
 
     public static class ItemHelperViewHolder extends RecyclerView.ViewHolder {

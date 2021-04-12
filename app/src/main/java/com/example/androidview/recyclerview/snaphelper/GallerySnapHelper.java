@@ -1,4 +1,4 @@
-package com.example.androidview.dragandslideslip;
+package com.example.androidview.recyclerview.snaphelper;
 
 import android.graphics.PointF;
 import android.util.DisplayMetrics;

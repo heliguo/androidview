@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androidview.dragandslideslip.swipemenu;
+package com.example.androidview.recyclerview.swipemenu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -157,6 +157,8 @@ public class SwipeMenuLayout extends FrameLayout {
         this.mScrollerDuration = scrollerDuration;
     }
 
+    private boolean remove;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -175,10 +177,17 @@ public class SwipeMenuLayout extends FrameLayout {
             case MotionEvent.ACTION_DOWN:
                 mLastX = x;
                 mLastY = y;
-                SwipeMenuObserver.getInstance().closeMenu();
+                if (SwipeMenuObserver.getInstance().closeMenu()) {
+                    remove = true;
+                    return true;
+                } else {
+                    remove = false;
+                }
                 getParent().requestDisallowInterceptTouchEvent(false);
                 break;
             case MotionEvent.ACTION_MOVE:
+                if (remove)
+                    return true;
                 offsetX = (int) (mLastX - ev.getX());
                 offsetY = (int) (mLastY - ev.getY());
 
@@ -206,6 +215,8 @@ public class SwipeMenuLayout extends FrameLayout {
                 shouldResetSwipe = false;
                 break;
             case MotionEvent.ACTION_UP:
+                if (remove)
+                    return true;
                 offsetX = (int) (mLastX - ev.getX());
                 if (Math.abs(offsetX) > 0) {
                     if (mCurrentMenuView != null) {

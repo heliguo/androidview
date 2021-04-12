@@ -1,4 +1,4 @@
-package com.example.androidview.dragandslideslip;
+package com.example.androidview.recyclerview.snaphelper;
 
 import android.content.Context;
 import android.view.LayoutInflater;

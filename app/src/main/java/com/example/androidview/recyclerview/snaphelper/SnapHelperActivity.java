@@ -1,4 +1,4 @@
-package com.example.androidview.dragandslideslip;
+package com.example.androidview.recyclerview.snaphelper;
 
 import android.os.Bundle;
 
@@ -32,8 +32,8 @@ public class SnapHelperActivity extends AppCompatActivity {
 
     private void initData() {
         mData = new ArrayList<>();
-        for (int i= 0;i<60;i++){
-            mData.add("i="+i);
+        for (int i = 0; i < 60; i++) {
+            mData.add("i=" + i);
         }
     }
 

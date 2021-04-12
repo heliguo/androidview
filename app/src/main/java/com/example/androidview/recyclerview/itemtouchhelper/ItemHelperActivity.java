@@ -1,25 +1,28 @@
-package com.example.androidview.dragandslideslip;
+package com.example.androidview.recyclerview.itemtouchhelper;
 
 import android.animation.ValueAnimator;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidview.BaseActivity;
 import com.example.androidview.R;
 import com.example.androidview.calendar.ViewUtils;
-import com.example.androidview.dragandslideslip.rv.ItemHelperAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 
 /**
  * @author lgh on 2021/4/7 11:07
@@ -39,11 +42,61 @@ public class ItemHelperActivity extends BaseActivity {
             mList.add("");
         }
         ItemHelperAdapter adapter = new ItemHelperAdapter(mList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager manager = new LinearLayoutManager(this) {
+            @Override
+            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
+                //                                super.smoothScrollToPosition(recyclerView, state, position);
+                LinearSmoothScroller smoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
+                    @Override
+                    protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                        Log.e("TAGTAGTAGTAGTAG", "calculateSpeedPerPixel: " + super.calculateSpeedPerPixel(displayMetrics));
+                        Log.e("TAGTAGTAGTAGTAG", "calculateSpeedPerPixel: " + (15f / displayMetrics.density));
+                        //                                                return super.calculateSpeedPerPixel(displayMetrics);
+                        return 15f / displayMetrics.density;
+                    }
+                };
+                Log.e("TAGTAGTAGTAGTAG", "smoothScrollToPosition: " + position);
+                smoothScroller.setTargetPosition(position);
+                startSmoothScroll(smoothScroller);
+            }
+        };
+        //关闭预取
+        //        manager.setItemPrefetchEnabled(false);
+        //设置预取数量
+        //        manager.setInitialPrefetchItemCount();
+        //根据布局状态设置预取位置
+        //        manager.collectInitialPrefetchPositions();
+
+        recyclerView.setLayoutManager(manager);
+        //        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
         recyclerView.setAdapter(adapter);
+
+        recyclerView.smoothScrollToPosition(49);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.e("TAGTAGTAGTAGTAG", "onScrolled: " + newState);
+                if (newState == SCROLL_STATE_IDLE) {
+                    recyclerView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //                            recyclerView.smoothScrollToPosition(Integer.MAX_VALUE - 1);
+                        }
+                    }, 1000);
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
         CommonListItemTouchCallBack touchCallBack = new CommonListItemTouchCallBack();
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(touchCallBack);
-//        itemTouchHelper.attachToRecyclerView(recyclerView);
+        //        itemTouchHelper.attachToRecyclerView(recyclerView);
         touchCallBack.setOnItemTouchListener(new CommonListItemTouchCallBack.OnItemTouchListener() {
             @Override
             public void onMove(int fromPosition, int toPosition) {
@@ -63,13 +116,13 @@ public class ItemHelperActivity extends BaseActivity {
             }
         });
         touchCallBack.setOnItemSwipingListener((c, viewHolder, dX, dY, isCurrentlyActive) -> {
-            Log.e("TAGTAGTAGTAG", "onCreate: "+dX);
+            Log.e("TAGTAGTAGTAG", "onCreate: " + dX);
             View itemView = viewHolder.itemView;
             c.save();
             if (dX > 0) {
                 c.clipRect(itemView.getLeft(), itemView.getTop(),
                         itemView.getLeft() + dX, itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));
-                c.translate(itemView.getLeft()+ dX, itemView.getTop());
+                c.translate(itemView.getLeft() + dX, itemView.getTop());
             } else {
                 c.clipRect(itemView.getRight() + dX, itemView.getTop(),
                         itemView.getRight(), itemView.getBottom() - ViewUtils.dpToPx(itemView.getContext(), 4));

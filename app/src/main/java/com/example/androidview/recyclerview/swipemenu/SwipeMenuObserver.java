@@ -1,4 +1,4 @@
-package com.example.androidview.dragandslideslip.swipemenu;
+package com.example.androidview.recyclerview.swipemenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +22,12 @@ public class SwipeMenuObserver {
         return SingleHolder.OBSERVER;
     }
 
-    public void closeMenu() {
+    public boolean closeMenu() {
         if (mSwipeMenuLayouts.isEmpty()) {
-            return;
+            return false;
         }
         mSwipeMenuLayouts.remove(mSwipeMenuLayouts.size() - 1).smoothCloseMenu();
+        return true;
     }
 
     public List<SwipeMenuLayout> getSwipeMenuLayouts() {

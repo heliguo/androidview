@@ -1,8 +1,6 @@
-package com.example.androidview.dragandslideslip;
+package com.example.androidview.recyclerview.itemtouchhelper;
 
-import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,8 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import com.example.androidview.R;
 
 /**
  * author:lgh on 2020-03-05 10:50

@@ -37,7 +37,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -45,8 +44,9 @@ import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.coil.CoilActivity;
-import com.example.androidview.dragandslideslip.ItemHelperActivity;
-import com.example.androidview.dragandslideslip.SnapHelperActivity;
+import com.example.androidview.recyclerview.cardscale.CardScaleActivity;
+import com.example.androidview.recyclerview.itemtouchhelper.ItemHelperActivity;
+import com.example.androidview.recyclerview.snaphelper.SnapHelperActivity;
 import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
@@ -58,7 +58,7 @@ import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewAct
 import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.mpandroidchart.LineChartActivity;
 import com.example.androidview.ntp.SntpUtils;
-import com.example.androidview.realm.RealmActivity;
+import com.example.androidview.recyclerview.spansize.SpanSizeActivity;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.scratch.ScratchActivity;
@@ -103,6 +103,20 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.spanSize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SpanSizeActivity.class));
+            }
+        });
+
+        mBinding.cardScale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CardScaleActivity.class));
+            }
+        });
 
         mBinding.itemHelper.setOnClickListener(new View.OnClickListener() {
             @Override
