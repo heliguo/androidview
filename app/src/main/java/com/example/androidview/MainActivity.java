@@ -44,6 +44,7 @@ import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.coil.CoilActivity;
+import com.example.androidview.event.EventActivity;
 import com.example.androidview.recyclerview.cardscale.CardScaleActivity;
 import com.example.androidview.recyclerview.itemtouchhelper.ItemHelperActivity;
 import com.example.androidview.recyclerview.snaphelper.SnapHelperActivity;
@@ -103,6 +104,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EventActivity.class));
+            }
+        });
 
         mBinding.spanSize.setOnClickListener(new View.OnClickListener() {
             @Override

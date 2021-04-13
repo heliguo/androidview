@@ -92,6 +92,7 @@
         <activity android:name=".recyclerview.itemtouchhelper.ItemHelperActivity" />
         <activity android:name=".recyclerview.cardscale.CardScaleActivity" />
         <activity android:name=".recyclerview.spansize.SpanSizeActivity" />
+        <activity android:name=".event.EventActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
