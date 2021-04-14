@@ -1,5 +1,6 @@
 package com.example.androidview.event;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -25,7 +26,7 @@ public class EventActivity extends BaseActivity {
             @Override
             public boolean onLongClick(View v) {
                 Log.e("TagTagTagTagTagTag", "onLongClick: child ");
-                return true;
+                return false;
             }
         });
         myView.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +35,8 @@ public class EventActivity extends BaseActivity {
                 Log.e("TagTagTagTagTagTag", "onClick: child ");
             }
         });
+
+//        ObjectAnimator objectAnimator = ObjectAnimator.ofObject()
     }
 
     @Override

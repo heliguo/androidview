@@ -41,6 +41,7 @@ import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
+import com.example.androidview.animator.AnimatorActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.coil.CoilActivity;
@@ -104,6 +105,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.animator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AnimatorActivity.class));
+            }
+        });
 
         mBinding.event.setOnClickListener(new View.OnClickListener() {
             @Override
