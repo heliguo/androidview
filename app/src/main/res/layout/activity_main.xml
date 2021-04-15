@@ -16,6 +16,12 @@
         android:paddingVertical="10dp">
 
         <Button
+            android:id="@+id/splash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="splash" />
+
+        <Button
             android:id="@+id/animator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

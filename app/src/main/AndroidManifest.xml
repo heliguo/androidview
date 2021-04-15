@@ -94,6 +94,7 @@
         <activity android:name=".recyclerview.spansize.SpanSizeActivity" />
         <activity android:name=".event.EventActivity" />
         <activity android:name=".animator.AnimatorActivity" />
+        <activity android:name=".splash.SplashActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
