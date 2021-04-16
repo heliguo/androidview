@@ -42,14 +42,13 @@ public class UIUtils {
 
     public static UIUtils getInstance() {
         if (instance == null) {
-            throw new RuntimeException("You should  call the constructor with the arguments firstly");
+            throw new RuntimeException("You should call the constructor with the arguments firstly");
         }
         return instance;
     }
 
-    public static UIUtils notifyInstance(Context context) {
+    public static void notifyInstance(Context context) {
         instance = new UIUtils(context);
-        return instance;
     }
 
     public static void setProject_width(float project_width) {
