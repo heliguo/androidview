@@ -1,6 +1,10 @@
 package com.example.androidview.screenadapter;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +20,17 @@ public class ScreenAutoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ScreenAutoAdapter.match(this,375.0f);
+        //        ScreenAutoAdapter.match(this,375.0f);
+        DensityUtils.setDensity(getApplication(), this, 720);
         super.onCreate(savedInstanceState);
+        //设置全屏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = getWindow();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.getDecorView().post(() -> WindowInsetUtils.setFullScreen(window));
+        }
         setContentView(R.layout.activity_screen_auto_adapter);
 
     }
+
 }

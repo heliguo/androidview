@@ -65,6 +65,7 @@ import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.scratch.ScratchActivity;
 import com.example.androidview.screenadapter.ScreenAutoActivity;
+import com.example.androidview.screenadapter.WindowInsetUtils;
 import com.example.androidview.slideBar.SlideBarActivity;
 import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
@@ -405,6 +406,7 @@ public class MainActivity extends BaseActivity {
          */
         //判断4.4以上版本
         if (hasFocus && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Log.e(TAG, "onWindowFocusChanged: "+ WindowInsetUtils.hasWindInsets(getWindow()));
             //获得DecorView
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(

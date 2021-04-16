@@ -2,6 +2,7 @@ package com.example.androidview.screenadapter;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import java.lang.reflect.Field;
@@ -17,6 +18,10 @@ public class UIUtils {
     public static final float STANDARD_WIDTH = 1080f;
 
     public static final float STANDARD_HEIGHT = 1920f;
+
+    private static float project_width = STANDARD_WIDTH;
+
+    private static float project_height = STANDARD_HEIGHT;
 
     public static float displayWidth;
 
@@ -36,7 +41,7 @@ public class UIUtils {
 
     public static UIUtils getInstance() {
         if (instance == null) {
-            throw new RuntimeException("");
+            throw new RuntimeException("You should  call the constructor with the arguments first");
         }
         return instance;
     }
@@ -44,6 +49,14 @@ public class UIUtils {
     public static UIUtils notifyInstance(Context context) {
         instance = new UIUtils(context);
         return instance;
+    }
+
+    public static void setProject_width(float project_width) {
+        UIUtils.project_width = project_width;
+    }
+
+    public static void setProject_height(float project_height) {
+        UIUtils.project_height = project_height;
     }
 
     private UIUtils(Context context) {
@@ -67,11 +80,11 @@ public class UIUtils {
     }
 
     public float getHorizontalScaleValue() {
-        return (float) displayWidth / (STANDARD_WIDTH - (isHorizontal ? systemBarHeight : 0));
+        return (float) displayWidth / (project_width - (isHorizontal ? systemBarHeight : 0));
     }
 
     public float getVerticalScaleValue() {
-        return (float) displayHeight / (STANDARD_HEIGHT - (isHorizontal ? 0 : systemBarHeight));
+        return (float) displayHeight / (project_height - (isHorizontal ? 0 : systemBarHeight));
     }
 
     private int getSystemBarHeight(Context context) {
@@ -106,7 +119,7 @@ public class UIUtils {
     /**
      * 获取导航栏高度
      */
-    public int getDaoHangHeight(Context context) {
+    public int getNavigationHeight(Context context) {
         int resourceId;
         int rid = context.getResources().getIdentifier("config_showNavigationBar", "bool", "android");
         if (rid != 0) {
@@ -115,4 +128,17 @@ public class UIUtils {
         } else
             return 0;
     }
+
+    public void matchView(ViewGroup.MarginLayoutParams params) {
+        if (displayWidth == 0) {
+            throw new RuntimeException("You should  call the constructor with the arguments first");
+        }
+        params.width = (int) (params.width * getHorizontalScaleValue());
+        params.height = (int) (params.height * getVerticalScaleValue());
+        params.rightMargin = (int) (params.rightMargin * getHorizontalScaleValue());
+        params.leftMargin = (int) (params.leftMargin * getHorizontalScaleValue());
+        params.topMargin = (int) (params.topMargin * getVerticalScaleValue());
+        params.bottomMargin = (int) (params.bottomMargin * getVerticalScaleValue());
+    }
+
 }
