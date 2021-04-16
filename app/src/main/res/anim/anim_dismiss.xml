@@ -4,7 +4,7 @@
         android:duration="500"
         android:fromAlpha="1"
         android:interpolator="@android:anim/decelerate_interpolator"
-        android:toAlpha="0.4" />
+        android:toAlpha="0" />
 </set>
 
     <!-- 透明度控制动画效果 alpha

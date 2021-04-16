@@ -25,6 +25,7 @@ public class TabFragment extends Fragment {
     boolean mIsPrepare = false;        //视图还没准备好
     boolean mIsVisible = false;        //不可见
     boolean mIsFirstLoad = true;    //第一次加载
+
     private RecycleViewAdapter mRecycleViewAdapter;
 
 

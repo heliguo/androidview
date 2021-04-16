@@ -71,6 +71,7 @@ import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
 import com.example.androidview.splash.SplashActivity;
 import com.example.androidview.surfaceview.SurfaceViewActivity;
+import com.example.androidview.toobar.ToolbarActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
@@ -107,6 +108,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ToolbarActivity.class));
+            }
+        });
 
         mBinding.splash.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -406,7 +414,6 @@ public class MainActivity extends BaseActivity {
          */
         //判断4.4以上版本
         if (hasFocus && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Log.e(TAG, "onWindowFocusChanged: "+ WindowInsetUtils.hasWindInsets(getWindow()));
             //获得DecorView
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(

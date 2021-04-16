@@ -17,7 +17,7 @@ import androidx.annotation.RequiresApi;
 @RequiresApi(api = Build.VERSION_CODES.P)
 public class WindowInsetUtils {
 
-
+//    activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
     public static boolean hasWindInsets(Window window) {
         View decorView = window.getDecorView();
         WindowInsets insets = decorView.getRootWindowInsets();
