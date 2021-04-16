@@ -3,8 +3,10 @@ package com.example.androidview.screenadapter;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,10 @@ public class ScreenAutoActivity extends AppCompatActivity {
             window.getDecorView().post(() -> WindowInsetUtils.setFullScreen(window));
         }
         setContentView(R.layout.activity_screen_auto_adapter);
+        //跳过刘海
+        Button button = findViewById(R.id.btn_1);
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
+        params.topMargin = UIUtils.getStatusBarHeight(getApplicationContext());
 
     }
 
