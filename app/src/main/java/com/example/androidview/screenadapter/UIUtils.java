@@ -2,6 +2,7 @@ package com.example.androidview.screenadapter;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
@@ -41,7 +42,7 @@ public class UIUtils {
 
     public static UIUtils getInstance() {
         if (instance == null) {
-            throw new RuntimeException("You should  call the constructor with the arguments first");
+            throw new RuntimeException("You should  call the constructor with the arguments firstly");
         }
         return instance;
     }
@@ -129,9 +130,9 @@ public class UIUtils {
             return 0;
     }
 
-    public void matchView(ViewGroup.MarginLayoutParams params) {
+    public void matchView(View view, ViewGroup.MarginLayoutParams params) {
         if (displayWidth == 0) {
-            throw new RuntimeException("You should  call the constructor with the arguments first");
+            UIUtils.getInstance(view.getContext().getApplicationContext());
         }
         params.width = (int) (params.width * getHorizontalScaleValue());
         params.height = (int) (params.height * getVerticalScaleValue());
@@ -139,6 +140,12 @@ public class UIUtils {
         params.leftMargin = (int) (params.leftMargin * getHorizontalScaleValue());
         params.topMargin = (int) (params.topMargin * getVerticalScaleValue());
         params.bottomMargin = (int) (params.bottomMargin * getVerticalScaleValue());
+        int paddingLeft = view.getPaddingLeft();
+        int paddingRight = view.getPaddingRight();
+        int paddingTop = view.getPaddingTop();
+        int paddingBottom = view.getPaddingBottom();
+        view.setPadding(((int) (paddingLeft * getHorizontalScaleValue())), ((int) (paddingTop * getVerticalScaleValue())),
+                ((int) (paddingRight * getHorizontalScaleValue())), ((int) (paddingBottom * getVerticalScaleValue())));
     }
 
 }
