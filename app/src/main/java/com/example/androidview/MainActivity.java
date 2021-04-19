@@ -41,31 +41,31 @@ import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
+import com.example.androidview.animation.FrameAnimationActivity;
+import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.animator.AnimatorActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
+import com.example.androidview.calendar.CalendarActivity;
+import com.example.androidview.calendar.CalendarReminderUtils;
 import com.example.androidview.coil.CoilActivity;
+import com.example.androidview.databinding.ActivityMainBinding;
+import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.event.EventActivity;
+import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
+import com.example.androidview.guideview.GuideViewHelper;
+import com.example.androidview.materialdesign.MaterialDesignActivity;
+import com.example.androidview.mpandroidchart.LineChartActivity;
+import com.example.androidview.ntp.SntpUtils;
+import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.recyclerview.cardscale.CardScaleActivity;
 import com.example.androidview.recyclerview.itemtouchhelper.ItemHelperActivity;
 import com.example.androidview.recyclerview.snaphelper.SnapHelperActivity;
-import com.example.androidview.pageview.CurlActivity;
-import com.example.androidview.animation.FrameAnimationActivity;
-import com.example.androidview.animation.Rotate3dActivity;
-import com.example.androidview.calendar.CalendarActivity;
-import com.example.androidview.calendar.CalendarReminderUtils;
-import com.example.androidview.databinding.ActivityMainBinding;
-import com.example.androidview.dialog.DialogFragmentActivity;
-import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
-import com.example.androidview.guideview.GuideViewHelper;
-import com.example.androidview.mpandroidchart.LineChartActivity;
-import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.recyclerview.spansize.SpanSizeActivity;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.scratch.ScratchActivity;
 import com.example.androidview.screenadapter.ScreenAutoActivity;
-import com.example.androidview.screenadapter.WindowInsetUtils;
 import com.example.androidview.slideBar.SlideBarActivity;
 import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
@@ -108,6 +108,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.materialDesign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MaterialDesignActivity.class));
+            }
+        });
 
         mBinding.toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,7 +241,7 @@ public class MainActivity extends BaseActivity {
         //        finishAffinity();
 
         mBinding.scratch.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScratchActivity.class)));
-//        mBinding.realm.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RealmActivity.class)));
+        //        mBinding.realm.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RealmActivity.class)));
         mBinding.chart.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LineChartActivity.class)));
 
         mBinding.screen.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScreenAutoActivity.class)));

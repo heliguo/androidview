@@ -10,8 +10,8 @@
     </style>
 
     <style name="TabActivityStyle" parent="Theme.AppCompat.Light.NoActionBar">
-<!--        <item name="android:windowBackground">@null</item>-->
-<!--        <item name="android:windowDisablePreview">true</item>-->
+        <!--        <item name="android:windowBackground">@null</item>-->
+        <!--        <item name="android:windowDisablePreview">true</item>-->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -159,5 +159,20 @@
     </style>
 
     <!-- ++++++++++++++++++      toolbar      +++++++++++++++++++           -->
+
+
+    <style name="Material.Design" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <!--        menu菜单背景色          -->
+        <item name="android:itemBackground">@color/white</item>
+        <!--        menu菜单字体色          -->
+        <item name="android:textColorPrimary">@color/base_shallow_black</item>
+        <item name="overlapAnchor">false</item>
+
+    </style>
 
 </resources>

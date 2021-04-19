@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.androidview.BaseActivity;
 import com.example.androidview.R;
 import com.example.androidview.TabLayout.Fragment.TabFragment;
 import com.example.androidview.TabLayout.Listener.CollapsedStateListener;
@@ -25,7 +26,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
 
-public class TabLayoutActivity extends AppCompatActivity {
+public class TabLayoutActivity extends BaseActivity {
 
     private TabLayout mTableLayout;
     private ArrayList<Fragment> mFragments;

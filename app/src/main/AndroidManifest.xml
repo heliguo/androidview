@@ -96,6 +96,8 @@
         <activity android:name=".animator.AnimatorActivity" />
         <activity android:name=".splash.SplashActivity" />
         <activity android:name=".toobar.ToolbarActivity"/>
+        <activity android:name=".materialdesign.MaterialDesignActivity"
+            android:theme="@style/Material.Design"/>
 
 
         <service android:name=".rootview.ResidentNotificationService" />
