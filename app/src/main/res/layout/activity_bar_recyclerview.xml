@@ -49,5 +49,13 @@
 
     </FrameLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@color/base_shallow_black"
+        app:layout_behavior="com.example.androidview.materialdesign.ScaleBehavior" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
