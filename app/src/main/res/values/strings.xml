@@ -25,5 +25,6 @@
     <string name="deep_link">This is the deep link page.</string>
     <string name="open_page_by_action">Open Page by Action</string>
     <string name="deep2_link">This is the target activity when you tap notification messages.</string>
+    <string name="extra_str">888888888888888889999999999999999 99999999999999999999999999999999999999 888888888888888889999999999999999 99999999999999999999999999999999999999 888888888888888889999999999999999 99999999999999999999999999999999999999</string>
 
 </resources>

@@ -38,6 +38,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
@@ -55,6 +56,7 @@ import com.example.androidview.event.EventActivity;
 import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
 import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
+import com.example.androidview.materialdesign.RecyclerviewActivity;
 import com.example.androidview.mpandroidchart.LineChartActivity;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.pageview.CurlActivity;
@@ -108,6 +110,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.materialDesignRv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RecyclerviewActivity.class));
+            }
+        });
 
         mBinding.materialDesign.setOnClickListener(new View.OnClickListener() {
             @Override

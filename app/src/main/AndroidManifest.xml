@@ -98,6 +98,7 @@
         <activity android:name=".toobar.ToolbarActivity"/>
         <activity android:name=".materialdesign.MaterialDesignActivity"
             android:theme="@style/Material.Design"/>
+        <activity android:name=".materialdesign.RecyclerviewActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
