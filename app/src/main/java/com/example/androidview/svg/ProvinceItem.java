@@ -35,8 +35,7 @@ public class ProvinceItem {
 
             //绘制边界
             paint.setStyle(Paint.Style.STROKE);
-            int strokeColor = 0xFFD0E8F4;
-            paint.setColor(strokeColor);
+            paint.setColor(Color.RED);
         } else {
             paint.setStrokeWidth(2);
             paint.setColor(Color.BLACK);

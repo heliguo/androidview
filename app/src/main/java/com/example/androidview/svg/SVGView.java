@@ -134,6 +134,9 @@ public class SVGView extends View {
         super.onDraw(canvas);
         if (mItemList != null && !mItemList.isEmpty()) {
             canvas.save();
+            if (totalRect!=null){
+                canvas.translate(0, (getHeight()-totalRect.height())/2);
+            }
             canvas.scale(scale, scale);
             for (ProvinceItem item : mItemList) {
                 item.drawItem(canvas, paint, selectProvince == item);
@@ -143,7 +146,12 @@ public class SVGView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        handleTouch(event.getX() / scale, event.getY() / scale);
+        if (totalRect!=null){
+            handleTouch(event.getX() / scale, (event.getY()-(getHeight()-totalRect.height())/2) / scale);
+        }else {
+            handleTouch(event.getX() / scale, (event.getY()) / scale);
+        }
+
         return super.onTouchEvent(event);
     }
 
