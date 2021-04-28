@@ -38,7 +38,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidview.TabLayout.TabLayoutActivity;
@@ -49,6 +48,7 @@ import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.calendar.CalendarReminderUtils;
+import com.example.androidview.carview.CarActivity;
 import com.example.androidview.coil.CoilActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
@@ -110,6 +110,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.carView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CarActivity.class));
+            }
+        });
 
         mBinding.materialDesignRv.setOnClickListener(new View.OnClickListener() {
             @Override

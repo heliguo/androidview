@@ -99,6 +99,7 @@
         <activity android:name=".materialdesign.MaterialDesignActivity"
             android:theme="@style/Material.Design"/>
         <activity android:name=".materialdesign.RecyclerviewActivity" />
+        <activity android:name=".carview.CarActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
