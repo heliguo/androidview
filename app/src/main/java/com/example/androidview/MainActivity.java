@@ -73,6 +73,7 @@ import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
 import com.example.androidview.splash.SplashActivity;
 import com.example.androidview.surfaceview.SurfaceViewActivity;
+import com.example.androidview.svg.SVGActivity;
 import com.example.androidview.toobar.ToolbarActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
@@ -110,6 +111,14 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.svgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SVGActivity.class));
+            }
+        });
+
 
         mBinding.carView.setOnClickListener(new View.OnClickListener() {
             @Override
