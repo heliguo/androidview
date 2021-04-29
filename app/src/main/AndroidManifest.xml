@@ -101,6 +101,8 @@
         <activity android:name=".materialdesign.RecyclerviewActivity" />
         <activity android:name=".carview.CarActivity" />
         <activity android:name=".svg.SVGActivity" />
+        <activity android:name=".viirtuallayout.VirtualLayoutActivity" />
+        <activity android:name=".htmltextview.HtmlTextViewActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

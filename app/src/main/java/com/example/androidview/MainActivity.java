@@ -55,6 +55,7 @@ import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.event.EventActivity;
 import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
 import com.example.androidview.guideview.GuideViewHelper;
+import com.example.androidview.htmltextview.HtmlTextViewActivity;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
 import com.example.androidview.materialdesign.RecyclerviewActivity;
 import com.example.androidview.mpandroidchart.LineChartActivity;
@@ -78,6 +79,7 @@ import com.example.androidview.toobar.ToolbarActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
+import com.example.androidview.viirtuallayout.VirtualLayoutActivity;
 import com.example.androidview.windows.WindowsActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputLayout;
@@ -111,6 +113,20 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.htmlText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HtmlTextViewActivity.class));
+            }
+        });
+
+        mBinding.virtualLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, VirtualLayoutActivity.class));
+            }
+        });
 
         mBinding.svgView.setOnClickListener(new View.OnClickListener() {
             @Override
