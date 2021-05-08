@@ -52,6 +52,7 @@ import com.example.androidview.carview.CarActivity;
 import com.example.androidview.coil.CoilActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
+import com.example.androidview.discview.DiscViewActivity;
 import com.example.androidview.event.EventActivity;
 import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
 import com.example.androidview.guideview.GuideViewHelper;
@@ -113,6 +114,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.discView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DiscViewActivity.class));
+            }
+        });
 
         mBinding.htmlText.setOnClickListener(new View.OnClickListener() {
             @Override

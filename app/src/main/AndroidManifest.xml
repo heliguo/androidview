@@ -103,6 +103,7 @@
         <activity android:name=".svg.SVGActivity" />
         <activity android:name=".viirtuallayout.VirtualLayoutActivity" />
         <activity android:name=".htmltextview.HtmlTextViewActivity" />
+        <activity android:name=".discview.DiscViewActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
