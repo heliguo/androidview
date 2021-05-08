@@ -55,6 +55,7 @@ import com.example.androidview.dialog.DialogFragmentActivity;
 import com.example.androidview.discview.DiscViewActivity;
 import com.example.androidview.event.EventActivity;
 import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
+import com.example.androidview.fastblur.FastBlurActivity;
 import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.htmltextview.HtmlTextViewActivity;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
@@ -106,6 +107,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("===666 " + System.getProperty("java.class.path", "."));
         registerBackPress(this, new BackPressObserver() {
             @Override
             public boolean onBackPress() {
@@ -114,6 +116,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.fastBlur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FastBlurActivity.class));
+            }
+        });
 
         mBinding.discView.setOnClickListener(new View.OnClickListener() {
             @Override

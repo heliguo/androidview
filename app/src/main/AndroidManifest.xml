@@ -104,6 +104,7 @@
         <activity android:name=".viirtuallayout.VirtualLayoutActivity" />
         <activity android:name=".htmltextview.HtmlTextViewActivity" />
         <activity android:name=".discview.DiscViewActivity" />
+        <activity android:name=".fastblur.FastBlurActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
