@@ -23,4 +23,6 @@
     <color name="colorWhiteBg">#ffffff</color>
     <color name="colorGrayBg">#f4f4f4</color>
 
+    <color name="rippleColor">#C0362E</color>
+
 </resources>

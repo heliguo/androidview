@@ -19,15 +19,15 @@ public class SpreadView2 extends View {
 
     private Paint mSpreadPaint;
 
-    private int mCenterRadius = 50;//中心圆半径
+    private int mCenterRadius = 20;//中心圆半径
 
-    private int mInterval = 50;//步长
+    private int mInterval = 20;//步长
 
     private int count = 0;//起始
 
     private int mStepInterval = 2;//值越大波动越快
 
-    private int mSpreadMaxRadius = 200;//最大波纹半径
+    private int mSpreadMaxRadius = 100;//最大波纹半径
 
     private int mCenterX;
 

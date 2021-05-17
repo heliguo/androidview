@@ -90,6 +90,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -107,7 +110,16 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("===666 " + System.getProperty("java.class.path", "."));
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("1","2");
+        hashMap.put("1","3");
+        HashSet<String> hashSet = new HashSet<>();
+        hashSet.add("4");
+        hashSet.add("5");
+        Iterator<String> iterator = hashSet.iterator();
+        System.out.println("===666 " + hashMap.get("1"));
+        System.out.println("===666 " +iterator.next() );
+        System.out.println("===666 " +iterator.next() );
         registerBackPress(this, new BackPressObserver() {
             @Override
             public boolean onBackPress() {

@@ -42,7 +42,7 @@ public class FastBlurActivity extends BaseActivity {
         Bitmap overlay = Bitmap.createBitmap(
                 (int) (view.getMeasuredWidth() / scaleFactor),
                 (int) (view.getMeasuredHeight() / scaleFactor),
-                Bitmap.Config.ARGB_8888);
+                Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(overlay);
         canvas.translate(-view.getLeft() / scaleFactor, -view.getTop()
                 / scaleFactor);

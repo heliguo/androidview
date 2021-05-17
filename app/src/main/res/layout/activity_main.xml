@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
     tools:context=".MainActivity">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +11,10 @@
         android:orientation="vertical"
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp">
+
+        <com.example.androidview.spread.PathLoadingView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/fast_blur"
@@ -151,7 +152,7 @@
             android:id="@+id/CustomRoundAngleImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_test1"/>
+            android:background="@drawable/ic_test1" />
 
         <Button
             android:id="@+id/tab"
@@ -233,13 +234,12 @@
                 android:layout_height="100dp" />
 
             <com.example.androidview.spread.SpreadView
-                android:layout_marginStart="50dp"
                 android:id="@+id/spreadView"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp" />
 
         </LinearLayout>
-
 
 
         <Button
@@ -353,7 +353,6 @@
             android:layout_height="wrap_content"
             android:onClick="test"
             android:text="Test" />
-
 
 
         <com.google.android.material.textfield.TextInputLayout
