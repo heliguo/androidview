@@ -75,6 +75,7 @@ import com.example.androidview.slideBar.SlideBarActivity;
 import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
 import com.example.androidview.splash.SplashActivity;
+import com.example.androidview.spread.RippleAnimationViewActivity;
 import com.example.androidview.surfaceview.SurfaceViewActivity;
 import com.example.androidview.svg.SVGActivity;
 import com.example.androidview.toobar.ToolbarActivity;
@@ -128,6 +129,13 @@ public class MainActivity extends BaseActivity {
         });
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mBinding.RippleAnimationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RippleAnimationViewActivity.class));
+            }
+        });
 
         mBinding.fastBlur.setOnClickListener(new View.OnClickListener() {
             @Override

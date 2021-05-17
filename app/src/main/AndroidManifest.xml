@@ -105,6 +105,7 @@
         <activity android:name=".htmltextview.HtmlTextViewActivity" />
         <activity android:name=".discview.DiscViewActivity" />
         <activity android:name=".fastblur.FastBlurActivity" />
+        <activity android:name=".spread.RippleAnimationViewActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

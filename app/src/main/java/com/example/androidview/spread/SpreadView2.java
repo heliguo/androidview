@@ -1,13 +1,18 @@
 package com.example.androidview.spread;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+
+import com.example.androidview.R;
 
 /**
  * @author lgh on 2020/12/25 11:44
@@ -21,11 +26,11 @@ public class SpreadView2 extends View {
 
     private int mCenterRadius = 20;//中心圆半径
 
-    private int mInterval = 20;//步长
+    private int mInterval = 30;//步长
 
     private int count = 0;//起始
 
-    private int mStepInterval = 2;//值越大波动越快
+    private int mStepInterval = 1;//值越大波动越快
 
     private int mSpreadMaxRadius = 100;//最大波纹半径
 
@@ -33,8 +38,11 @@ public class SpreadView2 extends View {
 
     private int mCenterY;
 
-    private int mPaintColor = Color.RED;
+    private int mPaintColor = Color.parseColor("#C0362E");
 
+    private Bitmap mBitmap;
+    private Paint bitmapPaint;
+    private Matrix mMatrix;
 
     public SpreadView2(Context context) {
         this(context, null);
@@ -55,9 +63,17 @@ public class SpreadView2 extends View {
         mCenterPaint.setColor(mPaintColor);
 
         mSpreadPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mSpreadPaint.setStyle(Paint.Style.STROKE);
+        mSpreadPaint.setStyle(Paint.Style.FILL);
         mSpreadPaint.setStrokeWidth(2);
         mSpreadPaint.setColor(mPaintColor);
+
+        bitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.music);
+        mBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 2, bitmap.getHeight() / 2, true);
+        mMatrix = new Matrix();
+        mMatrix.setScale(0.5f, 0.5f);
+
+        mCenterRadius = mBitmap.getWidth()/2;
 
     }
 
@@ -78,7 +94,9 @@ public class SpreadView2 extends View {
             mSpreadPaint.setAlpha(255 * (mSpreadMaxRadius - step) / mSpreadMaxRadius);
             canvas.drawCircle(mCenterX, mCenterY, (float) (mCenterRadius + step), mSpreadPaint);
         }
-        canvas.drawCircle(mCenterX, mCenterY, (float) mCenterRadius, mCenterPaint);
+        //        canvas.drawCircle(mCenterX, mCenterY, (float) mCenterRadius, mCenterPaint);
+
+        canvas.drawBitmap(mBitmap, mCenterX - mBitmap.getWidth() / 2f, mCenterY - mBitmap.getHeight() / 2f, bitmapPaint);
 
         //延迟运行
         postDelayed(() -> {
@@ -86,6 +104,11 @@ public class SpreadView2 extends View {
             count %= mInterval;
             postInvalidate();//重绘
         }, 30);
+    }
+
+    public void setStyle(Paint.Style style) {
+        mSpreadPaint.setStyle(style);
+        invalidate();
     }
 
     public void setCenterRadius(int centerRadius) {
