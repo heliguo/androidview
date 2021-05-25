@@ -37,4 +37,10 @@ public class BackPressActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.e("TAGTAGTAGTAGTAG", "onWindowFocusChanged: "+hasFocus+"\n"+ getSupportFragmentManager().getFragments().size() );
+    }
 }

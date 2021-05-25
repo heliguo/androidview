@@ -376,10 +376,16 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:hint="@string/app_name"
+            android:layout_height="wrap_content"/>
+
 
         <!--   recyclerview item animation   -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_rv"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutAnimation="@anim/anim_layout" />

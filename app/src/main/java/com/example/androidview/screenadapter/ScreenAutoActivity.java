@@ -11,13 +11,14 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.androidview.BaseActivity;
 import com.example.androidview.R;
 
 /**
  * @author lgh on 2020/12/11 11:27
  * @description
  */
-public class ScreenAutoActivity extends AppCompatActivity {
+public class ScreenAutoActivity extends BaseActivity {
 
 
     @Override

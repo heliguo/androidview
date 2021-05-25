@@ -70,6 +70,7 @@ public class SpreadView2 extends View {
         bitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.music);
         mBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth() / 2, bitmap.getHeight() / 2, true);
+        bitmap.recycle();
         mMatrix = new Matrix();
         mMatrix.setScale(0.5f, 0.5f);
 
