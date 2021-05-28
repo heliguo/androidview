@@ -6,6 +6,7 @@
         android:drawable="@drawable/intro_item_manrun_1"
         android:duration="200"/>
     <item
+
         android:drawable="@drawable/intro_item_manrun_2"
         android:duration="200"/>
 

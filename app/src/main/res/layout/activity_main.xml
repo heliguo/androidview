@@ -36,6 +36,12 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:id="@+id/water_bitmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="water_bitmap" />
+
+        <Button
             android:id="@+id/RippleAnimationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

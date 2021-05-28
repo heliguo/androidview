@@ -24,7 +24,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -57,6 +56,7 @@ import com.example.androidview.discview.DiscViewActivity;
 import com.example.androidview.event.EventActivity;
 import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
 import com.example.androidview.fastblur.FastBlurActivity;
+import com.example.androidview.floatview.FloatViewUtils;
 import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.htmltextview.HtmlTextViewActivity;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
@@ -84,6 +84,9 @@ import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
 import com.example.androidview.viirtuallayout.VirtualLayoutActivity;
+import com.example.androidview.watermark.WaterBitmapActivity;
+import com.example.androidview.watermark.WaterMarkDrawable;
+import com.example.androidview.watermark.WaterMarkUtils;
 import com.example.androidview.windows.WindowsActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputLayout;
@@ -91,6 +94,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -112,25 +116,55 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        HashMap<String,String> hashMap = new HashMap<>();
-        hashMap.put("1","2");
-        hashMap.put("1","3");
+        //        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        mBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
+
+        List<Class> classes = new ArrayList<>();
+        classes.add(RippleAnimationViewActivity.class);
+        classes.add(FastBlurActivity.class);
+        FloatViewUtils.getInstance()
+                .layout(R.layout.layout_float_view)
+                .ignore(classes)
+                .layoutParams(initLayoutParams())
+                .listener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
+                    }
+                }).show(this);
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("1", "2");
+        hashMap.put("1", "3");
         HashSet<String> hashSet = new HashSet<>();
         hashSet.add("4");
         hashSet.add("5");
         Iterator<String> iterator = hashSet.iterator();
         System.out.println("===666 " + hashMap.get("1"));
-        System.out.println("===666 " +iterator.next() );
-        System.out.println("===666 " +iterator.next() );
+        System.out.println("===666 " + iterator.next());
+        System.out.println("===666 " + iterator.next());
         registerBackPress(this, new BackPressObserver() {
             @Override
             public boolean onBackPress() {
                 return false;
             }
         });
-        mBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(mBinding.getRoot());
+
+        SimpleDateFormat createTimeSdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        List<String> labels = new ArrayList<>();
+        labels.add("用户名：张三");
+        labels.add("日期：" + createTimeSdf1.format(new Date()));
+        labels.add("不可扩散");
+        WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
+        WaterMarkUtils.getInstance().waterMarker(this,drawable);
+
+        mBinding.waterBitmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, WaterBitmapActivity.class));
+            }
+        });
 
         mBinding.RippleAnimationView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -798,5 +832,15 @@ public class MainActivity extends BaseActivity {
 
     public void tab(View view) {
         startActivity(new Intent(this, TabLayoutActivity.class));
+    }
+
+    private FrameLayout.LayoutParams initLayoutParams() {
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = Gravity.BOTTOM | Gravity.END;
+        params.setMargins(0, params.topMargin, params.rightMargin, 500);
+        return params;
     }
 }

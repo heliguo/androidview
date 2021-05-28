@@ -131,6 +131,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
             case ViewPager.SCROLL_STATE_DRAGGING:
                 animation.start();
                 break;
+            default:
             case ViewPager.SCROLL_STATE_IDLE:
                 animation.stop();
                 break;
