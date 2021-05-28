@@ -37,7 +37,8 @@ public class WaterBitmapActivity extends BaseActivity {
 
     public void alpha(View view) {
         if (mDrawable != null) {
-            mDrawable.setAlpha(0);
+            mDrawable.setAlpha(200);
+            mDrawable.setRepeatHorizontalRatio(0.5f);
         }
     }
 }

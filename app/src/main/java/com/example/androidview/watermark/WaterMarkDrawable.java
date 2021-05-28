@@ -5,11 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.util.SparseIntArray;
 
 import androidx.annotation.FloatRange;
@@ -39,11 +37,9 @@ public class WaterMarkDrawable extends Drawable {
     private int mPaintColor = Color.parseColor("#50AEAEAE");
 
     //重复 间距 水平
-    @FloatRange(from = 0f, to = 1f)
     private float repeatHorizontalRatio = 0.3f;
 
     //重复 间距 垂直
-    @FloatRange(from = 0f, to = 1f)
     private float repeatVerticalRatio = 0.5f;
 
     //文字 间距
@@ -64,8 +60,6 @@ public class WaterMarkDrawable extends Drawable {
         mPaint.setColor(mPaintColor);
         mPaint.setTextSize(sp2px(mContext, mFontSize));
     }
-
-
 
     public WaterMarkDrawable(Context context, List<String> labels, @IntRange(from = -50, to = 50) int degree,
                              int fontSize, int mCanvasColor, int paintColor) {
@@ -238,5 +232,15 @@ public class WaterMarkDrawable extends Drawable {
     private float getTextHeight() {
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         return fontMetrics.descent - fontMetrics.ascent;
+    }
+
+    public void setRepeatHorizontalRatio(@FloatRange(from = 0f, to = 1f) float repeatHorizontalRatio) {
+        this.repeatHorizontalRatio = repeatHorizontalRatio;
+        invalidateSelf();
+    }
+
+    public void setRepeatVerticalRatio(@FloatRange(from = 0f, to = 1f) float repeatVerticalRatio) {
+        this.repeatVerticalRatio = repeatVerticalRatio;
+        invalidateSelf();
     }
 }
