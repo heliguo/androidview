@@ -51,7 +51,7 @@
             android:id="@+id/fast_blur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="fast_blur" />
+            android:text="fast_blur and Android-Palette" />
 
         <Button
             android:id="@+id/disc_view"

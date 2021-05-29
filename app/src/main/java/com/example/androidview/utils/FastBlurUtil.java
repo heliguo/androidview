@@ -1,11 +1,36 @@
 package com.example.androidview.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.View;
 
 /**
  * Created by jay on 11/7/15.
  */
 public class FastBlurUtil {
+
+    public static void blur(Bitmap bitmap, View view) {
+        float scaleFactor = 8;
+        float radius = 2;
+
+        Bitmap overlay = Bitmap.createBitmap(
+                (int) (view.getMeasuredWidth() / scaleFactor),
+                (int) (view.getMeasuredHeight() / scaleFactor),
+                Bitmap.Config.ARGB_4444);
+        Canvas canvas = new Canvas(overlay);
+        canvas.translate(-view.getLeft() / scaleFactor, -view.getTop()
+                / scaleFactor);
+        canvas.scale(1 / scaleFactor, 1 / scaleFactor);
+        Paint paint = new Paint();
+        paint.setFlags(Paint.FILTER_BITMAP_FLAG);
+        canvas.drawBitmap(bitmap, 0, 0, paint);
+
+        overlay = doBlur(overlay, (int) radius, true);
+        view.setBackground(new BitmapDrawable(view.getResources(), overlay));
+
+    }
 
     public static Bitmap doBlur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
 

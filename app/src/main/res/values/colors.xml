@@ -8,8 +8,9 @@
     <color name="icon_enabled">#D81B60</color>
     <color name="icon_disabled">#40C4FF</color>
 
-    <color name="text_enabled">#D81B60</color>
-    <color name="text_disabled">#40C4FF</color>
+    <color name="color_bg_theme">#161924</color>
+
+    <color name="text_disabled">#CCCCCC</color>
 
     <color name="accent">#40C4FF</color>
     <color name="translucent">#00000000</color>
@@ -24,5 +25,7 @@
     <color name="colorGrayBg">#f4f4f4</color>
 
     <color name="rippleColor">#C0362E</color>
+    <color name="color_FF0041">#FF0041</color>
+    <color name="color_tag">#9B9B9B</color>
 
 </resources>

@@ -1,9 +1,7 @@
 package com.example.androidview.viirtuallayout;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
-import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
@@ -22,8 +19,7 @@ import com.example.androidview.BaseActivity;
 import com.example.androidview.R;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
+import com.youth.banner.config.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
@@ -55,46 +51,46 @@ public class VirtualLayoutActivity extends BaseActivity {
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         mRecyclerView.setLayoutManager(manager);
         RecyclerView.RecycledViewPool pool = new RecyclerView.RecycledViewPool();
-        pool.setMaxRecycledViews(0,10);
+        pool.setMaxRecycledViews(0, 10);
         mRecyclerView.setRecycledViewPool(pool);
         BaseDelegateAdapter bannerAdapter = new BaseDelegateAdapter(this
-                , new LinearLayoutHelper(), R.layout.vlayout_banner, 1){
+                , new LinearLayoutHelper(), R.layout.vlayout_banner, 1) {
             @Override
             public void onBindViewHolder(@NonNull BaseViewHolder holder, int i) {
-                ArrayList<String> arrayList = new ArrayList<>();
-                arrayList.add("https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742__340.jpg");
-                arrayList.add("https://cdn.pixabay.com/photo/2021/04/18/13/35/flowers-6188414__340.jpg");
-                arrayList.add("https://cdn.pixabay.com/photo/2019/12/18/10/44/girl-4703641__340.jpg");
-                arrayList.add("https://cdn.pixabay.com/photo/2021/03/07/19/38/forest-6077348__340.jpg");
-                arrayList.add("https://cdn.pixabay.com/photo/2018/03/28/16/11/snow-3269681__340.jpg");
-                arrayList.add("https://cdn.pixabay.com/photo/2021/03/25/09/10/fog-6122490__340.jpg");
-                // 绑定数据
-                Banner mBanner = holder.getView(R.id.banner);
-                //设置banner样式
-                mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-                //设置图片加载器
-                mBanner.setImageLoader(new GlideImageLoader());
-                //设置图片集合
-                mBanner.setImages(arrayList);
-                //设置banner动画效果
-                mBanner.setBannerAnimation(Transformer.DepthPage);
-                //设置标题集合（当banner样式有显示title时）
-                //        mBanner.setBannerTitles(titles);
-                //设置自动轮播，默认为true
-                mBanner.isAutoPlay(true);
-                //设置轮播时间
-                mBanner.setDelayTime(3000);
-                //设置指示器位置（当banner模式中有指示器时）
-                mBanner.setIndicatorGravity(BannerConfig.CENTER);
-                //banner设置方法全部调用完毕时最后调用
-                mBanner.start();
-
-                mBanner.setOnBannerListener(new OnBannerListener() {
-                    @Override
-                    public void OnBannerClick(int position) {
-                        Toast.makeText(getApplicationContext(), "banner点击了" + position, Toast.LENGTH_SHORT).show();
-                    }
-                });
+//                ArrayList<String> arrayList = new ArrayList<>();
+//                arrayList.add("https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742__340.jpg");
+//                arrayList.add("https://cdn.pixabay.com/photo/2021/04/18/13/35/flowers-6188414__340.jpg");
+//                arrayList.add("https://cdn.pixabay.com/photo/2021/03/25/09/10/fog-6122490__340.jpg");
+//                arrayList.add("https://cdn.pixabay.com/photo/2021/03/07/19/38/forest-6077348__340.jpg");
+//                arrayList.add("https://cdn.pixabay.com/photo/2018/03/28/16/11/snow-3269681__340.jpg");
+//                arrayList.add("https://cdn.pixabay.com/photo/2021/03/25/09/10/fog-6122490__340.jpg");
+//                // 绑定数据
+//                Banner mBanner = holder.getView(R.id.banner);
+//                //设置banner样式
+//                mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+//                //设置图片加载器
+//                mBanner.setImageLoader(new GlideImageLoader());
+//                //设置图片集合
+//                mBanner.setImages(arrayList);
+//                //设置banner动画效果
+//                mBanner.setBannerAnimation(Transformer.ZoomOutSlide);
+//                //设置标题集合（当banner样式有显示title时）
+//                //        mBanner.setBannerTitles(titles);
+//                //设置自动轮播，默认为true
+//                mBanner.isAutoPlay(true);
+//                //设置轮播时间
+//                mBanner.setDelayTime(3000);
+//                //设置指示器位置（当banner模式中有指示器时）
+//                mBanner.setIndicatorGravity(BannerConfig.CENTER);
+//                //banner设置方法全部调用完毕时最后调用
+//                mBanner.start();
+//
+//                mBanner.setOnBannerListener(new OnBannerListener() {
+//                    @Override
+//                    public void OnBannerClick(int position) {
+//                        Toast.makeText(getApplicationContext(), "banner点击了" + position, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
                 super.onBindViewHolder(holder, i);
             }
         };
@@ -104,7 +100,7 @@ public class VirtualLayoutActivity extends BaseActivity {
         gridLayoutHelper.setVGap(10);
         gridLayoutHelper.setHGap(0);//// 控制子元素之间的水平间距
 
-        BaseDelegateAdapter menuAdapter = new BaseDelegateAdapter(this, gridLayoutHelper, R.layout.vlayout_menu, 10){
+        BaseDelegateAdapter menuAdapter = new BaseDelegateAdapter(this, gridLayoutHelper, R.layout.vlayout_menu, 10) {
             @Override
             public void onBindViewHolder(@NonNull BaseViewHolder holder, final int position) {
                 holder.setText(R.id.tv_menu_title_home, ITEM_NAMES[position] + "");
@@ -119,7 +115,7 @@ public class VirtualLayoutActivity extends BaseActivity {
         };
 
         BaseDelegateAdapter newsAdapter = new BaseDelegateAdapter(this, new LinearLayoutHelper(),
-                R.layout.vlayout_news, 1){
+                R.layout.vlayout_news, 1) {
             @Override
             public void onBindViewHolder(@NonNull BaseViewHolder holder, int i) {
                 MarqueeView marqueeView1 = holder.getView(R.id.marqueeView1);
@@ -133,8 +129,8 @@ public class VirtualLayoutActivity extends BaseActivity {
                 info2.add("这个是用来搞笑的，不要在意这写小细节！");
                 info2.add("啦啦啦啦，我就是来搞笑的！");
 
-                marqueeView1.startWithList(info1);
-                marqueeView2.startWithList(info2);
+                //                marqueeView1.startWithList(info1);
+                //                marqueeView2.startWithList(info2);
                 // 在代码里设置自己的动画
                 marqueeView1.startWithList(info1, R.anim.anim_bottom_in, R.anim.anim_top_out);
                 marqueeView2.startWithList(info2, R.anim.anim_bottom_in, R.anim.anim_top_out);
@@ -169,7 +165,7 @@ public class VirtualLayoutActivity extends BaseActivity {
             };
             GridLayoutHelper gridHelper = new GridLayoutHelper(2);
             BaseDelegateAdapter gridAdapter = new BaseDelegateAdapter(this, gridHelper,
-                    R.layout.vlayout_grid, 4){
+                    R.layout.vlayout_grid, 4) {
 
                 @Override
                 public void onBindViewHolder(@NonNull BaseViewHolder holder, final int position) {

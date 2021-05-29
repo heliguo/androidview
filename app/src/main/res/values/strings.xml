@@ -5,6 +5,9 @@
     <string name="add_widget">Add widget</string>
     <string name="imageview">imageview</string>
 
+    <!-- 更多 -->
+    <string name="icon_more">&#xe61b;</string>
+
     <string name="getToken">Get Token</string>
     <string name="deleteToken">Delete Token</string>
     <string name="set_push_unable">TurnOff Push</string>
