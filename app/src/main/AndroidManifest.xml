@@ -113,6 +113,7 @@
         <activity android:name=".watermark.WaterBitmapActivity" />
         <activity android:name=".bytedance.ByteDanceActivity" />
         <activity android:name=".banner.YouthBannerActivity" />
+        <activity android:name=".transform.TransformActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

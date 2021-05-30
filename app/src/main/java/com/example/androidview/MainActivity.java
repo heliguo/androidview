@@ -81,6 +81,7 @@ import com.example.androidview.spread.RippleAnimationViewActivity;
 import com.example.androidview.surfaceview.SurfaceViewActivity;
 import com.example.androidview.svg.SVGActivity;
 import com.example.androidview.toobar.ToolbarActivity;
+import com.example.androidview.transform.TransformActivity;
 import com.example.androidview.view.DispatchActivity;
 import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
@@ -158,7 +159,14 @@ public class MainActivity extends BaseActivity {
         labels.add("日期：" + createTimeSdf1.format(new Date()));
         labels.add("不可扩散");
         WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
-        WaterMarkUtils.getInstance().waterMarker(this,drawable);
+        WaterMarkUtils.getInstance().waterMarker(this, drawable);
+
+        mBinding.transform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TransformActivity.class));
+            }
+        });
 
 
         mBinding.youthBanner.setOnClickListener(new View.OnClickListener() {
