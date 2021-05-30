@@ -112,6 +112,7 @@
         <activity android:name=".spread.RippleAnimationViewActivity" />
         <activity android:name=".watermark.WaterBitmapActivity" />
         <activity android:name=".bytedance.ByteDanceActivity" />
+        <activity android:name=".banner.YouthBannerActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

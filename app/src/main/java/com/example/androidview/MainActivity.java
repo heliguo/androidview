@@ -46,6 +46,7 @@ import com.example.androidview.animation.Rotate3dActivity;
 import com.example.androidview.animator.AnimatorActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
+import com.example.androidview.banner.YouthBannerActivity;
 import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.calendar.CalendarReminderUtils;
 import com.example.androidview.carview.CarActivity;
@@ -158,6 +159,14 @@ public class MainActivity extends BaseActivity {
         labels.add("不可扩散");
         WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
         WaterMarkUtils.getInstance().waterMarker(this,drawable);
+
+
+        mBinding.youthBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, YouthBannerActivity.class));
+            }
+        });
 
         mBinding.waterBitmap.setOnClickListener(new View.OnClickListener() {
             @Override

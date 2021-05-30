@@ -4,6 +4,7 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(this.getClass().getSimpleName(), "onCreate: " + getWindow().getDecorView());
         if (GRAY) {
             Paint paint = new Paint();
             ColorMatrix cm = new ColorMatrix();
