@@ -1,4 +1,4 @@
-package com.example.androidview.rv_group;
+package com.example.androidview.recyclerview.rv_group;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
