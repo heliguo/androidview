@@ -114,6 +114,8 @@
         <activity android:name=".bytedance.ByteDanceActivity" />
         <activity android:name=".banner.YouthBannerActivity" />
         <activity android:name=".transform.TransformActivity" />
+        <activity android:name=".shapeableImageview.ShapeableImageViewActivity" />
+        <activity android:name=".recyclerview.layoutmanager.MeiStackLayoutManagerActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

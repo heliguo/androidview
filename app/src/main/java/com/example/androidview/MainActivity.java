@@ -67,12 +67,14 @@ import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.recyclerview.cardscale.CardScaleActivity;
 import com.example.androidview.recyclerview.itemtouchhelper.ItemHelperActivity;
+import com.example.androidview.recyclerview.layoutmanager.MeiStackLayoutManagerActivity;
 import com.example.androidview.recyclerview.snaphelper.SnapHelperActivity;
 import com.example.androidview.recyclerview.spansize.SpanSizeActivity;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
 import com.example.androidview.scratch.ScratchActivity;
 import com.example.androidview.screenadapter.ScreenAutoActivity;
+import com.example.androidview.shapeableImageview.ShapeableImageViewActivity;
 import com.example.androidview.slideBar.SlideBarActivity;
 import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
 import com.example.androidview.span.SpanActivity;
@@ -91,6 +93,7 @@ import com.example.androidview.watermark.WaterMarkDrawable;
 import com.example.androidview.watermark.WaterMarkUtils;
 import com.example.androidview.windows.WindowsActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.lang.reflect.InvocationTargetException;
@@ -160,6 +163,20 @@ public class MainActivity extends BaseActivity {
         labels.add("不可扩散");
         WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
         WaterMarkUtils.getInstance().waterMarker(this, drawable);
+
+        mBinding.layoutManage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MeiStackLayoutManagerActivity.class));
+            }
+        });
+
+        mBinding.shapeImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ShapeableImageViewActivity.class));
+            }
+        });
 
         mBinding.transform.setOnClickListener(new View.OnClickListener() {
             @Override

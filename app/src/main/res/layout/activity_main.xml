@@ -36,6 +36,18 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:id="@+id/layout_manage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="layout_manage" />
+
+        <Button
+            android:id="@+id/shape_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="shape_imageview" />
+
+        <Button
             android:id="@+id/transform"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

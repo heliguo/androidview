@@ -25,8 +25,19 @@ public class Main {
             }
         }
 
+        for (int i = 0; i < 6; i++) {
+            System.out.println("i   666666");
+            for (int i1 = 0; i1 < 6; i1++) {
+                if (i1==2){
+                    break;
+                }
+                System.out.println(i1);
+            }
+        }
+
         System.out.println("dkdkdk " + (8 << 1));//左移 *2
         System.out.println("dkdkdk " + (8 >> 1));//右移 /2
+        System.out.println("dkdkdk " + (0 % 8));//0的余数为0
 
         //        String url = "a/b/b/bcc/dddd";
         //        int index = url.lastIndexOf("/");

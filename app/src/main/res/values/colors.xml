@@ -27,5 +27,6 @@
     <color name="rippleColor">#C0362E</color>
     <color name="color_FF0041">#FF0041</color>
     <color name="color_tag">#9B9B9B</color>
+    <color name="red">#ff0000</color>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.androidview.transform;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -60,8 +61,11 @@ public class TransformActivity extends BaseActivity {
                 view.setScaleX(scaleX);
                 view.setScaleY(scaleY);
                 if (position<0){
+                    Log.e("TAGTAGTAGTAGTAG", "-------: "+position );
                     view.setAlpha(position+1);
                     view.setTranslationX(view.getTranslationX()+position*view.getWidth());
+                }else {
+                    Log.e("TAGTAGTAGTAGTAG", "++++++++: "+position );
                 }
             }
         });

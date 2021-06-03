@@ -15,18 +15,39 @@ import org.jetbrains.annotations.NotNull;
  * @description
  */
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class SimplePagerTransformer implements ViewPager.PageTransformer {
+public class SimplePagerTransformer implements ViewPager.PageTransformer, ViewPager.OnPageChangeListener {
 
     private ViewPager mViewPager;
     private final PagerAdapter mAdapter;
 
     public SimplePagerTransformer(ViewPager viewPager) {
         mViewPager = viewPager;
+        mViewPager.addOnPageChangeListener(this);
         mAdapter = mViewPager.getAdapter();
     }
 
     @Override
     public void transformPage(@NonNull @NotNull View view, float position) {
+        int count = mAdapter.getCount();
+        if (count <= 1) {
+            return;
+        }
+        int currentItem = mViewPager.getCurrentItem();
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
 
     }
 }
