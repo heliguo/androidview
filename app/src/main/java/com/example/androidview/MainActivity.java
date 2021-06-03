@@ -1,11 +1,15 @@
 package com.example.androidview;
 
+import android.Manifest;
+import android.animation.ValueAnimator;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -13,55 +17,433 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.example.androidview.TabLayout.TabLayoutActivity;
 import com.example.androidview.animation.FrameAnimationActivity;
 import com.example.androidview.animation.Rotate3dActivity;
+import com.example.androidview.animator.AnimatorActivity;
+import com.example.androidview.backpress.BackPressActivity;
+import com.example.androidview.backpress.BackPressObserver;
+import com.example.androidview.banner.YouthBannerActivity;
+import com.example.androidview.calendar.CalendarActivity;
+import com.example.androidview.calendar.CalendarReminderUtils;
+import com.example.androidview.carview.CarActivity;
+import com.example.androidview.coil.CoilActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
 import com.example.androidview.dialog.DialogFragmentActivity;
+import com.example.androidview.discview.DiscViewActivity;
+import com.example.androidview.event.EventActivity;
+import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
+import com.example.androidview.fastblur.FastBlurActivity;
+import com.example.androidview.floatview.FloatViewUtils;
+import com.example.androidview.guideview.GuideViewHelper;
+import com.example.androidview.htmltextview.HtmlTextViewActivity;
+import com.example.androidview.materialdesign.MaterialDesignActivity;
+import com.example.androidview.materialdesign.RecyclerviewActivity;
+import com.example.androidview.mpandroidchart.LineChartActivity;
 import com.example.androidview.ntp.SntpUtils;
+import com.example.androidview.pageview.CurlActivity;
+import com.example.androidview.recyclerview.cardscale.CardScaleActivity;
+import com.example.androidview.recyclerview.itemtouchhelper.ItemHelperActivity;
+import com.example.androidview.recyclerview.layoutmanager.MeiStackLayoutManagerActivity;
+import com.example.androidview.recyclerview.snaphelper.SnapHelperActivity;
+import com.example.androidview.recyclerview.spansize.SpanSizeActivity;
 import com.example.androidview.rootview.CreateWidget;
 import com.example.androidview.rootview.RootViewActivity;
+import com.example.androidview.scratch.ScratchActivity;
+import com.example.androidview.screenadapter.ScreenAutoActivity;
+import com.example.androidview.shapeableImageview.ShapeableImageViewActivity;
+import com.example.androidview.slideBar.SlideBarActivity;
+import com.example.androidview.smarttablayout.SmartTabLayoutActivity;
+import com.example.androidview.span.SpanActivity;
+import com.example.androidview.splash.SplashActivity;
+import com.example.androidview.spread.RippleAnimationViewActivity;
+import com.example.androidview.surfaceview.SurfaceViewActivity;
+import com.example.androidview.svg.SVGActivity;
+import com.example.androidview.toobar.ToolbarActivity;
+import com.example.androidview.transform.TransformActivity;
 import com.example.androidview.view.DispatchActivity;
+import com.example.androidview.view.FloatViewActivity;
 import com.example.androidview.view.HorizontalScrollActivity;
+import com.example.androidview.viirtuallayout.VirtualLayoutActivity;
+import com.example.androidview.watermark.WaterBitmapActivity;
+import com.example.androidview.watermark.WaterMarkDrawable;
+import com.example.androidview.watermark.WaterMarkUtils;
 import com.example.androidview.windows.WindowsActivity;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * @author lgh
+ * blink 源码在LayoutInflater.java 中
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private TextView mTextView;
     private int mMeasuredWidth;
     private int mMeasuredHeight;
     ActivityMainBinding mBinding;
+    BottomSheetBehavior mBottomSheetBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        List<Class> classes = new ArrayList<>();
+        classes.add(RippleAnimationViewActivity.class);
+        classes.add(FastBlurActivity.class);
+        FloatViewUtils.getInstance()
+                .layout(R.layout.layout_float_view)
+                .ignore(classes)
+                .layoutParams(initLayoutParams())
+                .listener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
+                    }
+                }).show(this);
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("1", "2");
+        hashMap.put("1", "3");
+        HashSet<String> hashSet = new HashSet<>();
+        hashSet.add("4");
+        hashSet.add("5");
+        Iterator<String> iterator = hashSet.iterator();
+        System.out.println("===666 " + hashMap.get("1"));
+        System.out.println("===666 " + iterator.next());
+        System.out.println("===666 " + iterator.next());
+        registerBackPress(this, new BackPressObserver() {
+            @Override
+            public boolean onBackPress() {
+                return false;
+            }
+        });
+
+        SimpleDateFormat createTimeSdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        List<String> labels = new ArrayList<>();
+        labels.add("用户名：张三");
+        labels.add("日期：" + createTimeSdf1.format(new Date()));
+        labels.add("不可扩散");
+        WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
+        WaterMarkUtils.getInstance().waterMarker(this, drawable);
+
+        mBinding.layoutManage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MeiStackLayoutManagerActivity.class));
+            }
+        });
+
+        mBinding.shapeImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ShapeableImageViewActivity.class));
+            }
+        });
+
+        mBinding.transform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TransformActivity.class));
+            }
+        });
+
+
+        mBinding.youthBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, YouthBannerActivity.class));
+            }
+        });
+
+        mBinding.waterBitmap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, WaterBitmapActivity.class));
+            }
+        });
+
+        mBinding.RippleAnimationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RippleAnimationViewActivity.class));
+            }
+        });
+
+        mBinding.fastBlur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FastBlurActivity.class));
+            }
+        });
+
+        mBinding.discView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DiscViewActivity.class));
+            }
+        });
+
+        mBinding.htmlText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HtmlTextViewActivity.class));
+            }
+        });
+
+        mBinding.virtualLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, VirtualLayoutActivity.class));
+            }
+        });
+
+        mBinding.svgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SVGActivity.class));
+            }
+        });
+
+
+        mBinding.carView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CarActivity.class));
+            }
+        });
+
+        mBinding.materialDesignRv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RecyclerviewActivity.class));
+            }
+        });
+
+        mBinding.materialDesign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MaterialDesignActivity.class));
+            }
+        });
+
+        mBinding.toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ToolbarActivity.class));
+            }
+        });
+
+        mBinding.splash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SplashActivity.class));
+            }
+        });
+
+        mBinding.animator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AnimatorActivity.class));
+            }
+        });
+
+        mBinding.event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, EventActivity.class));
+            }
+        });
+
+        mBinding.spanSize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SpanSizeActivity.class));
+            }
+        });
+
+        mBinding.cardScale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CardScaleActivity.class));
+            }
+        });
+
+        mBinding.itemHelper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ItemHelperActivity.class));
+            }
+        });
+
+        mBinding.kotlinCoil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CoilActivity.class));
+            }
+        });
+
+        mBinding.backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BackPressActivity.class));
+            }
+        });
+
+        mBinding.snapHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SnapHelperActivity.class));
+            }
+        });
+
+        mBinding.surfaceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SurfaceViewActivity.class));
+            }
+        });
+
+        mBinding.book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CurlActivity.class));
+            }
+        });
+
+        mBinding.CustomRoundAngleImageView.getContext();
+
+        mBinding.tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SmartTabLayoutActivity.class));
+            }
+        });
+
+        mBinding.expand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ExpandableRecyclerviewActivity.class));
+            }
+        });
+
+        mBinding.slide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SlideBarActivity.class));
+            }
+        });
+
+        mBinding.notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LockScreenNotification lockScreenNotification = new LockScreenNotification(MainActivity.this);
+                lockScreenNotification.send("title", "", 1);
+            }
+        });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED ||
+                    checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, 100);
+        }
+
+
+        //        finishAffinity();
+
+        mBinding.scratch.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScratchActivity.class)));
+        //        mBinding.realm.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RealmActivity.class)));
+        mBinding.chart.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LineChartActivity.class)));
+
+        mBinding.screen.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScreenAutoActivity.class)));
+
+        mBinding.span.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SpanActivity.class)));
+
+        mBinding.timer.setInitTime(5 * 60 * 1000).count();
+
+        mBinding.rxTimer.setInitTime(5 * 60 * 1000).setTimeInterval(1000).setCountType(true).count();
+
+        mBinding.floatView.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, FloatViewActivity.class)));
+
+        mBinding.calendar.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CalendarActivity.class)));
+
+        mBinding.calendarAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                }
+                CalendarReminderUtils.addCalendarEvent(MainActivity.this, "测试", "测试日程事件",
+                        System.currentTimeMillis() + 3600 * 24 * 1000 * 2 + 10000, 2);
+            }
+        });
+
+        LottieAnimationView mLottie = new LottieAnimationView(this);
+        mLottie.setAnimation("diamond_new_user_guide.json");
+        mLottie.setImageAssetsFolder("images_diamond_new_user_guide");
+        mLottie.setBackgroundColor(Color.TRANSPARENT);
+        mLottie.setRepeatCount(ValueAnimator.INFINITE);
+        mLottie.playAnimation();
+        GuideViewHelper guideViewHelper = new GuideViewHelper(1, 1.5f);
+        guideViewHelper.show(mBinding.download, R.drawable.guide_hand);
+        guideViewHelper.setOnViewLayoutListener(() -> {
+            guideViewHelper.getReplaceLayoutParams().topMargin = 40;
+            guideViewHelper.getTargetView().setOnClickListener(v -> {
+                if (guideViewHelper.getSourceView() != null && guideViewHelper.getSourceView().getVisibility() == View.VISIBLE) {
+                    guideViewHelper.remove();
+                }
+            });
+        });
+        mBinding.download.setOnLongClickListener(v -> {
+            Toast.makeText(MainActivity.this, "long click", Toast.LENGTH_SHORT).show();
+            return false;
+        });
+
+
+        //        new GuideViewHelper().show(mBinding.download, mLottie);
+
         recyclerviewAnimation();
+        mBinding.pro.setLineWidth(20);
         EditText editText = findViewById(R.id.et);
         TextInputLayout layout = findViewById(R.id.input_layout);
         editText.addTextChangedListener(new TextWatcher() {
@@ -152,6 +534,25 @@ public class MainActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
+
+            //            ViewParent parent = mBinding.download.getParent();
+            //            if (parent instanceof ViewGroup) {
+            //                ViewGroup viewGroup = (ViewGroup) parent;
+            //                int index = viewGroup.indexOfChild(mBinding.download);
+            //                ViewGroup.LayoutParams layoutParams = mBinding.download.getLayoutParams();
+            //                viewGroup.removeView(mBinding.download);
+            //                FrameLayout frameLayout = new FrameLayout(this);
+            //                frameLayout.addView(mBinding.download);
+            //                ImageView imageView = new ImageView(this);
+            //                imageView.setBackgroundResource(R.drawable.guide_hand);
+            //                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            //                params.gravity = Gravity.CENTER;
+            //                params.topMargin = 20;
+            //                frameLayout.addView(imageView, params);
+            //                viewGroup.addView(frameLayout, index, layoutParams);
+            //            }
+
+
             mMeasuredWidth = mTextView.getMeasuredWidth();
             mMeasuredHeight = mTextView.getMeasuredHeight();
             Log.e("onWindowFocusChanged", " mMeasuredWidth = " + mMeasuredWidth + "  mMeasuredHeight = " + mMeasuredHeight);
@@ -181,6 +582,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * onContentChange是在setContentView之后的回调
+     */
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+    }
+
+    /**
+     * onPostCreate方法发生在onRestoreInstanceState之后，onResume之前，他代表着界面数据已经完全恢复，就差显示出来与用户交互了。
+     * 在onStart方法被调用时这些操作尚未完成。
+     */
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
+    /**
+     * onPostResume是在Resume方法被完全执行之后的回调。
+     */
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -191,6 +617,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.e("TAG", "onPause: ");
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e(TAG, "onSaveInstanceState: ");
     }
 
     @Override
@@ -277,16 +709,16 @@ public class MainActivity extends AppCompatActivity {
     public void motion(View view) {
 
         Intent intent = new Intent(this, CreateWidget.class);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,222);
-        startActivityForResult(intent,3333);
-//        startActivity(new Intent(this, MotionLayoutActivity.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 222);
+        startActivityForResult(intent, 3333);
+        //        startActivity(new Intent(this, MotionLayoutActivity.class));
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==3333){
-            Log.e("=========", "onActivityResult: "+resultCode);
+        if (requestCode == 3333) {
+            Log.e("=========", "onActivityResult: " + resultCode);
         }
     }
 
@@ -295,7 +727,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.e(TAG, "dispatchTouchEvent: ");
-//        Thread.dumpStack();
+        //        Thread.dumpStack();
         return super.dispatchTouchEvent(ev);
     }
 
@@ -398,4 +830,51 @@ public class MainActivity extends AppCompatActivity {
         return success;
     }
 
+    /**
+     * 设置红点
+     *
+     * @param
+     */
+    private void setRedPoint(View iconView) {
+        ViewParent parent = iconView.getParent();
+        if (parent instanceof ViewGroup) {
+            ViewGroup group = ((ViewGroup) parent);
+            group.setClipToPadding(false);
+            group.setClipChildren(false);
+            //            int px = ViewUtil.dp2px(this, 6);
+            int px = 6;
+            group.setClipChildren(false);
+            group.setClipToPadding(false);
+            int index = group.indexOfChild(iconView);
+            ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();
+            group.removeView(iconView);
+            FrameLayout frameLayout = new FrameLayout(this);
+            frameLayout.setClipChildren(false);
+            frameLayout.setClipToPadding(false);
+            frameLayout.setId(iconView.getId());
+            group.addView(frameLayout, index, layoutParams);
+            frameLayout.addView(iconView);
+            ImageView imageView = new ImageView(this);
+            imageView.setBackground(ContextCompat.getDrawable(this, R.drawable.bitmap));
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.TOP | Gravity.END;
+            params.rightMargin = -(px / 2);
+            params.topMargin = -(px / 2);
+            frameLayout.addView(imageView, params);
+        }
+    }
+
+    public void tab(View view) {
+        startActivity(new Intent(this, TabLayoutActivity.class));
+    }
+
+    private FrameLayout.LayoutParams initLayoutParams() {
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = Gravity.BOTTOM | Gravity.END;
+        params.setMargins(0, params.topMargin, params.rightMargin, 500);
+        return params;
+    }
 }

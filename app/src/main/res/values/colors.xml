@@ -3,4 +3,30 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="pin_white">#ffffff</color>
+
+    <color name="icon_enabled">#D81B60</color>
+    <color name="icon_disabled">#40C4FF</color>
+
+    <color name="color_bg_theme">#161924</color>
+
+    <color name="text_disabled">#CCCCCC</color>
+
+    <color name="accent">#40C4FF</color>
+    <color name="translucent">#00000000</color>
+    <color name="color_light_blue">#00DDB6</color>
+
+    <color name="base_shallow_black">#818181</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffffff</color>
+
+    <color name="colorWhiteBg">#ffffff</color>
+    <color name="colorGrayBg">#f4f4f4</color>
+
+    <color name="rippleColor">#C0362E</color>
+    <color name="color_FF0041">#FF0041</color>
+    <color name="color_tag">#9B9B9B</color>
+    <color name="red">#ff0000</color>
+
 </resources>

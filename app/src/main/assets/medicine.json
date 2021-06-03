@@ -1,0 +1,74 @@
+{
+  "code": 1000,
+  "msg": "success",
+  "data": {
+    "hasReminder": true,
+    "reminderList": [
+      {
+        "timeClass": "05:00",
+        "list": [
+          {
+            "id": "e22fdbf132e8490cbcb05774cd8d3527",
+            "guid": "67fa77c0a329b20957156e5ed36a9d4d",
+            "medicineName": "测",
+            "remindList": "[{\"remindTime\":\"05:00\",\"checkRemind\":true,\"times\":1593464400000},{\"remindTime\":\"10:00\",\"checkRemind\":false,\"times\":1593482400000}]",
+            "remindTime": "05:00",
+            "dosageAdded": "2",
+            "unit": "粒",
+            "usedDrug": false
+          },
+          {
+            "id": "2a6814c090d04c89be6e98dda33849d1",
+            "guid": "67fa77c0a329b20957156e5ed36a9d4d",
+            "medicineName": "c",
+            "remindList": "[{\"remindTime\":\"05:00\",\"checkRemind\":true,\"times\":1593464400000}]",
+            "remindTime": "05:00",
+            "dosageAdded": "23",
+            "unit": "毫克",
+            "usedDrug": false
+          }
+        ]
+      },
+      {
+        "timeClass": "12:00",
+        "list": [
+          {
+            "id": "de466cc795fa4caa9c494d76ce29ead6",
+            "guid": "67fa77c0a329b20957156e5ed36a9d4d",
+            "medicineName": "a",
+            "remindList": "[{\"remindTime\":\"12:00\",\"checkRemind\":true,\"times\":1593489600000}]",
+            "remindTime": "12:00",
+            "dosageAdded": "2",
+            "unit": "克",
+            "usedDrug": false
+          },
+          {
+            "id": "05068e1fd0764e34b12e339d43929dff",
+            "guid": "67fa77c0a329b20957156e5ed36a9d4d",
+            "medicineName": "fg",
+            "remindList": "[{\"remindTime\":\"12:00\",\"checkRemind\":true,\"times\":1593489600000}]",
+            "remindTime": "12:00",
+            "dosageAdded": "22",
+            "unit": "克",
+            "usedDrug": false
+          }
+        ]
+      },
+      {
+        "timeClass": "17:33",
+        "list": [
+          {
+            "id": "6139a4991fbb4da2b0db71add4b8744b",
+            "guid": "67fa77c0a329b20957156e5ed36a9d4d",
+            "medicineName": "e",
+            "remindList": "[{\"remindTime\":\"17:33\",\"checkRemind\":true,\"times\":1593509580000}]",
+            "remindTime": "17:33",
+            "dosageAdded": "2",
+            "unit": "克",
+            "usedDrug": false
+          }
+        ]
+      }
+    ]
+  }
+}

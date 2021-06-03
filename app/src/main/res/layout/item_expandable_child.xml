@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="10dp">
+
+    <LinearLayout
+        android:id="@+id/ll_take_medicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/tv_expandable_child_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:text="12:00" />
+
+        <TextView
+            android:id="@+id/tv_expandable_child_drug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:lines="1"
+            android:maxWidth="140dp"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            tools:text="阿莫西林胶囊" />
+
+        <TextView
+            android:id="@+id/tv_expandable_child_drug_dosage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            tools:text="每次2粒" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_expand_child_confirm_take_medicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:minWidth="75dp"
+        android:paddingHorizontal="13dp"
+        android:paddingVertical="5dp"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:text="按时吃药"
+        tools:text="按时吃药" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tv_expand_child_confirm_take_medicine"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="6dp"
+        android:background="#fff4f9ff" />
+
+
+</RelativeLayout>

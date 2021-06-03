@@ -15,15 +15,16 @@ public class CustomScrollView extends ScrollView {
     private static final String TAG = "CustomScrollView";
 
     public CustomScrollView(Context context) {
-        super(context);
+        this(context,null);
     }
 
     public CustomScrollView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs,0);
     }
 
     public CustomScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+//        setVerticalScrollBarEnabled(false);
     }
 
     @Override

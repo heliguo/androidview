@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#22000000"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/RoundedStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/CircleStyle" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/CircleStyle"
+            app:strokeColor="@color/red"
+            app:strokeWidth="4dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/CutStyle"
+            app:strokeColor="@color/red"
+            app:strokeWidth="4dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/RhombusStyle"
+            app:strokeColor="@color/red"
+            app:strokeWidth="4dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/LeafStyle"
+            app:strokeColor="@color/red"
+            app:strokeWidth="4dp" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/SemicircleStyle"
+            app:strokeColor="@color/red"
+            app:strokeWidth="4dp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shape_iv8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/home1"
+            app:shapeAppearance="@style/HexagonStyle"
+            app:strokeColor="@color/red"
+            app:strokeWidth="4dp" />
+
+    </LinearLayout>
+
+
+</ScrollView>

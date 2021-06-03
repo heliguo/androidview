@@ -5,4 +5,55 @@
         <attr name="circle_color" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="CoordinatorTabLayout">
+        <attr name="contentScrim" format="color" />
+        <attr name="tabIndicatorColor" format="color" />
+        <attr name="tabTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TextFlowLayout">
+        <attr name="horizontalSpace" format="dimension" />
+        <attr name="verticalSpace" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PinView">
+        <attr name="pinBackground" format="reference"/>
+        <attr name="pinLength" format="integer"/>
+        <attr name="pinWidth" format="dimension"/>
+        <attr name="pinHeight" format="dimension"/>
+        <attr name="splitWidth" format="dimension"/>
+        <attr name="cursorVisible" format="boolean"/>
+        <attr name="password" format="boolean"/>
+        <attr name="forceKeyboard" format="boolean"/>
+        <attr name="hint" format="string"/>
+        <attr name="inputType"/>
+    </declare-styleable>
+    <attr name="inputType" format="enum">
+        <enum name="text" value="0"/>
+        <enum name="number" value="1"/>
+    </attr>
+
+    <declare-styleable name="SpreadView">
+        <!--中心圆颜色-->
+        <attr name="spread_center_color" format="color" />
+        <!--中心圆半径-->
+        <attr name="spread_radius" format="integer" />
+        <!--扩散圆颜色-->
+        <attr name="spread_spread_color" format="color" />
+        <!--扩散间距-->
+        <attr name="spread_distance" format="integer" />
+        <!--扩散最大半径-->
+        <attr name="spread_max_radius" format="integer" />
+        <!--扩散延迟间隔-->
+        <attr name="spread_delay_milliseconds" format="integer" />
+    </declare-styleable>
+
+    <attr name="a_in" format="float" />
+    <attr name="a_out" format="float" />
+    <attr name="x_in" format="float" />
+    <attr name="x_out" format="float" />
+    <attr name="y_in" format="float" />
+    <attr name="y_out" format="float" />
+
+
 </resources>

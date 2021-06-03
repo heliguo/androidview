@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_1" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_2" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_3" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_4" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_5" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_6" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_7" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_8" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_9" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_10" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_11" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_12" android:duration="10"/>-->
+<!--    <item android:drawable="@drawable/ic_icon_index_svg_13" android:duration="10"/>-->
+
+
+</animation-list>

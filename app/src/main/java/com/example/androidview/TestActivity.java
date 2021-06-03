@@ -1,8 +1,6 @@
 package com.example.androidview;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -10,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * @author lgh on 2020/9/4:11:58
+ * @author lgh on 2020/9/4 11:58
  * @description int 转 char[]
  */
 public class TestActivity extends AppCompatActivity {
@@ -61,6 +59,5 @@ public class TestActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void sendMsg(){
-    }
+
 }

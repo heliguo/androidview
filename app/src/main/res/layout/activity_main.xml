@@ -3,13 +3,333 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.example.androidview.spread.SpreadView2
+                android:id="@+id/spreadView2"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <com.example.androidview.spread.SpreadView
+                android:id="@+id/spreadView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="50dp" />
+
+        </LinearLayout>
+
+        <com.example.androidview.spread.PathLoadingView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/layout_manage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="layout_manage" />
+
+        <Button
+            android:id="@+id/shape_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="shape_imageview" />
+
+        <Button
+            android:id="@+id/transform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="transform" />
+
+        <Button
+            android:id="@+id/youth_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="youth_banner" />
+
+        <Button
+            android:id="@+id/water_bitmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="water_bitmap" />
+
+        <Button
+            android:id="@+id/RippleAnimationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RippleAnimationView" />
+
+        <Button
+            android:id="@+id/fast_blur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fast_blur and Android-Palette" />
+
+        <Button
+            android:id="@+id/disc_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="disc_view" />
+
+        <Button
+            android:id="@+id/virtual_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="virtual_layout" />
+
+        <Button
+            android:id="@+id/html_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="html_text" />
+
+        <Button
+            android:id="@+id/svg_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="svg_view" />
+
+        <Button
+            android:id="@+id/car_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="car_view" />
+
+        <Button
+            android:id="@+id/material_design_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="material_design_rv" />
+
+        <Button
+            android:id="@+id/material_design"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="material_design" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="tab"
+            android:text="tabLayout" />
+
+        <Button
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="toolbar" />
+
+        <Button
+            android:id="@+id/screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="screen auto adapter" />
+
+        <Button
+            android:id="@+id/splash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="splash" />
+
+        <Button
+            android:id="@+id/animator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="animator" />
+
+        <Button
+            android:id="@+id/event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="event" />
+
+        <Button
+            android:id="@+id/span_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="span_size" />
+
+        <Button
+            android:id="@+id/card_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="card_scale" />
+
+        <Button
+            android:id="@+id/item_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="item_helper" />
+
+        <Button
+            android:id="@+id/kotlin_coil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kotlin_coil" />
+
+        <Button
+            android:id="@+id/back_press"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="back_press" />
+
+        <Button
+            android:id="@+id/snap_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="snap_help" />
+
+        <Button
+            android:id="@+id/surface_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="surface_view" />
+
+        <Button
+            android:id="@+id/book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="book_page" />
+
+        <com.example.androidview.view.CustomRoundAngleImageView
+            android:id="@+id/CustomRoundAngleImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_test1" />
+
+        <Button
+            android:id="@+id/tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tab" />
+
+
+        <Button
+            android:id="@+id/expand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="expand" />
+
+        <Button
+            android:id="@+id/slide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="slide" />
+
+        <Button
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="notification" />
+
+        <Button
+            android:id="@+id/chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chart" />
+
+        <Button
+            android:id="@+id/realm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="realm" />
+
+        <Button
+            android:id="@+id/calendar_alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="calendar alert" />
+
+        <Button
+            android:id="@+id/calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="calendar" />
+
+
+        <LinearLayout
+            android:id="@+id/download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_shape"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:id="@+id/tv_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/float_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="float view" />
+
+        <com.example.androidview.countdowntimer.CustomCountTextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.example.androidview.countdowntimer.RxCustomCountTextView
+            android:id="@+id/rx_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/span"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="span" />
+
+        <blink
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_bright"
+                android:text="blink blink blink" />
+
+        </blink>
+
+
+        <Button
+            android:id="@+id/scratch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="scratch view" />
+
+
+        <com.example.androidview.ActivityProgressView
+            android:id="@+id/pro"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp" />
+
 
         <TextView
             android:id="@+id/test_draw_view"
@@ -71,6 +391,7 @@
             android:onClick="test"
             android:text="Test" />
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout"
             android:layout_width="match_parent"
@@ -81,17 +402,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="自定义提现（请输入20元以下金额）"
-                android:inputType="number"/>
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:hint="@string/app_name"
+            android:layout_height="wrap_content"/>
+
 
         <!--   recyclerview item animation   -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_rv"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutAnimation="@anim/anim_layout" />
-
 
 
     </LinearLayout>

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TabActivityStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--        <item name="android:windowBackground">@null</item>-->
+        <!--        <item name="android:windowDisablePreview">true</item>-->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -16,6 +26,276 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/TabTextAppearance</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <declare-styleable name="ScratchFrameLayout">
+        <!--蒙层的颜色-->
+        <attr name="maskColor" format="color|reference" />
+        <!--水印图片值-->
+        <attr name="watermark" format="reference" />
+        <!--擦除尺寸大小-->
+        <attr name="eraseSize" format="float" />
+        <!--最大擦除比例-->
+        <attr name="maxPercent" format="integer" />
+
+    </declare-styleable>
+
+    <declare-styleable name="CustomCountTextView">
+
+        <attr name="showType" format="enum">
+
+            <enum name="time" value="0" />
+            <enum name="num" value="1" />
+
+        </attr>
+
+
+    </declare-styleable>
+
+    <declare-styleable name="RxCustomCountTextView">
+
+        <attr name="rxCountType" format="enum">
+
+            <enum name="s" value="10" />
+            <enum name="ms" value="11" />
+
+        </attr>
+
+        <attr name="RxShowType" format="enum">
+
+            <enum name="time" value="20" />
+            <enum name="num" value="21" />
+
+        </attr>
+
+
+    </declare-styleable>
+
+
+    <string-array name="letter_list">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>W</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Y</item>
+        <item>Z</item>
+        <item>\#</item>
+    </string-array>
+
+    <declare-styleable name="TintableImageView">
+        <attr name="tint" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="TintableTextView">
+        <attr name="tints" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomRoundAngleImageView">
+        <attr name="radius" format="dimension" />
+        <attr name="left_top_radius" format="dimension" />
+        <attr name="right_top_radius" format="dimension" />
+        <attr name="right_bottom_radius" format="dimension" />
+        <attr name="left_bottom_radius" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="leftViewId" format="reference|integer" />
+        <attr name="rightViewId" format="reference|integer" />
+        <attr name="contentViewId" format="reference|integer" />
+    </declare-styleable>
+
+    <!-- ++++++++++++++++++      toolbar      +++++++++++++++++++           -->
+
+    <style name="Theme.Toolbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+
+    </style>
+
+    <style name="Theme.Toolbar.Title" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Toolbar.SubTitle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--    设置toolbar menu 弹出位置-->
+    <style name="Theme.Toolbar.Menu" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <!-- ++++++++++++++++++      toolbar      +++++++++++++++++++           -->
+
+
+    <style name="Material.Design" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <!--        menu菜单背景色          -->
+        <item name="android:itemBackground">@color/white</item>
+        <!--        menu菜单字体色          -->
+        <item name="android:textColorPrimary">@color/base_shallow_black</item>
+        <item name="overlapAnchor">false</item>
+
+    </style>
+
+
+    <style name="netease_toolbar_title" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="netease_toolbar_subtitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textColor">#eeeeee</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="neteasa_music_time_text_sytle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ccc</item>
+        <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="neteasa_music_time_seek_bar_sytle"
+        parent="Widget.AppCompat.SeekBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:thumb">@drawable/ic_seekbar_thumb</item>
+    </style>
+
+    <declare-styleable name="RippleAnimationView">
+        <attr name="ripple_anim_color" format="color" />
+        <attr name="ripple_anim_type" format="enum">
+            <enum name="fillRipple" value="0" />
+            <enum name="strokeRipple" value="1" />
+        </attr>
+        <attr name="radiu" format="integer"/>
+        <attr name="strokWidth" format="integer"/>
+    </declare-styleable>
+
+    <!--圆角或者圆形图片组件-->
+    <declare-styleable name="CircleImageView">
+        <attr name="ease_border_color" format="color" />
+        <attr name="ease_border_width" format="dimension" />
+        <attr name="ease_press_alpha" format="integer" />
+        <attr name="ease_press_color" format="color" />
+        <attr name="ease_radius" format="dimension" />
+        <attr name="es_shape_type" format="enum">
+            <enum name="none" value="0" />
+            <enum name="round" value="1" />
+            <enum name="rectangle" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <style name="RoundedStyle">
+
+        <item name="cornerFamily">rounded</item>
+
+        <item name="cornerSize">10dp</item>
+
+    </style>
+
+    <style name="CircleStyle">
+
+        <item name="cornerFamily">rounded</item>
+
+        <item name="cornerSize">50%</item>
+
+    </style>
+
+    <!--ShapeableImageView 切角 -->
+    <style name="CutStyle">
+
+        <item name="cornerFamily">cut</item>
+
+        <item name="cornerSize">10dp</item>
+
+    </style>
+
+    <!--ShapeableImageView 菱形 -->
+    <style name="RhombusStyle">
+
+        <item name="cornerFamily">cut</item>
+
+        <item name="cornerSize">50%</item>
+
+    </style>
+
+    <!--ShapeableImageView 叶子 -->
+
+    <style name="LeafStyle">
+
+        <item name="cornerFamily">rounded</item>
+
+        <item name="cornerSizeTopLeft">50%</item>
+
+        <item name="cornerSizeBottomRight">50%</item>
+
+    </style>
+
+    <!--ShapeableImageView 半圆 -->
+
+    <style name="SemicircleStyle">
+
+        <item name="cornerFamily">rounded</item>
+
+        <item name="cornerSizeTopLeft">50%</item>
+
+        <item name="cornerSizeTopRight">50%</item>
+
+    </style>
+
+    <!--ShapeableImageView 六边形 -->
+
+    <style name="HexagonStyle">
+
+        <item name="cornerFamily">cut</item>
+
+        <item name="cornerSizeTopLeft">50%</item>
+
+        <item name="cornerSizeTopRight">50%</item>
+
+        <item name="cornerSizeBottomLeft">50%</item>
+
+        <item name="cornerSizeBottomRight">50%</item>
+
     </style>
 
 </resources>

@@ -3,16 +3,36 @@
     package="com.example.androidview">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
+    <!--    日历权限    -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan|stateVisible">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".view.DispatchActivity" />
         <activity android:name=".MotionLayoutActivity" />
         <activity android:name=".animation.Rotate3dActivity" />
@@ -33,25 +53,74 @@
         </receiver>
 
         <activity android:name=".view.HorizontalScrollActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".windows.WindowsActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".rootview.CreateWidget"
+        <activity
+            android:name=".rootview.CreateWidget"
             android:theme="@style/TranslucentTheme">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+        <activity android:name=".worker.JobSchedulerActivity" />
+        <activity android:name=".worker.WorkerManagerActivity" />
+        <activity android:name=".activityresult.ActivityResultTestActivity" />
+        <activity
+            android:name=".TabLayout.TabLayoutActivity"
+            android:theme="@style/TabActivityStyle" />
+        <activity android:name=".scratch.ScratchActivity" />
+        <activity android:name=".hencoder.draw.animation_6_7.AnimationActivity" />
+        <activity android:name=".LiveDataActivity" />
+        <activity
+            android:name=".screenadapter.ScreenAutoActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".span.SpanActivity" />
+        <activity
+            android:name=".view.FloatViewActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".calendar.CalendarActivity" />
+        <activity android:name=".realm.RealmActivity" />
+        <activity android:name=".mpandroidchart.LineChartActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".slideBar.SlideBarActivity" />
+        <activity android:name=".expandrecyclerview.impl.ExpandableRecyclerviewActivity" />
+        <activity android:name=".smarttablayout.SmartTabLayoutActivity" />
+        <activity android:name=".bookpage.BookPageActivity" />
+        <activity android:name=".pageview.CurlActivity" />
+        <activity android:name=".surfaceview.SurfaceViewActivity" />
+        <activity android:name=".jetpack.LifecycleOwnerActivity" />
+        <activity android:name=".recyclerview.snaphelper.SnapHelperActivity" />
+        <activity android:name=".backpress.BackPressActivity" />
+        <activity android:name=".coil.CoilActivity" />
+        <activity android:name=".recyclerview.itemtouchhelper.ItemHelperActivity" />
+        <activity android:name=".recyclerview.cardscale.CardScaleActivity" />
+        <activity android:name=".recyclerview.spansize.SpanSizeActivity" />
+        <activity android:name=".event.EventActivity" />
+        <activity android:name=".animator.AnimatorActivity" />
+        <activity android:name=".splash.SplashActivity" />
+        <activity android:name=".toobar.ToolbarActivity"/>
+        <activity android:name=".materialdesign.MaterialDesignActivity"
+            android:theme="@style/Material.Design"/>
+        <activity android:name=".materialdesign.RecyclerviewActivity" />
+        <activity android:name=".carview.CarActivity" />
+        <activity android:name=".svg.SVGActivity" />
+        <activity android:name=".viirtuallayout.VirtualLayoutActivity" />
+        <activity android:name=".htmltextview.HtmlTextViewActivity" />
+        <activity android:name=".discview.DiscViewActivity" />
+        <activity android:name=".fastblur.FastBlurActivity" />
+        <activity android:name=".spread.RippleAnimationViewActivity" />
+        <activity android:name=".watermark.WaterBitmapActivity" />
+        <activity android:name=".bytedance.ByteDanceActivity" />
+        <activity android:name=".banner.YouthBannerActivity" />
+        <activity android:name=".transform.TransformActivity" />
+        <activity android:name=".shapeableImageview.ShapeableImageViewActivity" />
+        <activity android:name=".recyclerview.layoutmanager.MeiStackLayoutManagerActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
+
+
     </application>
 
 </manifest>

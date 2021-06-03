@@ -1,21 +1,23 @@
 package com.example.androidview;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ViewFlipper;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author lgh
- * @description ViewFlipper示例
+ * @description ViewFlipper示例 渐变颜色状态栏
  */
 public class ViewFlipperActivity extends AppCompatActivity {
 
     private static final String TAG = "ViewFlipperActivity";
 
-    ViewFlipper mViewFlipper;
+    ViewFlippers mViewFlipper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +28,12 @@ public class ViewFlipperActivity extends AppCompatActivity {
 
     private void initView() {
         mViewFlipper = findViewById(R.id.view_filpper);
-        int a = 3;
-        for (int i = 0; i < a; i++) {
-            final int position = i;
-            View view = getLayoutInflater().inflate(R.layout.item_viewflipper, null);
-            view.setOnClickListener(v -> Log.e(TAG, "onClick: " + position));
-            mViewFlipper.addView(view);
-        }
         mViewFlipper.setFlipInterval(2000);
         mViewFlipper.startFlipping();
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
