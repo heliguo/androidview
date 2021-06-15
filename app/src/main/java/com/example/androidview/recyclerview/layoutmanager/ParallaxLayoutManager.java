@@ -13,17 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
 
     /**
-     * item 向右移动
-     */
-    private final static int SCROLL_TO_RIGHT = 1;
-
-    /**
-     * item 向左移动
-     */
-    private final static int SCROLL_TO_LEFT = 2;
-
-
-    /**
      * 滑动总偏移量
      */
     private int mOffsetAll = 0;
@@ -42,7 +31,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
      * Item间隔与item宽的比例
      */
     @FloatRange(from = 0.0f, to = 1.0f)
-    private float mIntervalRatio = 0.5f;
+    private float mIntervalRatio = 0.65f;
 
     /**
      * 起始ItemX坐标
@@ -112,7 +101,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
         }
 
         detachAndScrapAttachedViews(recycler); //在布局之前，将所有的子View先Detach掉，放入到Scrap缓存中
-        layoutItems(recycler, state, SCROLL_TO_LEFT);
+        layoutItems(recycler, state, 0);
     }
 
     @Override
@@ -185,8 +174,35 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
                 frame.top,
                 frame.right - mOffsetAll,
                 frame.bottom);
-        child.setScaleX(computeScale(frame.left - mOffsetAll)); //缩放
-        child.setScaleY(computeScale(frame.left - mOffsetAll)); //缩放
+        float scale = computeScale(frame.left - mOffsetAll);
+        child.setScaleX(scale); //缩放
+        child.setScaleY(scale); //缩放
+        int position = getPosition(child);
+//        if (position == getCenterPosition()) {
+//            if (dx == 0) {
+//                child.setTranslationX(0);
+//            } else if (dx > 0) {
+//                child.setTranslationX(-getIntervalDistance() * (1 - scale));
+//            } else {
+//                child.setTranslationX(getIntervalDistance() * (1 - scale));
+//            }
+//        } else if (position <= getCenterPosition()) {
+//            if (dx == 0) {
+//                child.setTranslationX(0);
+//            } else if (dx > 0) {
+//                child.setTranslationX(-getIntervalDistance() * (1 - scale));
+//            } else {
+//                child.setTranslationX(getIntervalDistance() * (1 - scale));
+//            }
+//        } else {
+//            if (dx == 0) {
+//                child.setTranslationX(0);
+//            } else if (dx > 0) {
+//                child.setTranslationX(-getIntervalDistance() * (1 - scale));
+//            } else {
+//                child.setTranslationX(getIntervalDistance() * (1 - scale));
+//            }
+//        }
 
     }
 
