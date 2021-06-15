@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.example.androidview.recyclerview.layoutmanager.ParallaxRecyclerView
         android:id="@+id/rv_layout_manager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginTop="100dp">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    </com.example.androidview.recyclerview.layoutmanager.ParallaxRecyclerView>
 
 </LinearLayout>

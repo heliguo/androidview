@@ -64,6 +64,9 @@ public class TransformActivity extends BaseActivity {
                     Log.e("TAGTAGTAGTAGTAG", "-------: "+position );
                     view.setAlpha(position+1);
                     view.setTranslationX(view.getTranslationX()+position*view.getWidth());
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        view.setTranslationZ(1);
+                    }
                 }else {
                     Log.e("TAGTAGTAGTAGTAG", "++++++++: "+position );
                 }

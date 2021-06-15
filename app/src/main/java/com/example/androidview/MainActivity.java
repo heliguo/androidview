@@ -128,16 +128,16 @@ public class MainActivity extends BaseActivity {
         List<Class> classes = new ArrayList<>();
         classes.add(RippleAnimationViewActivity.class);
         classes.add(FastBlurActivity.class);
-        FloatViewUtils.getInstance()
-                .layout(R.layout.layout_float_view)
-                .ignore(classes)
-                .layoutParams(initLayoutParams())
-                .listener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
-                    }
-                }).show(this);
+//        FloatViewUtils.getInstance()
+//                .layout(R.layout.layout_float_view)
+//                .ignore(classes)
+//                .layoutParams(initLayoutParams())
+//                .listener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).show(this);
 
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("1", "2");
