@@ -125,7 +125,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
             travel = (int) (getMaxOffset() - mOffsetAll);
         }
         mOffsetAll += travel; //累计偏移量
-        layoutItems(recycler, state, dx >= 0 ? SCROLL_TO_LEFT : SCROLL_TO_RIGHT);
+        layoutItems(recycler, state, dx);
         return travel;
     }
 
@@ -136,7 +136,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
      * <p>2，再绘制可以显示在屏幕里面的item
      */
     private void layoutItems(RecyclerView.Recycler recycler,
-                             RecyclerView.State state, int scrollDirection) {
+                             RecyclerView.State state, int dx) {
         if (state == null || state.isPreLayout())
             return;
 
@@ -151,7 +151,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
                 removeAndRecycleView(child, recycler); //回收滑出屏幕的View
                 mHasAttachedItems.delete(position);
             } else { //Item还在显示区域内，更新滑动后Item的位置
-                layoutItem(child, rect); //更新Item位置
+                layoutItem(child, rect, dx); //更新Item位置
                 mHasAttachedItems.put(position, true);
             }
         }
@@ -162,12 +162,12 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
                     !mHasAttachedItems.get(i)) { //重新加载可见范围内的Item
                 View scrap = recycler.getViewForPosition(i);
                 measureChildWithMargins(scrap, 0, 0);
-                if (scrollDirection == SCROLL_TO_RIGHT) { //item 向右滚动，新增的Item需要添加在最前面
+                if (dx < 0) { //item 向右滚动，新增的Item需要添加在最前面
                     addView(scrap, 0);
                 } else { //item 向左滚动，新增的item要添加在最后面
                     addView(scrap);
                 }
-                layoutItem(scrap, rect); //将这个Item布局出来
+                layoutItem(scrap, rect, dx); //将这个Item布局出来
                 mHasAttachedItems.put(i, true);
             }
         }
@@ -179,7 +179,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
      * @param child 要布局的Item
      * @param frame 位置信息
      */
-    private void layoutItem(View child, Rect frame) {
+    private void layoutItem(View child, Rect frame, int dx) {
         layoutDecorated(child,
                 frame.left - mOffsetAll,
                 frame.top,
