@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.FloatRange;
-import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
@@ -32,6 +32,12 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
      */
     @FloatRange(from = 0.0f, to = 1.0f)
     private float mIntervalRatio = 0.65f;
+
+    /**
+     * 调节缩放比例
+     */
+    @FloatRange(from = 0.0f, to = 1.0f)
+    private float mScaleRatio = 0f;
 
     /**
      * 起始ItemX坐标
@@ -62,7 +68,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
     @Override
     public void onAttachedToWindow(RecyclerView view) {
         super.onAttachedToWindow(view);
-        new LinearSnapHelper().attachToRecyclerView(view);
+        new PagerSnapHelper().attachToRecyclerView(view);
     }
 
     @Override
@@ -83,8 +89,8 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
         //计算测量布局的宽高
         mDecoratedChildWidth = getDecoratedMeasuredWidth(scrap);
         mDecoratedChildHeight = getDecoratedMeasuredHeight(scrap);
-        mStartX = Math.round((getHorizontalSpace() - mDecoratedChildWidth) * 1.0f / 2);
-        mStartY = Math.round((getVerticalSpace() - mDecoratedChildHeight) * 1.0f / 2);
+        mStartX = Math.round((getHorizontalSpace() - mDecoratedChildWidth) / 2f);
+        mStartY = Math.round((getVerticalSpace() - mDecoratedChildHeight) / 2f);
 
         float offset = mStartX;
 
@@ -115,6 +121,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
         }
         mOffsetAll += travel; //累计偏移量
         layoutItems(recycler, state, dx);
+
         return travel;
     }
 
@@ -177,33 +184,6 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
         float scale = computeScale(frame.left - mOffsetAll);
         child.setScaleX(scale); //缩放
         child.setScaleY(scale); //缩放
-        int position = getPosition(child);
-//        if (position == getCenterPosition()) {
-//            if (dx == 0) {
-//                child.setTranslationX(0);
-//            } else if (dx > 0) {
-//                child.setTranslationX(-getIntervalDistance() * (1 - scale));
-//            } else {
-//                child.setTranslationX(getIntervalDistance() * (1 - scale));
-//            }
-//        } else if (position <= getCenterPosition()) {
-//            if (dx == 0) {
-//                child.setTranslationX(0);
-//            } else if (dx > 0) {
-//                child.setTranslationX(-getIntervalDistance() * (1 - scale));
-//            } else {
-//                child.setTranslationX(getIntervalDistance() * (1 - scale));
-//            }
-//        } else {
-//            if (dx == 0) {
-//                child.setTranslationX(0);
-//            } else if (dx > 0) {
-//                child.setTranslationX(-getIntervalDistance() * (1 - scale));
-//            } else {
-//                child.setTranslationX(getIntervalDistance() * (1 - scale));
-//            }
-//        }
-
     }
 
     /**
@@ -265,7 +245,12 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
      * @return 缩放系数
      */
     private float computeScale(int x) {
-        float scale = 1 - Math.abs(x - mStartX) * 1.0f / Math.abs(mStartX + mDecoratedChildWidth / mIntervalRatio);
+        float scale;
+        if (mScaleRatio == 0) {
+            scale = 1 - Math.abs(x - mStartX) * 1.0f / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
+        } else {
+            scale = 1 - Math.abs(x - mStartX) * 1.0f / Math.abs(mStartX + mDecoratedChildWidth / mScaleRatio);
+        }
         if (scale < 0)
             scale = 0;
         if (scale > 1)
@@ -277,7 +262,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
     /**
      * 获取Item间隔
      */
-    private int getIntervalDistance() {
+    public int getIntervalDistance() {
         return Math.round(mDecoratedChildWidth * mIntervalRatio);
     }
 

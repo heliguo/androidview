@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidview.BaseActivity;
@@ -37,7 +38,8 @@ public class MeiStackLayoutManagerActivity extends BaseActivity {
 
         mRecyclerView = findViewById(R.id.rv_layout_manager);
         // new StackLayoutManager(this,-56) 堆叠模式
-        mRecyclerView.setLayoutManager(new ParallaxLayoutManager());
+        ParallaxLayoutManager parallaxLayoutManager = new ParallaxLayoutManager();
+        mRecyclerView.setLayoutManager(parallaxLayoutManager);
 
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 18; i++) {

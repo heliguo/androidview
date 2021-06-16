@@ -2,6 +2,7 @@ package com.example.androidview.recyclerview.layoutmanager;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,15 +17,18 @@ import org.jetbrains.annotations.NotNull;
  */
 public class ParallaxRecyclerView extends RecyclerView {
 
+    private float mDownX;
+
+
     public ParallaxRecyclerView(@NonNull @NotNull Context context) {
-        this(context,null);
+        this(context, null);
     }
 
-    public ParallaxRecyclerView(@NonNull @NotNull Context context, @Nullable  AttributeSet attrs) {
-        this(context, attrs,0);
+    public ParallaxRecyclerView(@NonNull @NotNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    public ParallaxRecyclerView(@NonNull @NotNull Context context, @Nullable  AttributeSet attrs, int defStyleAttr) {
+    public ParallaxRecyclerView(@NonNull @NotNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -64,6 +68,24 @@ public class ParallaxRecyclerView extends RecyclerView {
 
         return order;
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mDownX = ev.getX();
+                getParent().requestDisallowInterceptTouchEvent(true); //设置父类不拦截滑动事件
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //如果是滑动到了最前和最后，开放父类滑动事件拦截
+                //滑动到中间，设置父类不拦截滑动事件
+                getParent().requestDisallowInterceptTouchEvent((!(ev.getX() > mDownX) || getParallaxLayoutManager().getCenterPosition() != 0) &&
+                        (!(ev.getX() < mDownX) || getParallaxLayoutManager().getCenterPosition() != getParallaxLayoutManager().getItemCount() - 1));
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
 
     /**
      * 获取LayoutManger，并强制转换为 ParallaxLayoutManager
