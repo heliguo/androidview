@@ -2,15 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/view"
+        android:text="哈哈哈哈"
+        android:textSize="16sp"
+        android:textColor="@color/red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/image_c"
+        android:text="哈哈哈哈"
+        android:textSize="16sp"
+        android:textColor="@color/upsdk_blue_text_007dff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

@@ -59,6 +59,7 @@ import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewAct
 import com.example.androidview.fastblur.FastBlurActivity;
 import com.example.androidview.floatview.FloatViewUtils;
 import com.example.androidview.guideview.GuideViewHelper;
+import com.example.androidview.hencoder.draw.animation_6_7.AnimationActivity;
 import com.example.androidview.htmltextview.HtmlTextViewActivity;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
 import com.example.androidview.materialdesign.RecyclerviewActivity;
@@ -105,6 +106,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.xml.datatype.DatatypeConstants;
 
 /**
  * @author lgh
@@ -163,6 +166,15 @@ public class MainActivity extends BaseActivity {
         labels.add("不可扩散");
         WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
         WaterMarkUtils.getInstance().waterMarker(this, drawable);
+
+        mBinding.progress.setCurrentProgress(0);
+
+        mBinding.layoutAnimate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AnimationActivity.class));
+            }
+        });
 
         mBinding.layoutManage.setOnClickListener(new View.OnClickListener() {
             @Override

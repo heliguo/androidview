@@ -47,7 +47,7 @@ public class AnimationActivity extends AppCompatActivity {
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         PropertyValuesHolder holder1 = PropertyValuesHolder.ofFloat("scaleX", 1);
-        PropertyValuesHolder holder2 = PropertyValuesHolder.ofFloat("scaleY", 1);
+        PropertyValuesHolder holder2 = PropertyValuesHolder.ofFloat("scaleY", 2);
         PropertyValuesHolder holder3 = PropertyValuesHolder.ofFloat("alpha", 1);
 
         ObjectAnimator animator2 = ObjectAnimator.ofPropertyValuesHolder(mBinding.view, holder1, holder2, holder3);
@@ -63,6 +63,7 @@ public class AnimationActivity extends AppCompatActivity {
         PropertyValuesHolder holder = PropertyValuesHolder.ofKeyframe("progress", keyframe1, keyframe2, keyframe3);
 
         ObjectAnimator animator3 = ObjectAnimator.ofPropertyValuesHolder(mBinding.view, holder);
+        animator3.setDuration(3000);
         animator3.start();
 
         //view 黑白处理
