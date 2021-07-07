@@ -1,7 +1,6 @@
 package com.example.androidview.recyclerview.layoutmanager;
 
 import android.graphics.Rect;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -59,6 +58,8 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
      * 记录Item是否出现过屏幕且还没有回收。true表示出现过屏幕上，并且还没被回收
      */
     private final SparseBooleanArray mHasAttachedItems = new SparseBooleanArray();
+
+    private int mState;
 
 
     @Override
@@ -124,6 +125,8 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
         mOffsetAll += travel; //累计偏移量
         layoutItems(recycler, state, dx);
 
+        mState = Integer.compare(travel, 0);
+
         return travel;
     }
 
@@ -179,34 +182,48 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
      */
     private void layoutItem(View child, Rect frame, int dx, int index) {
         float scale = computeScale(frame.left - mOffsetAll);
-        if (index == 1) {
-            Log.e("TAGTAGTAGTAGTAG", "layoutItem: 1  " + scale);
-        } else if (index == 0) {
-            Log.e("TAGTAGTAGTAGTAG", "layoutItem: 0  " + scale);
-        } else if (index == 2) {
-            Log.e("TAGTAGTAGTAGTAG", "layoutItem: 2  " + scale);
-        }
         int center = getCenterPosition();
         layoutDecorated(child,
                 frame.left - mOffsetAll,
                 frame.top,
                 frame.right - mOffsetAll,
                 frame.bottom);
-//        if (dx < 0) {//right
-//            if (index >= center) {
-//                child.setTranslationX(getTranslateX(scale));
-//            } else {
-//                child.setTranslationX(0);
-//            }
-//        } else if (dx > 0) {
-//            if (index <= center) {
-//                child.setTranslationX(-getTranslateX(scale));
-//            } else {
-//                child.setTranslationX(0);
-//            }
-//        } else {
-//            child.setTranslationX(0);
-//        }
+        if (index == center) {
+            if (dx > 0) {
+                child.setTranslationX(-getTranslateX(scale) + (1 - scale) * mDecoratedChildWidth);
+            } else if (dx < 0) {
+                child.setTranslationX(getTranslateX(scale) - (1 - scale) * mDecoratedChildWidth);
+            }else {
+                child.setTranslationX(0);
+            }
+        } else if (index > center) {
+            if (dx > 0) {
+                child.setTranslationX(0);
+            } else {
+                child.setTranslationX(getTranslateX(scale) - (1 - scale) * mDecoratedChildWidth);
+            }
+        } else {
+            if (dx <= 0) {
+                child.setTranslationX(0);
+            } else {
+                child.setTranslationX(-getTranslateX(scale) + (1 - scale) * mDecoratedChildWidth);
+            }
+        }
+        //        if (dx < 0) {//right
+        //            if (index >= center) {
+        //                child.setTranslationX(getTranslateX(scale) - (1 - scale) * mDecoratedChildWidth);
+        //            } else {
+        //                child.setTranslationX(0);
+        //            }
+        //        } else if (dx > 0) {
+        //            if (index <= center) {
+        //                child.setTranslationX(-getTranslateX(scale) + (1 - scale) * mDecoratedChildWidth);
+        //            } else {
+        //                child.setTranslationX(0);
+        //            }
+        //        } else {
+        //            child.setTranslationX(0);
+        //        }
         child.setScaleX(scale); //缩放
         child.setScaleY(scale); //缩放
     }
@@ -219,7 +236,7 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
         float mid = (1 + min) / 2;
         int b = mDecoratedChildWidth - getIntervalDistance();
         float c = b / (1 - mid);
-        return Math.abs(b - c * Math.abs(scale - mid)) - (1 - scale) * mDecoratedChildWidth;
+        return Math.abs(b - c * Math.abs(scale - mid));
 
     }
 
