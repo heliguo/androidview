@@ -179,35 +179,47 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
      */
     private void layoutItem(View child, Rect frame, int dx, int index) {
         float scale = computeScale(frame.left - mOffsetAll);
+        if (index == 1) {
+            Log.e("TAGTAGTAGTAGTAG", "layoutItem: 1  " + scale);
+        } else if (index == 0) {
+            Log.e("TAGTAGTAGTAGTAG", "layoutItem: 0  " + scale);
+        } else if (index == 2) {
+            Log.e("TAGTAGTAGTAGTAG", "layoutItem: 2  " + scale);
+        }
+        int center = getCenterPosition();
         layoutDecorated(child,
                 frame.left - mOffsetAll,
                 frame.top,
                 frame.right - mOffsetAll,
                 frame.bottom);
-        if (index == getCenterPosition()) {
-            Log.e("TAGTAGTAGTAGTAG", "layoutItem: " + scale);
-            Log.e("TAGTAGTAGTAGTAG", "layoutItem: " + getTranslateX(1 - scale));
-        }
-        if (dx < 0) {
-            child.setTranslationX(-getTranslateX(1 - scale));
-        } else if (dx > 0) {
-            child.setTranslationX(getTranslateX(1 - scale));
-        } else {
-            child.setTranslationX(0);
-        }
-
+//        if (dx < 0) {//right
+//            if (index >= center) {
+//                child.setTranslationX(getTranslateX(scale));
+//            } else {
+//                child.setTranslationX(0);
+//            }
+//        } else if (dx > 0) {
+//            if (index <= center) {
+//                child.setTranslationX(-getTranslateX(scale));
+//            } else {
+//                child.setTranslationX(0);
+//            }
+//        } else {
+//            child.setTranslationX(0);
+//        }
         child.setScaleX(scale); //缩放
         child.setScaleY(scale); //缩放
     }
 
     private float getTranslateX(float scale) {
-        float min = getIntervalDistance() / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
-        if (scale < 0 || scale > min) {
+        float min = 1 - getIntervalDistance() / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
+        if (scale < min || scale > 1) {
             return 0;
         }
-        float mid = min / 2;
-        float c = getIntervalDistance() / (min - mid) / (min - mid);
-        return getIntervalDistance() - c * (scale - mid) * (scale - mid);
+        float mid = (1 + min) / 2;
+        int b = mDecoratedChildWidth - getIntervalDistance();
+        float c = b / (1 - mid);
+        return Math.abs(b - c * Math.abs(scale - mid)) - (1 - scale) * mDecoratedChildWidth;
 
     }
 
@@ -271,10 +283,14 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
      */
     private float computeScale(int x) {
         float scale;
+        float min = 1 - getIntervalDistance() / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
         if (mScaleRatio == 0) {
             scale = 1 - Math.abs(x - mStartX) * 1.0f / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
         } else {
             scale = 1 - Math.abs(x - mStartX) * 1.0f / Math.abs(mStartX + mDecoratedChildWidth / mScaleRatio);
+        }
+        if (scale < min) {
+            return min;
         }
         if (scale < 0)
             scale = 0;
