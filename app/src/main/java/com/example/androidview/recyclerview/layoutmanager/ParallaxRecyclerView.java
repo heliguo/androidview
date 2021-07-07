@@ -40,7 +40,7 @@ public class ParallaxRecyclerView extends RecyclerView {
 
     @Override
     public void setLayoutManager(LayoutManager layout) {
-        if (!(layout instanceof ParallaxLayoutManager)) {
+        if (!(layout instanceof ParallaxLayoutManager3)) {
             throw new IllegalArgumentException("The layout manager must be ParallaxLayoutManager");
         }
         super.setLayoutManager(layout);
@@ -90,7 +90,7 @@ public class ParallaxRecyclerView extends RecyclerView {
     /**
      * 获取LayoutManger，并强制转换为 ParallaxLayoutManager
      */
-    public ParallaxLayoutManager getParallaxLayoutManager() {
-        return ((ParallaxLayoutManager) getLayoutManager());
+    public ParallaxLayoutManager3 getParallaxLayoutManager() {
+        return ((ParallaxLayoutManager3) getLayoutManager());
     }
 }

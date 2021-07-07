@@ -38,7 +38,7 @@ public class MeiStackLayoutManagerActivity extends BaseActivity {
 
         mRecyclerView = findViewById(R.id.rv_layout_manager);
         // new StackLayoutManager(this,-56) 堆叠模式
-        ParallaxLayoutManager parallaxLayoutManager = new ParallaxLayoutManager();
+        ParallaxLayoutManager3 parallaxLayoutManager = new ParallaxLayoutManager3();
         mRecyclerView.setLayoutManager(parallaxLayoutManager);
 
         List<String> list = new ArrayList<>();

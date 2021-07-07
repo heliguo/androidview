@@ -5,8 +5,6 @@ package com.example.androidview;
  * @description
  */
 
-import android.util.Base64;
-
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
@@ -37,6 +35,7 @@ public class CreateToken {
     private static final String ENCODING = "UTF-8";
     private static String token = null;
     private static long expireTime = 0;
+
     /**
      * 获取时间戳
      * 必须符合ISO8601规范，并需要使用UTC时间，时区为+0。
@@ -50,6 +49,7 @@ public class CreateToken {
         df.setTimeZone(new SimpleTimeZone(0, TIME_ZONE));
         return df.format(nowDate);
     }
+
     /**
      * 获取UUID
      */
@@ -57,6 +57,7 @@ public class CreateToken {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
+
     /**
      * URL编码
      * 使用UTF-8字符集按照RFC3986规则编码请求参数和参数取值。
@@ -65,13 +66,14 @@ public class CreateToken {
         return value != null ? URLEncoder.encode(value, URL_ENCODING).replace("+", "%20")
                 .replace("*", "%2A").replace("%7E", "~") : null;
     }
+
     /***
      * 将参数排序后，进行规范化设置，组合成请求字符串。
      * @param queryParamsMap   所有请求参数
      * @return 规范化的请求字符串
      */
-    public static String canonicalizedQuery( Map<String, String> queryParamsMap) {
-        String[] sortedKeys = queryParamsMap.keySet().toArray(new String[] {});
+    public static String canonicalizedQuery(Map<String, String> queryParamsMap) {
+        String[] sortedKeys = queryParamsMap.keySet().toArray(new String[]{});
         Arrays.sort(sortedKeys);
         String queryString = null;
         try {
@@ -89,6 +91,7 @@ public class CreateToken {
         }
         return queryString;
     }
+
     /***
      * 构造签名字符串
      * @param method       HTTP请求的方法
@@ -113,6 +116,7 @@ public class CreateToken {
         }
         return stringToSign;
     }
+
     /***
      * 计算签名
      * @param stringToSign      签名字符串
@@ -127,7 +131,7 @@ public class CreateToken {
                     ALGORITHM_NAME
             ));
             byte[] signData = mac.doFinal(stringToSign.getBytes(ENCODING));
-//            String signBase64 = Base64.encodeToString(signData, Base64.DEFAULT);
+            //            String signBase64 = Base64.encodeToString(signData, Base64.DEFAULT);
             String signBase64 = DatatypeConverter.printBase64Binary(signData);
             System.out.println("计算的得到的签名：" + signBase64);
             String signUrlEncode = percentEncode(signBase64);
@@ -141,6 +145,7 @@ public class CreateToken {
             throw new IllegalArgumentException(e.toString());
         }
     }
+
     /***
      * 发送HTTP GET请求，获取token和有效期时间戳。
      * @param queryString 请求参数
@@ -168,17 +173,15 @@ public class CreateToken {
             String result = response.body().string();
             if (response.isSuccessful()) {
                 ALiToken aLiToken = new Gson().fromJson(result, ALiToken.class);
-//                JSONObject rootObj = JSON.parseObject(result);
-//                JSONObject tokenObj = rootObj.getJSONObject("Token");
+                //                JSONObject rootObj = JSON.parseObject(result);
+                //                JSONObject tokenObj = rootObj.getJSONObject("Token");
                 if (aLiToken != null) {
                     token = aLiToken.getToken().getId();
                     expireTime = aLiToken.getToken().getExpireTime();
-                }
-                else{
+                } else {
                     System.err.println("提交获取Token请求失败: " + result);
                 }
-            }
-            else {
+            } else {
                 System.err.println("提交获取Token请求失败: " + result);
             }
             response.close();
@@ -186,11 +189,12 @@ public class CreateToken {
             e.printStackTrace();
         }
     }
+
     public static void main(String args[]) {
-//        if (args.length < 2) {
-//            System.err.println("CreateTokenDemo need params: <AccessKey Id> <AccessKey Secret>");
-//            System.exit(-1);
-//        }
+        //        if (args.length < 2) {
+        //            System.err.println("CreateTokenDemo need params: <AccessKey Id> <AccessKey Secret>");
+        //            System.exit(-1);
+        //        }
         String accessKeyId = "LTAI5tJovrTHPBWxDxgzBe5L";
         String accessKeySecret = "m3CBt0ixAQiG1XczTvRPiPNOMlRcPI";
         System.out.println(getISO8601Time(new Date()));

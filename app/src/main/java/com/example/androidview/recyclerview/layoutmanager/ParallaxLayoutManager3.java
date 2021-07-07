@@ -1,6 +1,7 @@
 package com.example.androidview.recyclerview.layoutmanager;
 
 import android.graphics.Rect;
+import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -10,10 +11,7 @@ import androidx.annotation.FloatRange;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * 正常 20210707
- */
-public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
+public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
 
     /**
      * 滑动总偏移量
@@ -103,6 +101,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
             if (frame == null) {
                 frame = new Rect();
             }
+            //Math.abs(x - mStartX) * 1.0f / Math.abs(mStartX + mDecoratedChildWidth / mScaleRatio)
             frame.set(Math.round(offset), mStartY, Math.round(offset + mDecoratedChildWidth), mStartY + mDecoratedChildHeight);
             mAllItemFrames.put(i, frame);
             mHasAttachedItems.put(i, false);
@@ -150,7 +149,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
                 removeAndRecycleView(child, recycler); //回收滑出屏幕的View
                 mHasAttachedItems.delete(position);
             } else { //Item还在显示区域内，更新滑动后Item的位置
-                layoutItem(child, rect, dx); //更新Item位置
+                layoutItem(child, rect, dx, i); //更新Item位置
                 mHasAttachedItems.put(position, true);
             }
         }
@@ -166,7 +165,7 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
                 } else { //item 向左滚动，新增的item要添加在最后面
                     addView(scrap);
                 }
-                layoutItem(scrap, rect, dx); //将这个Item布局出来
+                layoutItem(scrap, rect, dx, i); //将这个Item布局出来
                 mHasAttachedItems.put(i, true);
             }
         }
@@ -178,18 +177,39 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
      * @param child 要布局的Item
      * @param frame 位置信息
      */
-    private void layoutItem(View child, Rect frame, int dx) {
+    private void layoutItem(View child, Rect frame, int dx, int index) {
+        float scale = computeScale(frame.left - mOffsetAll);
         layoutDecorated(child,
                 frame.left - mOffsetAll,
                 frame.top,
                 frame.right - mOffsetAll,
                 frame.bottom);
-        float scale = computeScale(frame.left - mOffsetAll);
+        if (index == getCenterPosition()) {
+            Log.e("TAGTAGTAGTAGTAG", "layoutItem: " + scale);
+            Log.e("TAGTAGTAGTAGTAG", "layoutItem: " + getTranslateX(1 - scale));
+        }
+        if (dx < 0) {
+            child.setTranslationX(-getTranslateX(1 - scale));
+        } else if (dx > 0) {
+            child.setTranslationX(getTranslateX(1 - scale));
+        } else {
+            child.setTranslationX(0);
+        }
+
         child.setScaleX(scale); //缩放
         child.setScaleY(scale); //缩放
     }
 
+    private float getTranslateX(float scale) {
+        float min = getIntervalDistance() / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
+        if (scale < 0 || scale > min) {
+            return 0;
+        }
+        float mid = min / 2;
+        float c = getIntervalDistance() / (min - mid) / (min - mid);
+        return getIntervalDistance() - c * (scale - mid) * (scale - mid);
 
+    }
 
     /**
      * 动态获取Item的位置信息
@@ -278,6 +298,8 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
     public int getFirstVisiblePosition() {
         Rect displayFrame = new Rect(mOffsetAll, 0, mOffsetAll + getHorizontalSpace(), getVerticalSpace());
         int cur = getCenterPosition();
+        if (cur == 0)
+            return cur;
         for (int i = cur - 1; ; i--) {
             Rect rect = getFrame(i);
             if (rect.left <= displayFrame.left) {
@@ -293,6 +315,9 @@ public class ParallaxLayoutManager extends RecyclerView.LayoutManager {
     public int getLastVisiblePosition() {
         Rect displayFrame = new Rect(mOffsetAll, 0, mOffsetAll + getHorizontalSpace(), getVerticalSpace());
         int cur = getCenterPosition();
+        if (cur == getItemCount() - 1) {
+            return cur;
+        }
         for (int i = cur + 1; ; i++) {
             Rect rect = getFrame(i);
             if (rect.right >= displayFrame.right) {
