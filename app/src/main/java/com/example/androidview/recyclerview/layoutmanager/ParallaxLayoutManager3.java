@@ -10,6 +10,8 @@ import androidx.annotation.FloatRange;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidview.utils.ScreenUtils;
+
 public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
 
     /**
@@ -59,8 +61,9 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
      */
     private final SparseBooleanArray mHasAttachedItems = new SparseBooleanArray();
 
-    private int mState;
-
+    private int screenWidth;
+    private float mMinScale;
+    private float mMidScale;
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -71,6 +74,8 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
     public void onAttachedToWindow(RecyclerView view) {
         super.onAttachedToWindow(view);
         new PagerSnapHelper().attachToRecyclerView(view);
+        screenWidth = ScreenUtils.getScreenWidth(view.getContext());
+
     }
 
     @Override
@@ -94,6 +99,8 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
         mStartX = Math.round((getHorizontalSpace() - mDecoratedChildWidth) / 2f);
         mStartY = Math.round((getVerticalSpace() - mDecoratedChildHeight) / 2f);
 
+        mMinScale = 1 - getIntervalDistance() / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
+        mMidScale = (1 + mMinScale) / 2;
         float offset = mStartX;
 
         /**只存{@link MAX_RECT_COUNT}个item具体位置*/
@@ -124,8 +131,6 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
         }
         mOffsetAll += travel; //累计偏移量
         layoutItems(recycler, state, dx);
-
-        mState = Integer.compare(travel, 0);
 
         return travel;
     }
@@ -182,63 +187,65 @@ public class ParallaxLayoutManager3 extends RecyclerView.LayoutManager {
      */
     private void layoutItem(View child, Rect frame, int dx, int index) {
         float scale = computeScale(frame.left - mOffsetAll);
+        float compensation = (1 - scale) * mDecoratedChildWidth / 2;
         int center = getCenterPosition();
         layoutDecorated(child,
                 frame.left - mOffsetAll,
                 frame.top,
                 frame.right - mOffsetAll,
                 frame.bottom);
-        if (index == center) {
-            if (dx > 0) {
-                child.setTranslationX(-getTranslateX(scale) + (1 - scale) * mDecoratedChildWidth);
-            } else if (dx < 0) {
-                child.setTranslationX(getTranslateX(scale) - (1 - scale) * mDecoratedChildWidth);
-            }else {
+        if (dx > 0) {
+            if (index == center) {
+                if (scale >= mMidScale) {
+                    child.setTranslationX(-getTranslateXC(scale) + compensation);
+                } else {
+                    child.setTranslationX(-getTranslateXL(getFrame(1),scale) + compensation);
+                }
+            } else if (index > center) {
+                if (scale <= mMidScale) {
+                    child.setTranslationX(-getTranslateXL(getFrame(1),scale) + compensation);
+                } else {
+                    child.setTranslationX(-getTranslateXC(scale) + compensation);
+                }
+            } else {
                 child.setTranslationX(0);
             }
-        } else if (index > center) {
-            if (dx > 0) {
-                child.setTranslationX(0);
+
+        }
+        if (dx < 0) {
+            if (index == center) {
+                if (scale >= mMidScale) {
+                    child.setTranslationX(getTranslateXC(scale) - compensation);
+                } else {
+                    child.setTranslationX(getTranslateXL(getFrame(1),scale) - compensation);
+                }
+            } else if (index > center) {
+                if (scale <= mMidScale) {
+                    child.setTranslationX(getTranslateXL(getFrame(1),scale) - compensation);
+                } else {
+                    child.setTranslationX(getTranslateXC(scale) - compensation);
+                }
             } else {
-                child.setTranslationX(getTranslateX(scale) - (1 - scale) * mDecoratedChildWidth);
-            }
-        } else {
-            if (dx <= 0) {
                 child.setTranslationX(0);
-            } else {
-                child.setTranslationX(-getTranslateX(scale) + (1 - scale) * mDecoratedChildWidth);
             }
         }
-        //        if (dx < 0) {//right
-        //            if (index >= center) {
-        //                child.setTranslationX(getTranslateX(scale) - (1 - scale) * mDecoratedChildWidth);
-        //            } else {
-        //                child.setTranslationX(0);
-        //            }
-        //        } else if (dx > 0) {
-        //            if (index <= center) {
-        //                child.setTranslationX(-getTranslateX(scale) + (1 - scale) * mDecoratedChildWidth);
-        //            } else {
-        //                child.setTranslationX(0);
-        //            }
-        //        } else {
-        //            child.setTranslationX(0);
-        //        }
-        child.setScaleX(scale); //缩放
-        child.setScaleY(scale); //缩放
+
+        child.setScaleX(scale);
+        child.setScaleY(scale);
     }
 
-    private float getTranslateX(float scale) {
-        float min = 1 - getIntervalDistance() / Math.abs(mStartX + mDecoratedChildWidth / (1 - mIntervalRatio));
-        if (scale < min || scale > 1) {
-            return 0;
-        }
-        float mid = (1 + min) / 2;
-        int b = mDecoratedChildWidth - getIntervalDistance();
-        float c = b / (1 - mid);
-        return Math.abs(b - c * Math.abs(scale - mid));
-
+    private float getTranslateXC(float scale) {
+        int b = mDecoratedChildWidth / 2;
+        float c = b / (1 - mMidScale);
+        return Math.abs(b - c * Math.abs(scale - mMidScale));
     }
+
+    private float getTranslateXL(Rect rect, float scale) {
+        int b = Math.abs(screenWidth / 2 - rect.left);
+        float c = b / (1 - mMidScale);
+        return Math.abs(b - c * Math.abs(scale - mMidScale));
+    }
+
 
     /**
      * 动态获取Item的位置信息
