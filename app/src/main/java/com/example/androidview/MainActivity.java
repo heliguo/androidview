@@ -47,6 +47,7 @@ import com.example.androidview.animator.AnimatorActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.banner.YouthBannerActivity;
+import com.example.androidview.beziercurve.BezierRotateActivity;
 import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.calendar.CalendarReminderUtils;
 import com.example.androidview.carview.CarActivity;
@@ -57,7 +58,6 @@ import com.example.androidview.discview.DiscViewActivity;
 import com.example.androidview.event.EventActivity;
 import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
 import com.example.androidview.fastblur.FastBlurActivity;
-import com.example.androidview.floatview.FloatViewUtils;
 import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.hencoder.draw.animation_6_7.AnimationActivity;
 import com.example.androidview.htmltextview.HtmlTextViewActivity;
@@ -94,7 +94,6 @@ import com.example.androidview.watermark.WaterMarkDrawable;
 import com.example.androidview.watermark.WaterMarkUtils;
 import com.example.androidview.windows.WindowsActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.lang.reflect.InvocationTargetException;
@@ -106,8 +105,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.xml.datatype.DatatypeConstants;
 
 /**
  * @author lgh
@@ -131,16 +128,16 @@ public class MainActivity extends BaseActivity {
         List<Class> classes = new ArrayList<>();
         classes.add(RippleAnimationViewActivity.class);
         classes.add(FastBlurActivity.class);
-//        FloatViewUtils.getInstance()
-//                .layout(R.layout.layout_float_view)
-//                .ignore(classes)
-//                .layoutParams(initLayoutParams())
-//                .listener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
-//                    }
-//                }).show(this);
+        //        FloatViewUtils.getInstance()
+        //                .layout(R.layout.layout_float_view)
+        //                .ignore(classes)
+        //                .layoutParams(initLayoutParams())
+        //                .listener(new View.OnClickListener() {
+        //                    @Override
+        //                    public void onClick(View v) {
+        //                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
+        //                    }
+        //                }).show(this);
 
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("1", "2");
@@ -166,6 +163,9 @@ public class MainActivity extends BaseActivity {
         labels.add("不可扩散");
         WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
         WaterMarkUtils.getInstance().waterMarker(this, drawable);
+
+        mBinding.bezier.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, BezierRotateActivity.class)));
 
         mBinding.progress.setCurrentProgress(0);
 
