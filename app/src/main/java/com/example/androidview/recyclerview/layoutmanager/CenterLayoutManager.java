@@ -2,6 +2,7 @@ package com.example.androidview.recyclerview.layoutmanager;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
@@ -49,13 +50,28 @@ public class CenterLayoutManager extends LinearLayoutManager {
 
     private static class CenterSmoothScroller extends LinearSmoothScroller {
 
+        private final Context mContext;
+
         CenterSmoothScroller(Context context) {
             super(context);
+            mContext = context;
         }
 
         @Override
         public int calculateDtToFit(int viewStart, int viewEnd, int boxStart, int boxEnd, int snapPreference) {
             return (boxStart + (boxEnd - boxStart) / 2) - (viewStart + (viewEnd - viewStart) / 2);
+        }
+
+        @Override
+        protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+            return setSpeedSlow() / displayMetrics.density;
+
+        }
+
+        private float setSpeedSlow() {
+            //自己在这里用density去乘，希望不同分辨率设备上滑动速度相同
+            //越大越慢
+            return mContext.getResources().getDisplayMetrics().density * 0.6f;
         }
     }
 
