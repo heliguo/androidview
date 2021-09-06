@@ -61,7 +61,7 @@ public class BackPressSecondFragment extends Fragment {
         frameLayout.setBackgroundDrawable(new WaterMarkDrawable(getActivity(), labels, -30, 13));
         decorView.addView(frameLayout, 0);
         webView.setBackgroundDrawable(new WaterMarkDrawable(getActivity(), labels, -30, 13));
-        webView.loadUrl("http://www.baidu.com");
+        webView.loadUrl("https://www.baidu.com");
 
         if (requireActivity() instanceof BaseActivity) {
             ((BaseActivity) requireActivity()).registerBackPress(this, new BackPressObserver() {

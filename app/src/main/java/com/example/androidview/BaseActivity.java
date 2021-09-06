@@ -21,7 +21,7 @@ import com.example.androidview.backpress.BackPressRegistry;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    public final static boolean GRAY = false;
+    public final static boolean GRAY = true;
 
     private final BackPressRegistry mBackPressRegistry = new BackPressRegistry();
     private Toast mToast;
