@@ -52,7 +52,7 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
         int y = getPaddingTop();
 
         Paint.FontMetrics fm = getPaint().getFontMetrics();
-        m_iFontHeight = (int) (Math.ceil(fm.descent - fm.top) + getLineSpacingExtra());// 计算字体高度（字体高度＋行间距）
+        m_iFontHeight = (int) (Math.ceil(fm.descent - fm.ascent) + getLineSpacingExtra());// 计算字体高度（字体高度＋行间距）
 
         for (int i = 0; i < string.length(); i++) {
             ch = string.charAt(i);
@@ -95,7 +95,7 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
         m_iTextHeight = 0;
 
         Paint.FontMetrics fm = getPaint().getFontMetrics();
-        int m_iFontHeight = (int) (Math.ceil(fm.descent - fm.top) + getLineSpacingExtra());
+        int m_iFontHeight = (int) (Math.ceil(fm.descent - fm.ascent) + getLineSpacingExtra());
         int line = 0;
 
         int w = 0;
