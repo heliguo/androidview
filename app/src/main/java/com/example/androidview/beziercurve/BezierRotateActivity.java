@@ -1,9 +1,6 @@
 package com.example.androidview.beziercurve;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.SparseArray;
 
 import androidx.annotation.Nullable;
 

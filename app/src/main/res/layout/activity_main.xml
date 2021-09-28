@@ -12,6 +12,11 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp">
 
+        <com.example.androidview.view.AutoBreakTextView
+            android:id="@+id/lines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <Button
             android:id="@+id/bezier"
             android:layout_width="wrap_content"

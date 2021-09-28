@@ -164,6 +164,8 @@ public class MainActivity extends BaseActivity {
         WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
         WaterMarkUtils.getInstance().waterMarker(this, drawable);
 
+        mBinding.lines.setText("999999999999999999999999999999999999999999999999999999999999999999");
+
         mBinding.bezier.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, BezierRotateActivity.class)));
 
