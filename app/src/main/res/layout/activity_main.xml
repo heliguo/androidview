@@ -12,6 +12,18 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp">
 
+        <Button
+            android:id="@+id/activity_Life2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="activity_Life2" />
+
+        <Button
+            android:id="@+id/activity_Life1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="activity_Life1" />
+
         <com.example.androidview.view.AutoBreakTextView
             android:id="@+id/lines"
             android:layout_width="wrap_content"

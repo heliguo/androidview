@@ -14,8 +14,8 @@ import java.util.Vector;
  */
 public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextView {
 
-    public int m_iTextHeight; // 文本的高度
-    public int m_iTextWidth;// 文本的宽度
+    public int mTextHeight; // 文本的高度
+    public int mTextWidth;// 文本的宽度
 
     private String string;
     private final Vector<String> mM_string;
@@ -23,7 +23,7 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
 
     public AutoBreakTextView(Context context, AttributeSet set) {
         super(context, set);
-        m_iTextWidth = getResources().getDisplayMetrics().widthPixels;
+        mTextWidth = getResources().getDisplayMetrics().widthPixels;
         mM_string = new Vector<>();
         mWidths = new float[1];
     }
@@ -32,7 +32,7 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int measuredHeight = measureHeight();
         int measuredWidth = measureWidth(widthMeasureSpec);
-        m_iTextWidth = measuredWidth - getPaddingLeft() - getPaddingRight();
+        mTextWidth = measuredWidth - getPaddingLeft() - getPaddingRight();
         this.setMeasuredDimension(measuredWidth, measuredHeight);
 
     }
@@ -66,7 +66,7 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
                 w = 0;
             } else {
                 w += (int) (Math.ceil(mWidths[0]));
-                if (w > m_iTextWidth) {
+                if (w > mTextWidth) {
                     m_iRealLine++;
                     mM_string.addElement(string.substring(istart, i));
                     istart = i;
@@ -88,12 +88,14 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
 
     private int measureHeight() {
         initHeight();
-        return m_iTextHeight;
+        return mTextHeight;
     }
 
     private void initHeight() {
-        m_iTextHeight = 0;
-
+        if (TextUtils.isEmpty(string)) {
+            return;
+        }
+        mTextHeight = 0;
         Paint.FontMetrics fm = getPaint().getFontMetrics();
         int m_iFontHeight = (int) (fm.bottom - fm.top + fm.leading) + 5;
         int line = 0;
@@ -110,14 +112,14 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
                 w = 0;
             } else {
                 w += (int) (Math.ceil(widths[0]));
-                if (w > m_iTextWidth) {
+                if (w > mTextWidth) {
                     line++;
                     i--;
                     w = 0;
                 } else {
 
                     if (i == (string.length() - 1)) {
-                        if (m_iTextWidth - w < widths[0] * 3) {
+                        if (mTextWidth - w < widths[0] * 3) {
                             line++;
                         }
                         line++;
@@ -125,7 +127,7 @@ public class AutoBreakTextView extends androidx.appcompat.widget.AppCompatTextVi
                 }
             }
         }
-        m_iTextHeight = (line) * m_iFontHeight;
+        mTextHeight = (line) * m_iFontHeight;
     }
 
     private int measureWidth(int measureSpec) {

@@ -166,6 +166,12 @@ public class MainActivity extends BaseActivity {
 
         mBinding.lines.setText("999999999999999999999999999999999999999999999999999999999999999999");
 
+        mBinding.activityLife1.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ActivityLife1Activity.class)));
+
+        mBinding.activityLife2.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ActivityLife2Activity.class)));
+
         mBinding.bezier.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, BezierRotateActivity.class)));
 
@@ -710,7 +716,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e("++++++++", "onDestroy: ");
+        Log.e("tag", "onDestroy: ");
     }
 
     @Override
@@ -891,4 +897,18 @@ public class MainActivity extends BaseActivity {
         params.setMargins(0, params.topMargin, params.rightMargin, 500);
         return params;
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("TAG", "onStop: " );
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("TAG", "onRestart: " );
+    }
+
+
 }

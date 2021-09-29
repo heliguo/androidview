@@ -50,7 +50,7 @@ public class BaseActivity extends AppCompatActivity {
         if (mToast != null) {
             mToast.cancel();
         }
-        mToast = Toast.makeText(this, "you click back press", Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(getApplicationContext(), "you click back press", Toast.LENGTH_SHORT);
         mToast.show();
         if (mBackPressRegistry.dispatchBackPress())
             return;

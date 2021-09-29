@@ -127,6 +127,9 @@
             android:name=".GSY.GSYPlayerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:screenOrientation="portrait" />
+        <activity android:name=".ActivityLife1Activity" />
+        <activity android:name=".ActivityLife2Activity"
+            android:theme="@style/TranslucentTheme2"/>
 
 
         <service android:name=".rootview.ResidentNotificationService" />
