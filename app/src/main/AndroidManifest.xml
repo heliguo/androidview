@@ -130,6 +130,7 @@
         <activity android:name=".ActivityLife1Activity" />
         <activity android:name=".ActivityLife2Activity"
             android:theme="@style/TranslucentTheme2"/>
+        <activity android:name=".mvp.login.LoginActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
