@@ -50,6 +50,7 @@ import com.example.androidview.banner.YouthBannerActivity;
 import com.example.androidview.beziercurve.BezierRotateActivity;
 import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.calendar.CalendarReminderUtils;
+import com.example.androidview.camera.CameraActivity;
 import com.example.androidview.carview.CarActivity;
 import com.example.androidview.coil.CoilActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
@@ -169,6 +170,9 @@ public class MainActivity extends BaseActivity {
 
         mBinding.mvp.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, LoginActivity.class)));
+
+        mBinding.camera.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, CameraActivity.class)));
 
         mBinding.activityLife1.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, ActivityLife1Activity.class)));

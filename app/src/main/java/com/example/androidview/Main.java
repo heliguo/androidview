@@ -55,6 +55,9 @@ public class Main {
         fruits.add(new Fruit());
         examples(fruits);
 
+        String s = "1112223333444";
+        System.out.println(s.substring(0,4));
+        System.out.println(s.substring(4));
         //        String url = "a/b/b/bcc/dddd";
         //        int index = url.lastIndexOf("/");
         //        url = url.substring(0,url.length()-1);
