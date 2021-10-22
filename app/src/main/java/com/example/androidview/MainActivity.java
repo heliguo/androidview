@@ -50,7 +50,9 @@ import com.example.androidview.banner.YouthBannerActivity;
 import com.example.androidview.beziercurve.BezierRotateActivity;
 import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.calendar.CalendarReminderUtils;
-import com.example.androidview.camera.CameraActivity;
+import com.example.androidview.camera.CameraControlActivity;
+import com.example.androidview.camera.CameraPictureActivity;
+import com.example.androidview.camera.CameraVideoActivity;
 import com.example.androidview.carview.CarActivity;
 import com.example.androidview.coil.CoilActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
@@ -62,6 +64,7 @@ import com.example.androidview.fastblur.FastBlurActivity;
 import com.example.androidview.guideview.GuideViewHelper;
 import com.example.androidview.hencoder.draw.animation_6_7.AnimationActivity;
 import com.example.androidview.htmltextview.HtmlTextViewActivity;
+import com.example.androidview.liveBus.LiveDataBusTestActivity1;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
 import com.example.androidview.materialdesign.RecyclerviewActivity;
 import com.example.androidview.mpandroidchart.LineChartActivity;
@@ -111,6 +114,8 @@ import java.util.List;
 /**
  * @author lgh
  * blink 源码在LayoutInflater.java 中
+ * https://gitee.com/ysulgh/androidview.git
+ * https://github.com/heliguo/androidview.git
  */
 public class MainActivity extends BaseActivity {
 
@@ -168,11 +173,20 @@ public class MainActivity extends BaseActivity {
 
         mBinding.lines.setText("999999999999999999999999999999999999999999999999999999999999999999");
 
+        mBinding.livedata.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, LiveDataBusTestActivity1.class)));
+
         mBinding.mvp.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, LoginActivity.class)));
 
+        mBinding.controlCamera.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, CameraControlActivity.class)));
+
+        mBinding.cameras.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, CameraVideoActivity.class)));
+
         mBinding.camera.setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, CameraActivity.class)));
+                startActivity(new Intent(MainActivity.this, CameraPictureActivity.class)));
 
         mBinding.activityLife1.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, ActivityLife1Activity.class)));

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ import java.util.Date;
  * @author lgh on 2021/10/21 16:14
  * @description
  */
-public class CameraActivity extends BaseActivity {
+public class CameraPictureActivity extends BaseActivity {
 
     ActivityCameraBinding mBinding;
     private ActivityResultLauncher<Integer> mLauncher;
@@ -54,10 +55,10 @@ public class CameraActivity extends BaseActivity {
         mLauncher = registerForActivityResult(new Contract(), result -> {
             if (!TextUtils.isEmpty(result)) {
                 Glide.with(this).load(result).into(mBinding.cameraIv);
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inSampleSize = 4;
-//                Bitmap bitmap = BitmapFactory.decodeFile(result, options);
-//                mBinding.cameraIv.setImageBitmap(bitmap);
+                //                BitmapFactory.Options options = new BitmapFactory.Options();
+                //                options.inSampleSize = 4;
+                //                Bitmap bitmap = BitmapFactory.decodeFile(result, options);
+                //                mBinding.cameraIv.setImageBitmap(bitmap);
             }
         });
 
@@ -71,14 +72,15 @@ public class CameraActivity extends BaseActivity {
                         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 300);
             }
         }
+
     }
 
     private void takeCamera() {
         mFile = createFilePath();
         mLauncher.launch(1111);
-//        Intent takePhotoIntent = CameraUtils.getTakePhotoIntent(this, mFile);
-//        // 开启一个带有返回值的Activity，请求码为TAKE_PHOTO
-//        startActivityForResult(takePhotoIntent, 1111);
+        //        Intent takePhotoIntent = CameraUtils.getTakePhotoIntent(this, mFile);
+        //        // 开启一个带有返回值的Activity，请求码为TAKE_PHOTO
+        //        startActivityForResult(takePhotoIntent, 1111);
     }
 
     private File createFilePath() {
@@ -111,7 +113,12 @@ public class CameraActivity extends BaseActivity {
 
         @Override
         public String parseResult(int resultCode, @Nullable Intent intent) {
-            if (resultCode == RESULT_OK && intent != null && intent.getData() != null) {
+            if (resultCode == RESULT_OK && intent != null && intent.getExtras() != null) {
+                Bundle extras = intent.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                mBinding.cameraIv.setImageBitmap(imageBitmap);
+                return null;
+            } else if (resultCode == RESULT_OK && intent != null && intent.getData() != null) {
                 Uri data = intent.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor query = getContentResolver().query(data, filePathColumn, null, null, null);
@@ -140,14 +147,14 @@ public class CameraActivity extends BaseActivity {
             try {
                 String result = mFile.getAbsolutePath();
                 if (!TextUtils.isEmpty(result)) {
-//                    BitmapFactory.Options options = new BitmapFactory.Options();
-//                    options.inSampleSize = 4;
+                    //                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    //                    options.inSampleSize = 4;
                     Glide.with(this).load(result).into(mBinding.cameraIv);
-//                    Bitmap bitmap = BitmapFactory.decodeFile(createFilePath().getAbsolutePath(), options);
-//                    mBinding.cameraIv.setImageBitmap(bitmap);
+                    //                    Bitmap bitmap = BitmapFactory.decodeFile(createFilePath().getAbsolutePath(), options);
+                    //                    mBinding.cameraIv.setImageBitmap(bitmap);
                 }
             } catch (Exception e) {
-                Toast.makeText(this,"错误",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "错误", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }

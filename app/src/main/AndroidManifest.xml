@@ -19,6 +19,8 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".BaseApplication"
@@ -137,7 +139,12 @@
             android:name=".ActivityLife2Activity"
             android:theme="@style/TranslucentTheme2" />
         <activity android:name=".mvp.login.LoginActivity" />
-        <activity android:name=".camera.CameraActivity" />
+        <activity android:name=".camera.CameraPictureActivity" />
+        <activity android:name=".camera.CameraVideoActivity" />
+        <activity android:name=".camera.CameraControlActivity" />
+        <activity android:name=".liveBus.LiveDataBusTestActivity1" />
+        <activity android:name=".liveBus.LiveDataBusTestActivity2" />
+        <activity android:name=".liveBus.LiveDataTestActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />
@@ -151,7 +158,7 @@
 
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
+                android:resource="@xml/file_paths" />
 
         </provider>
 

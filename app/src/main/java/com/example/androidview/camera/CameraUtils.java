@@ -18,6 +18,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 
+import androidx.core.content.FileProvider;
+
 import com.youth.banner.util.LogUtils;
 
 import java.io.ByteArrayInputStream;
@@ -47,10 +49,12 @@ public class CameraUtils {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             } else {
                 //兼容android7.0 使用共享文件的形式
-                ContentValues contentValues = new ContentValues(1);
-                contentValues.put(MediaStore.Images.Media.DATA, outputImagePath.getAbsolutePath());
-                Uri uri = context.getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                Uri uriForFile = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", outputImagePath);
+
+//                ContentValues contentValues = new ContentValues(1);
+//                contentValues.put(MediaStore.Images.Media.DATA, outputImagePath.getAbsolutePath());
+//                Uri uri = context.getApplicationContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uriForFile);
             }
         }
         return intent;

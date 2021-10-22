@@ -13,6 +13,24 @@
         android:paddingVertical="10dp">
 
         <Button
+            android:id="@+id/livedata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="livedata" />
+
+        <Button
+            android:id="@+id/control_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="control_camera" />
+
+        <Button
+            android:id="@+id/cameras"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="video" />
+
+        <Button
             android:id="@+id/camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

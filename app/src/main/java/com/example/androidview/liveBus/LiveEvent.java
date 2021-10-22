@@ -2,6 +2,7 @@ package com.example.androidview.liveBus;
 
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -24,6 +25,9 @@ import static androidx.lifecycle.Lifecycle.State.DESTROYED;
  * 事件
  */
 public class LiveEvent<T> {
+
+    private static final String TAG = "LiveEvent";
+
     private static final Object NOT_SET = new Object();
     private final SafeIterableMap<Observer<? super T>, ObserverWrapper> mObservers = new SafeIterableMap<>();
     private volatile Object mData = NOT_SET;
@@ -216,10 +220,12 @@ public class LiveEvent<T> {
 
         @Override
         public void onStateChanged(@NotNull LifecycleOwner source, @NotNull Lifecycle.Event event) {
+
             if (mOwner.getLifecycle().getCurrentState() == DESTROYED) {
                 removeObserver(mObserver);
                 return;
             }
+            Log.e(TAG, "onStateChanged: " + mOwner.getLifecycle().getCurrentState()+"   "+mOwner);
             activeStateChanged(shouldBeActive());
         }
 
