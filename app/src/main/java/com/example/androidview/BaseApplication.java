@@ -16,7 +16,6 @@ import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
 
-import com.example.androidview.screenadapter.DensityUtils;
 import com.example.androidview.screenadapter.ScreenAutoAdapter;
 import com.example.androidview.screenadapter.UIUtils;
 
@@ -34,6 +33,8 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Log.e(TAG, "onCreate: ");
 
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new ApplicationLifecycleObserver());
 
@@ -56,7 +57,7 @@ public class BaseApplication extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-//                DensityUtils.setDensity(BaseApplication.this,activity);
+                //                DensityUtils.setDensity(BaseApplication.this,activity);
             }
 
             @Override
@@ -95,6 +96,7 @@ public class BaseApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+        Log.e(TAG, "attachBaseContext: " );
     }
 
 

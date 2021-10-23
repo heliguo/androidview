@@ -214,7 +214,7 @@ public class RxCustomCountTextView extends AppCompatTextView implements Lifecycl
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     private void onDestroy() {
-        if (!mSubscribe.isDisposed()) {
+        if (mSubscribe != null && !mSubscribe.isDisposed()) {
             mSubscribe.isDisposed();
         }
     }

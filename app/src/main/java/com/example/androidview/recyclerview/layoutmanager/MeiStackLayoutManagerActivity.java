@@ -2,7 +2,6 @@ package com.example.androidview.recyclerview.layoutmanager;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidview.BaseActivity;
@@ -28,7 +28,7 @@ import java.util.Random;
  */
 public class MeiStackLayoutManagerActivity extends BaseActivity {
 
-    RecyclerView mRecyclerView;
+    ParallaxRecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +38,8 @@ public class MeiStackLayoutManagerActivity extends BaseActivity {
 
         mRecyclerView = findViewById(R.id.rv_layout_manager);
         // new StackLayoutManager(this,-56) 堆叠模式
-        mRecyclerView.setLayoutManager(new ParallaxLayoutManager(this, 0));
+        ParallaxLayoutManager3 parallaxLayoutManager = new ParallaxLayoutManager3();
+        mRecyclerView.setLayoutManager(parallaxLayoutManager);
 
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 18; i++) {
@@ -68,7 +69,6 @@ public class MeiStackLayoutManagerActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(BaseViewHolder viewHolder, int p) {
-            Log.e("TAG", "onBindViewHolder: "+p );
             final int i = p % mList.size();
             ((TextView) viewHolder.itemView.findViewById(R.id.tv)).setText(mList.get(i));
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

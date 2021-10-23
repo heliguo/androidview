@@ -2,6 +2,7 @@ package com.example.androidview.liveBus;
 
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -18,12 +19,16 @@ import java.util.Map;
 
 import static androidx.lifecycle.Lifecycle.State.CREATED;
 import static androidx.lifecycle.Lifecycle.State.DESTROYED;
+import static androidx.lifecycle.Lifecycle.State.STARTED;
 
 
 /**
  * 事件
  */
 public class LiveEvent<T> {
+
+    private static final String TAG = "LiveEvent";
+
     private static final Object NOT_SET = new Object();
     private final SafeIterableMap<Observer<? super T>, ObserverWrapper> mObservers = new SafeIterableMap<>();
     private volatile Object mData = NOT_SET;
@@ -183,12 +188,7 @@ public class LiveEvent<T> {
         if (DefaultTaskExecutor.getInstance().isMainThread())
             setValue(value);
         else
-            DefaultTaskExecutor.getInstance().postToMainThread(new Runnable() {
-                @Override
-                public void run() {
-                    setValue(value);
-                }
-            });
+            DefaultTaskExecutor.getInstance().postToMainThread(() -> setValue(value));
     }
 
     @MainThread
@@ -216,10 +216,12 @@ public class LiveEvent<T> {
 
         @Override
         public void onStateChanged(@NotNull LifecycleOwner source, @NotNull Lifecycle.Event event) {
+
             if (mOwner.getLifecycle().getCurrentState() == DESTROYED) {
                 removeObserver(mObserver);
                 return;
             }
+            Log.e(TAG, "onStateChanged: " + mOwner.getLifecycle().getCurrentState()+"   "+mOwner);
             activeStateChanged(shouldBeActive());
         }
 

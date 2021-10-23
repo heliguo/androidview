@@ -21,7 +21,7 @@ import com.example.androidview.backpress.BackPressRegistry;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    public final static boolean GRAY = false;
+    public final static boolean GRAY = true;
 
     private final BackPressRegistry mBackPressRegistry = new BackPressRegistry();
     private Toast mToast;
@@ -50,7 +50,7 @@ public class BaseActivity extends AppCompatActivity {
         if (mToast != null) {
             mToast.cancel();
         }
-        mToast = Toast.makeText(this, "you click back press", Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(getApplicationContext(), "you click back press", Toast.LENGTH_SHORT);
         mToast.show();
         if (mBackPressRegistry.dispatchBackPress())
             return;

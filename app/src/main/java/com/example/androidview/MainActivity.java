@@ -47,8 +47,12 @@ import com.example.androidview.animator.AnimatorActivity;
 import com.example.androidview.backpress.BackPressActivity;
 import com.example.androidview.backpress.BackPressObserver;
 import com.example.androidview.banner.YouthBannerActivity;
+import com.example.androidview.beziercurve.BezierRotateActivity;
 import com.example.androidview.calendar.CalendarActivity;
 import com.example.androidview.calendar.CalendarReminderUtils;
+import com.example.androidview.camera.CameraControlActivity;
+import com.example.androidview.camera.CameraPictureActivity;
+import com.example.androidview.camera.CameraVideoActivity;
 import com.example.androidview.carview.CarActivity;
 import com.example.androidview.coil.CoilActivity;
 import com.example.androidview.databinding.ActivityMainBinding;
@@ -57,12 +61,15 @@ import com.example.androidview.discview.DiscViewActivity;
 import com.example.androidview.event.EventActivity;
 import com.example.androidview.expandrecyclerview.impl.ExpandableRecyclerviewActivity;
 import com.example.androidview.fastblur.FastBlurActivity;
-import com.example.androidview.floatview.FloatViewUtils;
 import com.example.androidview.guideview.GuideViewHelper;
+import com.example.androidview.hencoder.draw.animation_6_7.AnimationActivity;
 import com.example.androidview.htmltextview.HtmlTextViewActivity;
+import com.example.androidview.liveBus.LiveDataBusTestActivity1;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
 import com.example.androidview.materialdesign.RecyclerviewActivity;
+import com.example.androidview.media.MediaMuxerActivity;
 import com.example.androidview.mpandroidchart.LineChartActivity;
+import com.example.androidview.mvp.login.LoginActivity;
 import com.example.androidview.ntp.SntpUtils;
 import com.example.androidview.pageview.CurlActivity;
 import com.example.androidview.recyclerview.cardscale.CardScaleActivity;
@@ -93,7 +100,6 @@ import com.example.androidview.watermark.WaterMarkDrawable;
 import com.example.androidview.watermark.WaterMarkUtils;
 import com.example.androidview.windows.WindowsActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.lang.reflect.InvocationTargetException;
@@ -109,6 +115,8 @@ import java.util.List;
 /**
  * @author lgh
  * blink 源码在LayoutInflater.java 中
+ * https://gitee.com/ysulgh/androidview.git
+ * https://github.com/heliguo/androidview.git
  */
 public class MainActivity extends BaseActivity {
 
@@ -128,16 +136,16 @@ public class MainActivity extends BaseActivity {
         List<Class> classes = new ArrayList<>();
         classes.add(RippleAnimationViewActivity.class);
         classes.add(FastBlurActivity.class);
-        FloatViewUtils.getInstance()
-                .layout(R.layout.layout_float_view)
-                .ignore(classes)
-                .layoutParams(initLayoutParams())
-                .listener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
-                    }
-                }).show(this);
+        //        FloatViewUtils.getInstance()
+        //                .layout(R.layout.layout_float_view)
+        //                .ignore(classes)
+        //                .layoutParams(initLayoutParams())
+        //                .listener(new View.OnClickListener() {
+        //                    @Override
+        //                    public void onClick(View v) {
+        //                        Toast.makeText(v.getContext(), "哈哈哈", Toast.LENGTH_SHORT).show();
+        //                    }
+        //                }).show(this);
 
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("1", "2");
@@ -163,6 +171,44 @@ public class MainActivity extends BaseActivity {
         labels.add("不可扩散");
         WaterMarkDrawable drawable = new WaterMarkDrawable(this, labels, -30, 13);
         WaterMarkUtils.getInstance().waterMarker(this, drawable);
+
+        mBinding.lines.setText("999999999999999999999999999999999999999999999999999999999999999999");
+
+        mBinding.muxer.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, MediaMuxerActivity.class)));
+
+        mBinding.livedata.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, LiveDataBusTestActivity1.class)));
+
+        mBinding.mvp.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, LoginActivity.class)));
+
+        mBinding.controlCamera.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, CameraControlActivity.class)));
+
+        mBinding.cameras.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, CameraVideoActivity.class)));
+
+        mBinding.camera.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, CameraPictureActivity.class)));
+
+        mBinding.activityLife1.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ActivityLife1Activity.class)));
+
+        mBinding.activityLife2.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ActivityLife2Activity.class)));
+
+        mBinding.bezier.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, BezierRotateActivity.class)));
+
+        mBinding.progress.setCurrentProgress(0);
+
+        mBinding.layoutAnimate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AnimationActivity.class));
+            }
+        });
 
         mBinding.layoutManage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -696,7 +742,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e("++++++++", "onDestroy: ");
+        Log.e("tag", "onDestroy: ");
     }
 
     @Override
@@ -877,4 +923,18 @@ public class MainActivity extends BaseActivity {
         params.setMargins(0, params.topMargin, params.rightMargin, 500);
         return params;
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("TAG", "onStop: ");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("TAG", "onRestart: ");
+    }
+
+
 }
