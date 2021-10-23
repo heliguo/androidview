@@ -145,6 +145,7 @@
         <activity android:name=".liveBus.LiveDataBusTestActivity1" />
         <activity android:name=".liveBus.LiveDataBusTestActivity2" />
         <activity android:name=".liveBus.LiveDataTestActivity" />
+        <activity android:name=".media.MediaMuxerActivity" />
 
 
         <service android:name=".rootview.ResidentNotificationService" />

@@ -67,6 +67,7 @@ import com.example.androidview.htmltextview.HtmlTextViewActivity;
 import com.example.androidview.liveBus.LiveDataBusTestActivity1;
 import com.example.androidview.materialdesign.MaterialDesignActivity;
 import com.example.androidview.materialdesign.RecyclerviewActivity;
+import com.example.androidview.media.MediaMuxerActivity;
 import com.example.androidview.mpandroidchart.LineChartActivity;
 import com.example.androidview.mvp.login.LoginActivity;
 import com.example.androidview.ntp.SntpUtils;
@@ -172,6 +173,9 @@ public class MainActivity extends BaseActivity {
         WaterMarkUtils.getInstance().waterMarker(this, drawable);
 
         mBinding.lines.setText("999999999999999999999999999999999999999999999999999999999999999999");
+
+        mBinding.muxer.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, MediaMuxerActivity.class)));
 
         mBinding.livedata.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, LiveDataBusTestActivity1.class)));

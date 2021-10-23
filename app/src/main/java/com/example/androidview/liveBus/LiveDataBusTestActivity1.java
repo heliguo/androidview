@@ -25,7 +25,31 @@ public class LiveDataBusTestActivity1 extends BaseActivity {
 
         mBinding.jump.setOnClickListener(v -> startActivity(new Intent(this, LiveDataBusTestActivity2.class)));
 
-        LiveDataBus.get().with("555", Integer.class).observe(this, integer -> finish());
+        LiveDataBus.get().with("555", Integer.class).observe(this, integer -> {
+            Log.e("LiveEvent", "onChanged2222: " + integer);
+            //            finish();
+        });
+        LiveDataBus.get().with("555", Integer.class).postValue(2);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("LiveEvent", "onRestart");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e("LiveEvent", "onStart");
+    }
+
+
+    protected void onResume() {
+        super.onResume();
+        Log.e("LiveEvent", "onResume");
+//        LiveDataBus.get().with("555", Integer.class).postValue(3);
+
     }
 
     @Override

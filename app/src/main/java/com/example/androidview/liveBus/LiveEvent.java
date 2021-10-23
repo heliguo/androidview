@@ -19,6 +19,7 @@ import java.util.Map;
 
 import static androidx.lifecycle.Lifecycle.State.CREATED;
 import static androidx.lifecycle.Lifecycle.State.DESTROYED;
+import static androidx.lifecycle.Lifecycle.State.STARTED;
 
 
 /**
@@ -187,12 +188,7 @@ public class LiveEvent<T> {
         if (DefaultTaskExecutor.getInstance().isMainThread())
             setValue(value);
         else
-            DefaultTaskExecutor.getInstance().postToMainThread(new Runnable() {
-                @Override
-                public void run() {
-                    setValue(value);
-                }
-            });
+            DefaultTaskExecutor.getInstance().postToMainThread(() -> setValue(value));
     }
 
     @MainThread
