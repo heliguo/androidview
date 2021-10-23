@@ -195,8 +195,8 @@ public class CreateToken {
         //            System.err.println("CreateTokenDemo need params: <AccessKey Id> <AccessKey Secret>");
         //            System.exit(-1);
         //        }
-        String accessKeyId = "LTAI5tJovrTHPBWxDxgzBe5L";
-        String accessKeySecret = "m3CBt0ixAQiG1XczTvRPiPNOMlRcPI";
+        String accessKeyId = "88888888888";
+        String accessKeySecret = "88888888888888";
         System.out.println(getISO8601Time(new Date()));
         // 所有请求参数
         Map<String, String> queryParamsMap = new HashMap<String, String>();
